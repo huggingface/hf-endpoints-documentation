@@ -20,4 +20,4 @@ doc-builder build endpoints source/ --build_dir build/ --not_python_module
 
 ## Add assets/Images
 
-Adding images/assets is only possible through `https://` links meaning you need to use `https://github.com/huggingface/hf-endpoints-documentation/`
+Adding images/assets is only possible through `https://` links meaning you need to use `https://github.com/huggingface/hf-endpoints-documentation/blob/main/assets/` prefix.

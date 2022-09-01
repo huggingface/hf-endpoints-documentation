@@ -1,0 +1,24 @@
+
+
+- sections: 
+  - local: index
+    title: Hugging Face Inference Endpoints
+  - local: security
+    title: Security & Compliance
+  - local: api_reference
+    title: API Reference
+  - local: faq
+    title: FAQ
+  - local: support
+    title: Help & Support
+  title: Overview
+- sections: 
+  - local: guides/access_ui
+    title: Access the solution (UI)
+  - local: guides/create_endpoint
+    title: Create your first Endpoint
+  title: Guides
+- sections: 
+  - local: index
+    title: Hugging Face Inference Endpoints
+  title: Supported Tasks

@@ -1,0 +1,41 @@
+
+# FAQs 
+
+**Q: In which regions are Inference Endpoints available?**
+A: As of today, only AWS as a Cloud Provider and the us-east-1 (N. Virginia) & eu-west-1 (Ireland) regions are supported. We will add Azure as a deployment option soon. If you need to deploy in a different region, please let us know.
+
+**Q: Can I access the instance my Endpoint is running on?**
+A: No, you cannot access the instance hosting your Endpoint. But if you are missing information or need more insights on the machine where the Endpoint is running, please contact us. 
+
+**Q: Can I see my Private Endpoint running on my VPC account?**
+A: No, when creating a Private Endpoint (a Hugging Face Inference Endpoint linked to your VPC via AWS/Azure PrivateLink), you can only see the ENI in your VPC where the Endpoint is available. 
+
+**Q: Can I run inference in batches?**
+A: It depends on the Task. The [supported Tasks](#supported-tasks) are using the transformers or sentence-transformers pipelines under the hood. If your Task pipeline supports batching, e.g. Zero-Shot Classification then batch inference is supported. In any case, you can always create your own [inference handler](#create-your-own-inference-handler) and implement batching. 
+
+**Q: How can I scale my deployment?**
+A: The Endpoints are scaled automatically for you, the only information you need to provide is a min replica target and a max replica target. Then the system will scale your Endpoint based on the load. Scaling to zero is currently not supported. 
+
+**Q: Will my endpoint still be running if no more requests are processed?**
+A: Yes, your Endpoint will always stay available/up with the number of min replicas defined in the Advanced configuration. 
+
+**Q: I would like to deploy a model which is not in the supported tasks, is this possible?**
+A:  Yes, you can deploy any repository from the [Hugging Face Hub](https://huggingface.co/models) and if your task/model/framework is not supported out of the box, you can [create your own inference handler](https://docs.google.com/document/d/1qs310aq_vLmPloxAlbsBqN8HxyLQCX8fjU0J9oSS53c/edit#heading=h.8l8b33h1g4qr) and then deploy your model to an Endpoint.
+
+**Q: How much does it cost to run my Endpoint?**
+A: The Endpoints are billed based on the compute hours of your Running Endpoints, and the associated instance types. We may add usage costs for load balancers and Private Links in the future. 
+
+**Q: Is the data transiting to the Endpoint encrypted?**
+A: Yes, data is encrypted during transit with TLS/SSL.
+
+**Q: How can I reduce the latency of my Endpoint?**
+A: There are several ways to reduce the latency of your Endpoint. One is to deploy your Endpoint in a region close to your application to reduce the network overhead. Another is to optimize your model using [Hugging Face Optimum](https://huggingface.co/docs/optimum/index) before creating your Endpoint. If you need help or have more questions about reducing latency, please contact us.
+
+**Q: How do I monitor my deployed Endpoint?**
+A: You can currently monitor your Endpoint through the [🤗 Inference Endpoints web application](https://ui.endpoints.huggingface.co/endpoints), where you have access to the [Logs of your Endpoints](#access-and-read-logs) as well as a [metrics dashboard](#access-and-read-logs). If you need programmatic access or more information, please contact us.
+
+**Q: What if I would like to deploy to a different instance type that is not listed?**
+A: Please contact us if you feel your model would do better on a different instance type than what is listed.
+
+**Q: I accidentally leaked my token. Do I need to delete my endpoint?**
+A: You can invalidate existing personal tokens and create new ones in your settings here: [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). For organization tokens, go to the organization settings.w

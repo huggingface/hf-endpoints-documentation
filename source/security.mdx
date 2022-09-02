@@ -1,1 +1,14 @@
 # Security & Compliance
+
+Security and secure inference are one of the key principles for Hugging Face Inference Endpoints. We are currently offering three different levels of security: [Public, Protected and Private](#security-&-authentication).
+
+Public and Protected Endpoints do not require any additional configuration, but to be able to create a Private Endpoint for a secure intra-region connection you need to provide the AWS Account ID of the Account, which also should have access to the Inference Endpoints. 
+
+
+## Endpoint Types
+
+1. **Public: **A Public Endpoint is available from the internet, secured with TLS/SSL, and requires NO Authentication.
+2. **Protected**: A Protected Endpoint is available from the internet, secured with TLS/SSL, and requires a valid Hugging Face Token for Authentication.
+3. **Private**: A Private Endpoint is only available through an intra-region secured AWS or Azure PrivateLink connection. Private Endpoints are not accessible from the Internet.
+
+<img src="https://github.com/huggingface/hf-endpoints-documentation/blob/main/assets/endpoint_types.png" alt="endpoint types" />

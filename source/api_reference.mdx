@@ -4,4 +4,1665 @@
 The API exposes open-API specification for each available route. 
 
 
-TODO: Generate markdown from swagger : https://goswagger.io/usage/markdown.html
+Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
+
+
+# Authentication
+
+- HTTP Authentication, scheme: bearer 
+
+<h1 id="api-endpoint">endpoint</h1>
+
+## list_endpoint
+
+<a id="opIdlist_endpoint"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('/endpoint', headers = headers)
+
+print(r.json())
+
+```
+
+`GET /endpoint`
+
+*List endpoints*
+
+List endpoints
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "items": [
+    {
+      "name": "my-endpoint",
+      "compute": {
+        "instanceType": "c6i",
+        "accelerator": "cpu",
+        "scaling": {
+          "maxReplica": 8,
+          "minReplica": 2
+        },
+        "instanceSize": "large"
+      },
+      "type": "public",
+      "accountId": "string",
+      "status": {
+        "createdAt": "string",
+        "url": "https://endpoint-id.region.vendor.endpoints.huggingface.cloud",
+        "readyReplica": 2,
+        "targetReplica": 4,
+        "private": {
+          "serviceName": "string"
+        },
+        "state": "building",
+        "message": "Endpoint is ready"
+      },
+      "provider": {
+        "region": "us-east-1",
+        "vendor": "aws"
+      },
+      "model": {
+        "task": "text-classification",
+        "image": {
+          "huggingface": {}
+        },
+        "revision": "6c0e6080953db56375760c0471a8c5f2929baf11",
+        "repository": "gpt2",
+        "framework": "custom"
+      }
+    }
+  ]
+}
+```
+
+<h3 id="list_endpoint-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Endpoints listed successfully|[EndpointWithStatusList](#schemaendpointwithstatuslist)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid user or organization token, sent as a Bearer, is required|[ApiResponseError](#schemaapiresponseerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+token
+</aside>
+
+## create_endpoint
+
+<a id="opIdcreate_endpoint"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.post('/endpoint', headers = headers)
+
+print(r.json())
+
+```
+
+`POST /endpoint`
+
+*Create a new endpoint*
+
+Create a new endpoint
+
+> Body parameter
+
+```json
+{
+  "compute": {
+    "instanceType": "c6i",
+    "accelerator": "cpu",
+    "scaling": {
+      "maxReplica": 8,
+      "minReplica": 2
+    },
+    "instanceSize": "large"
+  },
+  "model": {
+    "task": "text-classification",
+    "image": {
+      "huggingface": {}
+    },
+    "revision": "6c0e6080953db56375760c0471a8c5f2929baf11",
+    "repository": "gpt2",
+    "framework": "custom"
+  },
+  "accountId": null,
+  "name": "my-endpoint",
+  "type": "public",
+  "provider": {
+    "region": "us-east-1",
+    "vendor": "aws"
+  }
+}
+```
+
+<h3 id="create_endpoint-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[Endpoint](#schemaendpoint)|true|none|
+
+> Example responses
+
+> 202 Response
+
+```json
+{
+  "name": "my-endpoint",
+  "compute": {
+    "instanceType": "c6i",
+    "accelerator": "cpu",
+    "scaling": {
+      "maxReplica": 8,
+      "minReplica": 2
+    },
+    "instanceSize": "large"
+  },
+  "type": "public",
+  "accountId": "string",
+  "status": {
+    "createdAt": "string",
+    "url": "https://endpoint-id.region.vendor.endpoints.huggingface.cloud",
+    "readyReplica": 2,
+    "targetReplica": 4,
+    "private": {
+      "serviceName": "string"
+    },
+    "state": "building",
+    "message": "Endpoint is ready"
+  },
+  "provider": {
+    "region": "us-east-1",
+    "vendor": "aws"
+  },
+  "model": {
+    "task": "text-classification",
+    "image": {
+      "huggingface": {}
+    },
+    "revision": "6c0e6080953db56375760c0471a8c5f2929baf11",
+    "repository": "gpt2",
+    "framework": "custom"
+  }
+}
+```
+
+<h3 id="create_endpoint-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|202|[Accepted](https://tools.ietf.org/html/rfc7231#section-6.3.3)|Endpoint creation in progress|[EndpointWithStatus](#schemaendpointwithstatus)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Incorrect input|[ApiResponseError](#schemaapiresponseerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid user or organization token, sent as a Bearer, is required|[ApiResponseError](#schemaapiresponseerror)|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|An endpoint with the same name already exists|[ApiResponseError](#schemaapiresponseerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+token
+</aside>
+
+## get_endpoint
+
+<a id="opIdget_endpoint"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('/endpoint/{name}', headers = headers)
+
+print(r.json())
+
+```
+
+`GET /endpoint/{name}`
+
+*Get endpoint information*
+
+Get endpoint information
+
+<h3 id="get_endpoint-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|name|path|string|true|Endpoint name|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "my-endpoint",
+  "compute": {
+    "instanceType": "c6i",
+    "accelerator": "cpu",
+    "scaling": {
+      "maxReplica": 8,
+      "minReplica": 2
+    },
+    "instanceSize": "large"
+  },
+  "type": "public",
+  "accountId": "string",
+  "status": {
+    "createdAt": "string",
+    "url": "https://endpoint-id.region.vendor.endpoints.huggingface.cloud",
+    "readyReplica": 2,
+    "targetReplica": 4,
+    "private": {
+      "serviceName": "string"
+    },
+    "state": "building",
+    "message": "Endpoint is ready"
+  },
+  "provider": {
+    "region": "us-east-1",
+    "vendor": "aws"
+  },
+  "model": {
+    "task": "text-classification",
+    "image": {
+      "huggingface": {}
+    },
+    "revision": "6c0e6080953db56375760c0471a8c5f2929baf11",
+    "repository": "gpt2",
+    "framework": "custom"
+  }
+}
+```
+
+<h3 id="get_endpoint-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Endpoint returned successfully|[EndpointWithStatus](#schemaendpointwithstatus)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid user or organization token, sent as a Bearer, is required|[ApiResponseError](#schemaapiresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Endpoint not found|[ApiResponseError](#schemaapiresponseerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+token
+</aside>
+
+## update_endpoint
+
+<a id="opIdupdate_endpoint"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.put('/endpoint/{name}', headers = headers)
+
+print(r.json())
+
+```
+
+`PUT /endpoint/{name}`
+
+*Update an endpoint*
+
+Update an endpoint
+
+> Body parameter
+
+```json
+{
+  "compute": {
+    "scaling": {
+      "minReplica": 2,
+      "maxReplica": 8
+    }
+  }
+}
+```
+
+<h3 id="update_endpoint-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|name|path|string|true|Endpoint name|
+|body|body|[EndpointUpdate](#schemaendpointupdate)|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "my-endpoint",
+  "compute": {
+    "instanceType": "c6i",
+    "accelerator": "cpu",
+    "scaling": {
+      "maxReplica": 8,
+      "minReplica": 2
+    },
+    "instanceSize": "large"
+  },
+  "type": "public",
+  "accountId": "string",
+  "status": {
+    "createdAt": "string",
+    "url": "https://endpoint-id.region.vendor.endpoints.huggingface.cloud",
+    "readyReplica": 2,
+    "targetReplica": 4,
+    "private": {
+      "serviceName": "string"
+    },
+    "state": "building",
+    "message": "Endpoint is ready"
+  },
+  "provider": {
+    "region": "us-east-1",
+    "vendor": "aws"
+  },
+  "model": {
+    "task": "text-classification",
+    "image": {
+      "huggingface": {}
+    },
+    "revision": "6c0e6080953db56375760c0471a8c5f2929baf11",
+    "repository": "gpt2",
+    "framework": "custom"
+  }
+}
+```
+
+<h3 id="update_endpoint-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Endpoint updated successfully|[EndpointWithStatus](#schemaendpointwithstatus)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Incorrect input|[ApiResponseError](#schemaapiresponseerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid user or organization token, sent as a Bearer, is required|[ApiResponseError](#schemaapiresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Endpoint not found|[ApiResponseError](#schemaapiresponseerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+token
+</aside>
+
+## delete_endpoint
+
+<a id="opIddelete_endpoint"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.delete('/endpoint/{name}', headers = headers)
+
+print(r.json())
+
+```
+
+`DELETE /endpoint/{name}`
+
+*Delete an endpoint*
+
+Delete an endpoint
+
+<h3 id="delete_endpoint-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|name|path|string|true|Endpoint name|
+
+> Example responses
+
+> 200 Response
+
+```json
+{}
+```
+
+<h3 id="delete_endpoint-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Endpoint deleted successfully|[Empty](#schemaempty)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid user or organization token, sent as a Bearer, is required|[ApiResponseError](#schemaapiresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Endpoint not found|[ApiResponseError](#schemaapiresponseerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+token
+</aside>
+
+## get_endpoint_logs
+
+<a id="opIdget_endpoint_logs"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'text/plain',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('/endpoint/{name}/logs', headers = headers)
+
+print(r.json())
+
+```
+
+`GET /endpoint/{name}/logs`
+
+*Endpoint replicas logs*
+
+Endpoint replicas logs
+
+<h3 id="get_endpoint_logs-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|name|path|string|true|Endpoint name|
+|build|query|boolean|false|none|
+|from|query|integer(int64)|false|none|
+|to|query|integer(int64)|false|none|
+
+> Example responses
+
+> 200 Response
+
+```
+"string"
+```
+
+> 401 Response
+
+```json
+{
+  "error": "string"
+}
+```
+
+<h3 id="get_endpoint_logs-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Endpoint replicas logs returned successfully|string|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid user or organization token, sent as a Bearer, is required|[ApiResponseError](#schemaapiresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Endpoint not found|[ApiResponseError](#schemaapiresponseerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+token
+</aside>
+
+## get_endpoint_metrics
+
+<a id="opIdget_endpoint_metrics"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('/endpoint/{name}/metrics', params={
+  'query': undefined,  'start': undefined,  'end': undefined,  'step': undefined
+}, headers = headers)
+
+print(r.json())
+
+```
+
+`GET /endpoint/{name}/metrics`
+
+*Endpoint aggregated metrics*
+
+Endpoint aggregated metrics
+
+Query params are the same as for the `query_range` endpoint, cf <a href='https://prometheus.io/docs/prometheus/latest/querying/api/#range-queries'>Range Queries</a>
+
+<h3 id="get_endpoint_metrics-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|name|path|string|true|Endpoint name|
+|query|query|undefined|true|`query=<string>`: Prometheus expression query string|
+|start|query|undefined|true|`start=<rfc3339 | unix_timestamp>`: Start timestamp, inclusive.|
+|end|query|undefined|true|`end=<rfc3339 | unix_timestamp>`: End timestamp, inclusive.|
+|step|query|undefined|true|`step=<duration | float>`: Query resolution step width in duration format or float number of seconds.|
+|timeout|query|string|false|`timeout=<duration>`: Evaluation timeout. Optional. Defaults to and is capped by the value of the `-query.timeout` flag.|
+
+> Example responses
+
+> 401 Response
+
+```json
+{
+  "error": "string"
+}
+```
+
+<h3 id="get_endpoint_metrics-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Endpoint aggregated metrics returned successfully|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid user or organization token, sent as a Bearer, is required|[ApiResponseError](#schemaapiresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Endpoint not found|[ApiResponseError](#schemaapiresponseerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+token
+</aside>
+
+<h1 id="api-provider">provider</h1>
+
+## list_vendors
+
+<a id="opIdlist_vendors"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/provider', headers = headers)
+
+print(r.json())
+
+```
+
+`GET /provider`
+
+*List vendors*
+
+List vendors
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "items": [
+    {
+      "status": "available",
+      "vendor": "aws"
+    }
+  ]
+}
+```
+
+<h3 id="list_vendors-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Providers listed successfully|[VendorList](#schemavendorlist)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## list_regions
+
+<a id="opIdlist_regions"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/provider/{vendor}/region', headers = headers)
+
+print(r.json())
+
+```
+
+`GET /provider/{vendor}/region`
+
+*List vendor regions*
+
+List vendor regions
+
+<h3 id="list_regions-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|vendor|path|string|true|Provider vendor|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "items": [
+    {
+      "status": "available",
+      "region": "us-east-1",
+      "label": "N. Virginia"
+    }
+  ]
+}
+```
+
+<h3 id="list_regions-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Regions listed successfully|[RegionList](#schemaregionlist)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Vendor not found|[ApiResponseError](#schemaapiresponseerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## list_computes
+
+<a id="opIdlist_computes"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/provider/{vendor}/region/{region}/compute', headers = headers)
+
+print(r.json())
+
+```
+
+`GET /provider/{vendor}/region/{region}/compute`
+
+*List compute resources available for this provider region*
+
+List compute resources available for this provider region
+
+<h3 id="list_computes-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|vendor|path|string|true|Provider vendor|
+|region|path|string|true|Vendor region|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "items": [
+    {
+      "architecture": "Nvidia Tesla T4",
+      "status": "available",
+      "instanceType": "g4dn.xlarge",
+      "numAccelerators": "1",
+      "instanceSize": "medium",
+      "memoryGb": "14Gi",
+      "pricePerHour": "0.6",
+      "numCpus": "3",
+      "accelerator": "cpu"
+    }
+  ]
+}
+```
+
+<h3 id="list_computes-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Compute resources listed successfully|[ComputeList](#schemacomputelist)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Vendor or region not found|[ApiResponseError](#schemaapiresponseerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+# Schemas
+
+<h2 id="tocS_Status">Status</h2>
+<!-- backwards compatibility -->
+<a id="schemastatus"></a>
+<a id="schema_Status"></a>
+<a id="tocSstatus"></a>
+<a id="tocsstatus"></a>
+
+```json
+"available"
+
+```
+
+Resource status
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|string|false|none|Resource status|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|*anonymous*|available|
+|*anonymous*|notAvailable|
+
+<h2 id="tocS_EndpointAccelerator">EndpointAccelerator</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointaccelerator"></a>
+<a id="schema_EndpointAccelerator"></a>
+<a id="tocSendpointaccelerator"></a>
+<a id="tocsendpointaccelerator"></a>
+
+```json
+"cpu"
+
+```
+
+Endpoint accelerator
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|string|false|none|Endpoint accelerator|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|*anonymous*|cpu|
+|*anonymous*|gpu|
+
+<h2 id="tocS_EndpointState">EndpointState</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointstate"></a>
+<a id="schema_EndpointState"></a>
+<a id="tocSendpointstate"></a>
+<a id="tocsendpointstate"></a>
+
+```json
+"building"
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|*anonymous*|building|
+|*anonymous*|initializing|
+|*anonymous*|running|
+|*anonymous*|failed|
+
+<h2 id="tocS_Vendor">Vendor</h2>
+<!-- backwards compatibility -->
+<a id="schemavendor"></a>
+<a id="schema_Vendor"></a>
+<a id="tocSvendor"></a>
+<a id="tocsvendor"></a>
+
+```json
+{
+  "status": "available",
+  "vendor": "aws"
+}
+
+```
+
+Provider vendor
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|[Status](#schemastatus)|true|none|Resource status|
+|vendor|string|true|none|none|
+
+<h2 id="tocS_Endpoint">Endpoint</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpoint"></a>
+<a id="schema_Endpoint"></a>
+<a id="tocSendpoint"></a>
+<a id="tocsendpoint"></a>
+
+```json
+{
+  "compute": {
+    "instanceType": "c6i",
+    "accelerator": "cpu",
+    "scaling": {
+      "maxReplica": 8,
+      "minReplica": 2
+    },
+    "instanceSize": "large"
+  },
+  "model": {
+    "task": "text-classification",
+    "image": {
+      "huggingface": {}
+    },
+    "revision": "6c0e6080953db56375760c0471a8c5f2929baf11",
+    "repository": "gpt2",
+    "framework": "custom"
+  },
+  "accountId": null,
+  "name": "my-endpoint",
+  "type": "public",
+  "provider": {
+    "region": "us-east-1",
+    "vendor": "aws"
+  }
+}
+
+```
+
+Endpoint
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|compute|[EndpointCompute](#schemaendpointcompute)|true|none|Endpoint compute|
+|model|[EndpointModel](#schemaendpointmodel)|true|none|Model served by the endpoint|
+|accountId|string|false|none|Account ID used to link a VPC to a private endpoint|
+|name|string|true|none|Endpoint name. Must only contains lowercase alphanumeric characters or '-' and have a length of 32 characters maximum|
+|type|[EndpointType](#schemaendpointtype)|true|none|Endpoint type. Public mean , private mean accessible only via a VPC|
+|provider|[EndpointProvider](#schemaendpointprovider)|true|none|Endpoint provider|
+
+<h2 id="tocS_EndpointProvider">EndpointProvider</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointprovider"></a>
+<a id="schema_EndpointProvider"></a>
+<a id="tocSendpointprovider"></a>
+<a id="tocsendpointprovider"></a>
+
+```json
+{
+  "region": "us-east-1",
+  "vendor": "aws"
+}
+
+```
+
+Endpoint provider
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|region|string|true|none|Provider region|
+|vendor|string|true|none|Provider vendor|
+
+<h2 id="tocS_Region">Region</h2>
+<!-- backwards compatibility -->
+<a id="schemaregion"></a>
+<a id="schema_Region"></a>
+<a id="tocSregion"></a>
+<a id="tocsregion"></a>
+
+```json
+{
+  "status": "available",
+  "region": "us-east-1",
+  "label": "N. Virginia"
+}
+
+```
+
+Provider vendor region
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|[Status](#schemastatus)|true|none|Resource status|
+|region|string|true|none|Region name|
+|label|string|true|none|none|
+
+<h2 id="tocS_EndpointScaling">EndpointScaling</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointscaling"></a>
+<a id="schema_EndpointScaling"></a>
+<a id="tocSendpointscaling"></a>
+<a id="tocsendpointscaling"></a>
+
+```json
+{
+  "maxReplica": 8,
+  "minReplica": 2
+}
+
+```
+
+Endpoint scaling
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|maxReplica|integer(int32)|true|none|Maximum number of endpoint replica|
+|minReplica|integer(int32)|true|none|Minimum number of endpoint replica|
+
+<h2 id="tocS_EndpointCompute">EndpointCompute</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointcompute"></a>
+<a id="schema_EndpointCompute"></a>
+<a id="tocSendpointcompute"></a>
+<a id="tocsendpointcompute"></a>
+
+```json
+{
+  "instanceType": "c6i",
+  "accelerator": "cpu",
+  "scaling": {
+    "maxReplica": 8,
+    "minReplica": 2
+  },
+  "instanceSize": "large"
+}
+
+```
+
+Endpoint compute
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|instanceType|string|true|none|Compute instance type|
+|accelerator|[EndpointAccelerator](#schemaendpointaccelerator)|true|none|Endpoint accelerator|
+|scaling|[EndpointScaling](#schemaendpointscaling)|true|none|Endpoint scaling|
+|instanceSize|string|true|none|none|
+
+<h2 id="tocS_ComputeList">ComputeList</h2>
+<!-- backwards compatibility -->
+<a id="schemacomputelist"></a>
+<a id="schema_ComputeList"></a>
+<a id="tocScomputelist"></a>
+<a id="tocscomputelist"></a>
+
+```json
+{
+  "items": [
+    {
+      "architecture": "Nvidia Tesla T4",
+      "status": "available",
+      "instanceType": "g4dn.xlarge",
+      "numAccelerators": "1",
+      "instanceSize": "medium",
+      "memoryGb": "14Gi",
+      "pricePerHour": "0.6",
+      "numCpus": "3",
+      "accelerator": "cpu"
+    }
+  ]
+}
+
+```
+
+List of vendor region compute resources
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|items|[[Compute](#schemacompute)]|true|none|[Vendor region compute resources]|
+
+<h2 id="tocS_EndpointModelImage">EndpointModelImage</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointmodelimage"></a>
+<a id="schema_EndpointModelImage"></a>
+<a id="tocSendpointmodelimage"></a>
+<a id="tocsendpointmodelimage"></a>
+
+```json
+{
+  "huggingface": {}
+}
+
+```
+
+### Properties
+
+oneOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|» huggingface|object|false|none|Model served by an Hugging Face container|
+
+xor
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|» custom|object|false|none|Model served by a custom container|
+|»» credentials|[EndpointImageCredentials](#schemaendpointimagecredentials)|false|none|Model served by the endpoint|
+|»» health_route|string|false|none|Container health route|
+|»» url|string|true|none|URL fo the container|
+|»» port|integer(int32)|false|none|Endpoint API port|
+|»» env|object|true|none|Container environment variables|
+
+<h2 id="tocS_EndpointImageCredentials">EndpointImageCredentials</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointimagecredentials"></a>
+<a id="schema_EndpointImageCredentials"></a>
+<a id="tocSendpointimagecredentials"></a>
+<a id="tocsendpointimagecredentials"></a>
+
+```json
+{
+  "password": "string",
+  "username": "string"
+}
+
+```
+
+Model served by the endpoint
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|password|string|true|none|Registry password|
+|username|string|true|none|Registry username|
+
+<h2 id="tocS_EndpointFramework">EndpointFramework</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointframework"></a>
+<a id="schema_EndpointFramework"></a>
+<a id="tocSendpointframework"></a>
+<a id="tocsendpointframework"></a>
+
+```json
+"custom"
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|*anonymous*|custom|
+|*anonymous*|pytorch|
+|*anonymous*|tensorflow|
+
+<h2 id="tocS_EndpointScalingUpdate">EndpointScalingUpdate</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointscalingupdate"></a>
+<a id="schema_EndpointScalingUpdate"></a>
+<a id="tocSendpointscalingupdate"></a>
+<a id="tocsendpointscalingupdate"></a>
+
+```json
+{
+  "minReplica": 2,
+  "maxReplica": 8
+}
+
+```
+
+Update endpoint scaling
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|minReplica|integer(int32)|false|none|Minimum number of endpoint replica|
+|maxReplica|integer(int32)|false|none|Maximum number of endpoint replica|
+
+<h2 id="tocS_EndpointWithStatusList">EndpointWithStatusList</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointwithstatuslist"></a>
+<a id="schema_EndpointWithStatusList"></a>
+<a id="tocSendpointwithstatuslist"></a>
+<a id="tocsendpointwithstatuslist"></a>
+
+```json
+{
+  "items": [
+    {
+      "name": "my-endpoint",
+      "compute": {
+        "instanceType": "c6i",
+        "accelerator": "cpu",
+        "scaling": {
+          "maxReplica": 8,
+          "minReplica": 2
+        },
+        "instanceSize": "large"
+      },
+      "type": "public",
+      "accountId": "string",
+      "status": {
+        "createdAt": "string",
+        "url": "https://endpoint-id.region.vendor.endpoints.huggingface.cloud",
+        "readyReplica": 2,
+        "targetReplica": 4,
+        "private": {
+          "serviceName": "string"
+        },
+        "state": "building",
+        "message": "Endpoint is ready"
+      },
+      "provider": {
+        "region": "us-east-1",
+        "vendor": "aws"
+      },
+      "model": {
+        "task": "text-classification",
+        "image": {
+          "huggingface": {}
+        },
+        "revision": "6c0e6080953db56375760c0471a8c5f2929baf11",
+        "repository": "gpt2",
+        "framework": "custom"
+      }
+    }
+  ]
+}
+
+```
+
+List of endpoints with their statuses
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|items|[[EndpointWithStatus](#schemaendpointwithstatus)]|true|none|[Endpoint with its status]|
+
+<h2 id="tocS_RegionList">RegionList</h2>
+<!-- backwards compatibility -->
+<a id="schemaregionlist"></a>
+<a id="schema_RegionList"></a>
+<a id="tocSregionlist"></a>
+<a id="tocsregionlist"></a>
+
+```json
+{
+  "items": [
+    {
+      "status": "available",
+      "region": "us-east-1",
+      "label": "N. Virginia"
+    }
+  ]
+}
+
+```
+
+List of vendor regions
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|items|[[Region](#schemaregion)]|true|none|[Provider vendor region]|
+
+<h2 id="tocS_EndpointType">EndpointType</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointtype"></a>
+<a id="schema_EndpointType"></a>
+<a id="tocSendpointtype"></a>
+<a id="tocsendpointtype"></a>
+
+```json
+"public"
+
+```
+
+Endpoint type. Public mean , private mean accessible only via a VPC
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|string|false|none|Endpoint type. Public mean , private mean accessible only via a VPC|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|*anonymous*|public|
+|*anonymous*|protected|
+|*anonymous*|private|
+
+<h2 id="tocS_EndpointTask">EndpointTask</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointtask"></a>
+<a id="schema_EndpointTask"></a>
+<a id="tocSendpointtask"></a>
+<a id="tocsendpointtask"></a>
+
+```json
+"text-classification"
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|*anonymous*|text-classification|
+|*anonymous*|zero-shot-classification|
+|*anonymous*|token-classification|
+|*anonymous*|question-answering|
+|*anonymous*|fill-mask|
+|*anonymous*|summarization|
+|*anonymous*|translation|
+|*anonymous*|text2text-generation|
+|*anonymous*|text-generation|
+|*anonymous*|feature-extraction|
+|*anonymous*|image-classification|
+|*anonymous*|automatic-speech-recognition|
+|*anonymous*|audio-classification|
+|*anonymous*|object-detection|
+|*anonymous*|image-segmentation|
+|*anonymous*|table-question-answering|
+|*anonymous*|conversational|
+|*anonymous*|sentence-similarity|
+|*anonymous*|sentence-embeddings|
+|*anonymous*|sentence-ranking|
+|*anonymous*|custom|
+
+<h2 id="tocS_EndpointWithStatus">EndpointWithStatus</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointwithstatus"></a>
+<a id="schema_EndpointWithStatus"></a>
+<a id="tocSendpointwithstatus"></a>
+<a id="tocsendpointwithstatus"></a>
+
+```json
+{
+  "name": "my-endpoint",
+  "compute": {
+    "instanceType": "c6i",
+    "accelerator": "cpu",
+    "scaling": {
+      "maxReplica": 8,
+      "minReplica": 2
+    },
+    "instanceSize": "large"
+  },
+  "type": "public",
+  "accountId": "string",
+  "status": {
+    "createdAt": "string",
+    "url": "https://endpoint-id.region.vendor.endpoints.huggingface.cloud",
+    "readyReplica": 2,
+    "targetReplica": 4,
+    "private": {
+      "serviceName": "string"
+    },
+    "state": "building",
+    "message": "Endpoint is ready"
+  },
+  "provider": {
+    "region": "us-east-1",
+    "vendor": "aws"
+  },
+  "model": {
+    "task": "text-classification",
+    "image": {
+      "huggingface": {}
+    },
+    "revision": "6c0e6080953db56375760c0471a8c5f2929baf11",
+    "repository": "gpt2",
+    "framework": "custom"
+  }
+}
+
+```
+
+Endpoint with its status
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Endpoint name. Must only contains lowercase alphanumeric characters or '-' and have a length of 32 characters maximum|
+|compute|[EndpointCompute](#schemaendpointcompute)|true|none|Endpoint compute|
+|type|[EndpointType](#schemaendpointtype)|true|none|Endpoint type. Public mean , private mean accessible only via a VPC|
+|accountId|string|false|none|Account ID used to link a VPC to a private endpoint|
+|status|[EndpointStatus](#schemaendpointstatus)|true|none|Status of the endpoint|
+|provider|[EndpointProvider](#schemaendpointprovider)|true|none|Endpoint provider|
+|model|[EndpointModel](#schemaendpointmodel)|true|none|Model served by the endpoint|
+
+<h2 id="tocS_EndpointComputeUpdate">EndpointComputeUpdate</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointcomputeupdate"></a>
+<a id="schema_EndpointComputeUpdate"></a>
+<a id="tocSendpointcomputeupdate"></a>
+<a id="tocsendpointcomputeupdate"></a>
+
+```json
+{
+  "scaling": {
+    "minReplica": 2,
+    "maxReplica": 8
+  }
+}
+
+```
+
+Update endpoint compute
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|scaling|[EndpointScalingUpdate](#schemaendpointscalingupdate)|false|none|Update endpoint scaling|
+
+<h2 id="tocS_EndpointStatus">EndpointStatus</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointstatus"></a>
+<a id="schema_EndpointStatus"></a>
+<a id="tocSendpointstatus"></a>
+<a id="tocsendpointstatus"></a>
+
+```json
+{
+  "createdAt": "string",
+  "url": "https://endpoint-id.region.vendor.endpoints.huggingface.cloud",
+  "readyReplica": 2,
+  "targetReplica": 4,
+  "private": {
+    "serviceName": "string"
+  },
+  "state": "building",
+  "message": "Endpoint is ready"
+}
+
+```
+
+Status of the endpoint
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|createdAt|string|true|none|Date of creation|
+|url|string|false|none|Number of replica ready to handle requests|
+|readyReplica|integer(int32)|true|none|Number of replica ready to handle requests|
+|targetReplica|integer(int32)|true|none|Target number of replica to handle requests|
+|private|[EndpointStatusPrivate](#schemaendpointstatusprivate)|false|none|Status of a private endpoint|
+|state|[EndpointState](#schemaendpointstate)|true|none|none|
+|message|string|true|none|Information about the state of the endpoint|
+
+<h2 id="tocS_Empty">Empty</h2>
+<!-- backwards compatibility -->
+<a id="schemaempty"></a>
+<a id="schema_Empty"></a>
+<a id="tocSempty"></a>
+<a id="tocsempty"></a>
+
+```json
+{}
+
+```
+
+### Properties
+
+*None*
+
+<h2 id="tocS_ApiResponseError">ApiResponseError</h2>
+<!-- backwards compatibility -->
+<a id="schemaapiresponseerror"></a>
+<a id="schema_ApiResponseError"></a>
+<a id="tocSapiresponseerror"></a>
+<a id="tocsapiresponseerror"></a>
+
+```json
+{
+  "error": "string"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|error|string|true|none|none|
+
+<h2 id="tocS_Compute">Compute</h2>
+<!-- backwards compatibility -->
+<a id="schemacompute"></a>
+<a id="schema_Compute"></a>
+<a id="tocScompute"></a>
+<a id="tocscompute"></a>
+
+```json
+{
+  "architecture": "Nvidia Tesla T4",
+  "status": "available",
+  "instanceType": "g4dn.xlarge",
+  "numAccelerators": "1",
+  "instanceSize": "medium",
+  "memoryGb": "14Gi",
+  "pricePerHour": "0.6",
+  "numCpus": "3",
+  "accelerator": "cpu"
+}
+
+```
+
+Vendor region compute resources
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|architecture|string|true|none|Compute accelerator architecture|
+|status|[Status](#schemastatus)|true|none|Resource status|
+|instanceType|string|true|none|Compute accelerator instance type|
+|numAccelerators|integer(int32)|true|none|Number of accelerator units which can be requested per endpoint replica|
+|instanceSize|string|true|none|Compute accelerator instance size|
+|memoryGb|string|true|none|Amount of RAM which can be requested per endpoint replica|
+|pricePerHour|number(float)|true|none|Price per hour in dollar of an endpoint replica|
+|numCpus|integer(int32)|false|none|Number of CPUs which can be requested per endpoint replica|
+|accelerator|[Accelerator](#schemaaccelerator)|true|none|Compute accelerator|
+
+<h2 id="tocS_EndpointModel">EndpointModel</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointmodel"></a>
+<a id="schema_EndpointModel"></a>
+<a id="tocSendpointmodel"></a>
+<a id="tocsendpointmodel"></a>
+
+```json
+{
+  "task": "text-classification",
+  "image": {
+    "huggingface": {}
+  },
+  "revision": "6c0e6080953db56375760c0471a8c5f2929baf11",
+  "repository": "gpt2",
+  "framework": "custom"
+}
+
+```
+
+Model served by the endpoint
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|task|[EndpointTask](#schemaendpointtask)|false|none|none|
+|image|[EndpointModelImage](#schemaendpointmodelimage)|true|none|none|
+|revision|string|false|none|Model commit hash, if not set the latest commit will be used|
+|repository|string|true|none|HuggingFace repository|
+|framework|[EndpointFramework](#schemaendpointframework)|true|none|none|
+
+<h2 id="tocS_EndpointUpdate">EndpointUpdate</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointupdate"></a>
+<a id="schema_EndpointUpdate"></a>
+<a id="tocSendpointupdate"></a>
+<a id="tocsendpointupdate"></a>
+
+```json
+{
+  "compute": {
+    "scaling": {
+      "minReplica": 2,
+      "maxReplica": 8
+    }
+  }
+}
+
+```
+
+Update an endpoint
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|compute|[EndpointComputeUpdate](#schemaendpointcomputeupdate)|false|none|Update endpoint compute|
+
+<h2 id="tocS_VendorList">VendorList</h2>
+<!-- backwards compatibility -->
+<a id="schemavendorlist"></a>
+<a id="schema_VendorList"></a>
+<a id="tocSvendorlist"></a>
+<a id="tocsvendorlist"></a>
+
+```json
+{
+  "items": [
+    {
+      "status": "available",
+      "vendor": "aws"
+    }
+  ]
+}
+
+```
+
+List of provider vendors
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|items|[[Vendor](#schemavendor)]|true|none|[Provider vendor]|
+
+<h2 id="tocS_Accelerator">Accelerator</h2>
+<!-- backwards compatibility -->
+<a id="schemaaccelerator"></a>
+<a id="schema_Accelerator"></a>
+<a id="tocSaccelerator"></a>
+<a id="tocsaccelerator"></a>
+
+```json
+"cpu"
+
+```
+
+Compute accelerator
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|string|false|none|Compute accelerator|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|*anonymous*|cpu|
+|*anonymous*|gpu|
+
+<h2 id="tocS_EndpointStatusPrivate">EndpointStatusPrivate</h2>
+<!-- backwards compatibility -->
+<a id="schemaendpointstatusprivate"></a>
+<a id="schema_EndpointStatusPrivate"></a>
+<a id="tocSendpointstatusprivate"></a>
+<a id="tocsendpointstatusprivate"></a>
+
+```json
+{
+  "serviceName": "string"
+}
+
+```
+
+Status of a private endpoint
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|serviceName|string|false|none|VPC service name used to add the private link|
+

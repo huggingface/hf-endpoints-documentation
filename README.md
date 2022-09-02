@@ -27,3 +27,9 @@ example
 ```bash
 <img src="https://github.com/huggingface/hf-endpoints-documentation/blob/main/assets/0_login.png" alt="Login" />
 ```
+
+## Generate API Reference
+
+1. Copy openapi spec from `https://api.endpoints.huggingface.cloud/api-doc/openapi.json`
+2. create markdown `widdershins --environment env.json openapi.json -o myOutput.md`
+3. copy into `api_reference.mdx`

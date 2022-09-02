@@ -5,6 +5,8 @@
     title: Hugging Face Inference Endpoints
   - local: security
     title: Security & Compliance
+  - local: supported_tasks
+    title: Supported Transformers Tasks
   - local: api_reference
     title: API Reference
   - local: faq
@@ -17,8 +19,23 @@
     title: Access the solution (UI)
   - local: guides/create_endpoint
     title: Create your first Endpoint
+  - local: guides/test_endpoint
+    title: Send Requests to Endpoints
+  - local: guides/update_endpoint
+    title: Update your Endpoint
+  - local: guides/advanced
+    title: Advanced Setup (Instance Types, Auto Scaling, Versioning)
+  - local: guides/private_link
+    title: Create a Private Endpoint with AWS PrivateLink
+  - local: guides/custom_dependencies
+    title: Add custom Dependencies
+  - local: guides/custom_handler
+    title: Create custom Inference Handler
+  - local: guides/custom_container
+    title: Use a custom Container Image
+  - local: guides/logs
+    title: Access and read Logs
+  - local: guides/metrics
+    title: Access and view Metrics
   title: Guides
-- sections: 
-  - local: index
-    title: Hugging Face Inference Endpoints
-  title: Supported Tasks
+

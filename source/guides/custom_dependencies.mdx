@@ -1,0 +1,12 @@
+# Add custom Dependencies
+
+
+Hugging Face Endpoints’ base image includes all required libraries to run inference on transformers models, but sometimes that can be too limited. For example, you want to [customize your inference pipeline](#create-your-own-inference-handler) and need additional python dependencies or you want to run a model which requires special dependencies or the newest/a fixed version of a library, e.g. tapas (torch-scatter). Therefore Endpoints support **custom dependencies**. 
+
+To add custom dependencies add a <code>[requirements.txt](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/requirements.txt)</code> file to your model repository on the Hugging Face Hub with the Python dependencies you want to install. When your Endpoint and Image artifacts are created, Inference Endpoints will check if the Model Repository contains a <code>requirements.txt </code>file and installs the dependencies. 
+
+**Examples:**
+
+* [Optimum and onnxruntime](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/requirements.txt)
+
+If you need further customization you can [use your own custom container](https://todo) for inference.

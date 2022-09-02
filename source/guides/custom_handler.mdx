@@ -1,8 +1,8 @@
 # Create custom Inference Handler
 
-Hugging Face Endpoints supports all of the Transformers and Sentence-Transformers tasks and can support custom tasks, including custom pre- & post-processing. The customization can be done through a[ handler.py](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) file in your model repository on the Hugging Face Hub.
+Hugging Face Endpoints supports all of the Transformers and Sentence-Transformers tasks and can support custom tasks, including custom pre- & post-processing. The customization can be done through a [handler.py](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) file in your model repository on the Hugging Face Hub.
 
-The [ handler.py](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) needs to implement the [EndpointHandler](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) class with a `__init__` and a `__call__` method.
+The [handler.py](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) needs to implement the [EndpointHandler](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) class with a `__init__` and a `__call__` method.
 
 If you want to use custom dependencies, e.g. [optimum](https://github.com/huggingface/optimum), the dependencies must be listed in a `requirements.txt` as described above in “add custom dependencies.”
 
@@ -89,7 +89,7 @@ class EndpointHandler():
 
 Now, you can add all of the custom logic you want to use during initialization or inference to your CP. You can already find multiple [Custom Handler on the Hub](https://huggingface.co/models?other=endpoints-template) if you need some inspiration. In our example, we will add a custom condition based on additional payload information.
 
-*The model we are using in the tutorial is fine-tuned to detect emotions. We will add an additional payload field for the date, and will use an external package to check if it is a holiday, to add a condition so that when the input date is a holiday, the model returns “happy” - since everyone is happy when there are holidays *🌴🎉😆 \_ \_
+*The model we are using in the tutorial is fine-tuned to detect emotions. We will add an additional payload field for the date, and will use an external package to check if it is a holiday, to add a condition so that when the input date is a holiday, the model returns “happy” - since everyone is happy when there are holidays *🌴🎉😆 
 
 First, we need to create a new `requirements.txt` and add our [holiday detection package](https://pypi.org/project/holidays/) and make sure we have it installed in our development environment as well.
 

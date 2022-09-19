@@ -16,6 +16,7 @@ jobs:
       commit_sha: ${{ github.sha }}
       package: hf-endpoints-documentation
       package_name: inference-endpoints
+      path_to_docs: source/
       additional_args: --not_python_module
     secrets:
       token: ${{ secrets.HUGGINGFACE_PUSH }}

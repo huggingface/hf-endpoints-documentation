@@ -1,0 +1,30 @@
+# Send Requests to Endpoints
+
+The Endpoint overview provides you access to the Inference Widget, which can be used to send requests as we did in 6. of [Create your first Endpoint](/guides/create_endpoint). This allows you to quickly test your Endpoint with different inputs and share it with team members. \
+In addition, the Inference Widget implements an extra command, which creates your request as a cURL command and copies it into your clipboard
+
+<img src="https://github.com/huggingface/hf-endpoints-documentation/blob/main/assets/2_copy_curl.png" alt="copy curl" />
+
+The cURL command for our request above should look like this (with your Token):
+
+```bash
+curl https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud/distilbert-sentiment \
+	-X POST \
+	-d '{"inputs": "Deploying my first endpoint was an amazing experience."}' \
+	-H "Authorization: Bearer <Token>"
+```
+
+The Endpoints API offers the same API definitions as the [Inference API](https://huggingface.co/docs/api-inference/detailed_parameters) and the [SageMaker Inference Toolkit](https://huggingface.co/docs/sagemaker/reference#inference-toolkit-api). In addition we have documented all request payloads in the [Supported Tasks](/supported_tasks) section in the documentation.
+
+This means that for an NLP task the payload is represented as the `inputs` key, and additional pipelines parameters in the `parameters` key. You can provide any of the supported kwargs from [pipelines](https://huggingface.co/docs/transformers/main_classes/pipelines) as parameters.
+For Images or Audio, you should send the data as a binary request with the corresponding mime type. Below is an example cURL for an Audio payload.
+
+```bash
+curl --request POST \
+  --url https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud/wav2vec-asr \
+  --header 'Authorization: Bearer <Token>' \
+  --header 'Content-Type: audio/x-flac' \
+  --data-binary '@sample1.flac'
+```
+
+To get quickly started with the programming language of your choice you can use [cURL Converter](https://curlconverter.com/) to convert you cURL command to code.

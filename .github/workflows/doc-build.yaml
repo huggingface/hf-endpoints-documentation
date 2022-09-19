@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'source/**'
+      - 'docs/source/**'
       - 'assets/**'
       - '.github/workflows/doc-build.yml'
 

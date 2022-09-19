@@ -9,13 +9,13 @@ pip install hf-doc-builder==0.4.0 watchdog --upgrade
 ## Local Development
 
 ```bash
-doc-builder preview endpoints source/ --not_python_module
+doc-builder preview endpoints docs/source/ --not_python_module
 ```
 
 ## Build Docs
 
 ```bash
-doc-builder build endpoints source/ --build_dir build/ --not_python_module
+doc-builder build endpoints docs/source/ --build_dir build/ --not_python_module
 ```
 
 ## Add assets/Images

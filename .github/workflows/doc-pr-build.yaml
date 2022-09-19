@@ -20,4 +20,4 @@ jobs:
       package: endpoints
       additional_args: --not_python_module
     secrets:
-      token: ${{ secrets.HF_TOKEN }}
+      token: ${{ secrets.HUGGINGFACE_PUSH }}

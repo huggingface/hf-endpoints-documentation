@@ -33,3 +33,5 @@ example
 1. Copy openapi spec from `https://api.endpoints.huggingface.cloud/api-doc/openapi.json`
 2. create markdown `widdershins --environment env.json openapi.json -o myOutput.md`
 3. copy into `api_reference.mdx`
+
+Test

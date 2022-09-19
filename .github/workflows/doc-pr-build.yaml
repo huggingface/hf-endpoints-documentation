@@ -17,7 +17,7 @@ jobs:
     with:
       commit_sha: ${{ github.event.pull_request.head.sha }}
       pr_number: ${{ github.event.number }}
-      package: endpoints
+      package: inference-endpoints
       additional_args: --not_python_module
     secrets:
       token: ${{ secrets.HUGGINGFACE_PUSH }}

@@ -1,6 +1,6 @@
 # Advanced Setup (Instance Types, Auto Scaling, Versioning)
 
-We have seen how fast and easy it is to deploy an Endpoint in [Create your first Endpoint](/docs/guides/guides/create_endpoint), but that's not all you can manage. During the creation process and after selecting your Cloud Provider and Region, click on the [Advanced configuration] button to reveal further configuration options for your Endpoint.
+We have seen how fast and easy it is to deploy an Endpoint in [Create your first Endpoint](/docs/inference-endpoints//guides/guides/create_endpoint), but that's not all you can manage. During the creation process and after selecting your Cloud Provider and Region, click on the [Advanced configuration] button to reveal further configuration options for your Endpoint.
 
 **Instance type**
 
@@ -20,7 +20,7 @@ _Default: min 1; max 2_
 
 **Task** 
 
-Select a [supported Machine Learning Task](/docs/guides/supported_tasks), or set to [Custom](/docs/guides/guides/custom_handler). [Custom](/docs/guides/guides/custom_handler) can/should be used when you are not using a Transformers-based model or when you want to customize the inference pipeline, see [Create your own Inference handler](/docs/guides/guides/custom_handler).
+Select a [supported Machine Learning Task](/docs/inference-endpoints//guides/supported_tasks), or set to [Custom](/docs/inference-endpoints//guides/guides/custom_handler). [Custom](/docs/inference-endpoints//guides/guides/custom_handler) can/should be used when you are not using a Transformers-based model or when you want to customize the inference pipeline, see [Create your own Inference handler](/docs/inference-endpoints//guides/guides/custom_handler).
 
 _Default: derived from the model repository._
 
@@ -40,4 +40,4 @@ _Default: The most recent commit._
 
 Allows you to provide a custom container image you want to deploy into an Endpoint. Those can be public images, e.g _tensorflow/serving:2.7.3,_ or private Images hosted on [Docker hub](https://hub.docker.com/), [AWS ECR](https://aws.amazon.com/ecr/?nc1=h_ls), [Azure ACR](https://azure.microsoft.com/de-de/services/container-registry/), or [Google GCR](https://cloud.google.com/container-registry?hl=de). 
 
-More on how to ["Use your own custom container"](/docs/guides/guides/custom_handler) below.
+More on how to ["Use your own custom container"](/docs/inference-endpoints//guides/guides/custom_handler) below.

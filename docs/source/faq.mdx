@@ -26,7 +26,7 @@ A: No, when creating a Private Endpoint (a Hugging Face Inference Endpoint linke
 
 ### Q: Can I run inference in batches?
 
-A: It depends on the Task. The [supported Tasks](/docs/inference-endpoints/guides/supported_tasks) are using the transformers or sentence-transformers pipelines under the hood. If your Task pipeline supports batching, e.g. Zero-Shot Classification then batch inference is supported. In any case, you can always create your own [inference handler](/docs/inference-endpoints/guides/custom_handler) and implement batching. 
+A: It depends on the Task. The [supported Tasks](/docs/inference-endpoints/supported_tasks) are using the transformers or sentence-transformers pipelines under the hood. If your Task pipeline supports batching, e.g. Zero-Shot Classification then batch inference is supported. In any case, you can always create your own [inference handler](/docs/inference-endpoints/guides/custom_handler) and implement batching. 
 
 
 
@@ -44,7 +44,7 @@ A: Yes, your Endpoint will always stay available/up with the number of min repli
 
 ### Q: I would like to deploy a model which is not in the supported tasks, is this possible?
 
-A:  Yes, you can deploy any repository from the [Hugging Face Hub](https://huggingface.co/models) and if your task/model/framework is not supported out of the box, you can [create your own inference handler](https://docs.google.com/document/d/1qs310aq_vLmPloxAlbsBqN8HxyLQCX8fjU0J9oSS53c/edit#heading=h.8l8b33h1g4qr) and then deploy your model to an Endpoint.
+A:  Yes, you can deploy any repository from the [Hugging Face Hub](https://huggingface.co/models) and if your task/model/framework is not supported out of the box, you can [create your own inference handler](/docs/inference-endpoints/guides/custom_handler) and then deploy your model to an Endpoint.
 
 
 

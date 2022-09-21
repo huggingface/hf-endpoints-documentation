@@ -15,7 +15,7 @@
     title: Help & Support
   title: Overview
 - sections: 
-  - local: guides/access_ui
+  - local: guides/access
     title: Access the solution (UI)
   - local: guides/create_endpoint
     title: Create your first Endpoint

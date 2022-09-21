@@ -1,8 +1,8 @@
 # Create custom Inference Handler
 
-Hugging Face Endpoints supports all of the Transformers and Sentence-Transformers tasks and can support custom tasks, including custom pre- & post-processing. The customization can be done through a [handler.py](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) file in your model repository on the Hugging Face Hub.
+Hugging Face Endpoints supports all of the Transformers and Sentence-Transformers tasks and can support custom tasks, including custom pre- & post-processing. The customization can be done through a [handler.py](https://huggingface.co/philschmid/distilbert-onnx-banking77/main/handler.py) file in your model repository on the Hugging Face Hub.
 
-The [handler.py](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) needs to implement the [EndpointHandler](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) class with a `__init__` and a `__call__` method.
+The [handler.py](https://huggingface.co/philschmid/distilbert-onnx-banking77/main/handler.py) needs to implement the [EndpointHandler](https://huggingface.co/philschmid/distilbert-onnx-banking77/main/handler.py) class with a `__init__` and a `__call__` method.
 
 If you want to use custom dependencies, e.g. [optimum](https://raw.githubusercontent.com/huggingface/optimum), the dependencies must be listed in a `requirements.txt` as described above in “add custom dependencies.”
 

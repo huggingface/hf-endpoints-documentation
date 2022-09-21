@@ -5,14 +5,14 @@ Security and secure inference are one of the key principles for Hugging Face Inf
 Public and Protected Endpoints do not require any additional configuration, but to be able to create a Private Endpoint for a secure intra-region connection you need to provide the AWS Account ID of the Account, which also should have access to the Inference Endpoints.
 
 <img
-  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/blob/main/assets/6_private_type.png"
+  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_private_type.png"
   alt="select private link"
 />
 
 After you provide your AWS Account ID and click create Endpoint the Inference Service will create the VPC Endpoint. After some time you should see a VPC Service Name on the overview.
 
 <img
-  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/blob/main/assets/6_service_name.png"
+  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_service_name.png"
   alt="service link"
 />
 
@@ -21,14 +21,14 @@ This VPC Service Name will be used to create the VPC Interface Endpoint in your 
 Below you will see an example of the VPC Endpoint configuration for our endpoint. You will need to select the VPC and subnets, as well as the security groups you want to use.
 
 <img
-  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/blob/main/assets/6_aws.png"
+  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_aws.png"
   alt="aws management console"
 />
 
 At this point, your Inference Endpoint has been created successfully, and when it is up and running you can go to the corresponding AWS Account and add the VPC Endpoint for the Endpoint.
 
 <img
-  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/blob/main/assets/6_private_with_url.png"
+  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_private_with_url.png"
   alt="endpoint url"
 />
 

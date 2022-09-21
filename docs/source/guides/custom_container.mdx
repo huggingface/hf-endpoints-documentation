@@ -1,12 +1,12 @@
 # Use a custom Container Image
 
 
-Hugging Face Endpoints not only allows you to [customize your inference handler](/docs/inference-endpoints//guides/guides/custom_handler), it also allows you to provide a custom container image. Those can be public images, e.g _tensorflow/serving:2.7.3,_ or private Images hosted on [Docker hub](https://hub.docker.com/), [AWS ECR](https://aws.amazon.com/ecr/?nc1=h_ls), [Azure ACR](https://azure.microsoft.com/de-de/services/container-registry/), or [Google GCR](https://cloud.google.com/container-registry?hl=de). 
+Hugging Face Endpoints not only allows you to [customize your inference handler](/docs/inference-endpoints/guides/guides/custom_handler), it also allows you to provide a custom container image. Those can be public images, e.g _tensorflow/serving:2.7.3,_ or private Images hosted on [Docker hub](https://hub.docker.com/), [AWS ECR](https://aws.amazon.com/ecr/?nc1=h_ls), [Azure ACR](https://azure.microsoft.com/de-de/services/container-registry/), or [Google GCR](https://cloud.google.com/container-registry?hl=de). 
 
 <img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container.png" alt="custom container config" />
 
 
-The [creation flow](/docs/inference-endpoints//guides/) of your Image artifacts will stay the same way on how your custom image is used as the base image. This means that Hugging Face Endpoints will create a unique image artifact derived from your provided image including all Model Artifacts. 
+The [creation flow](/docs/inference-endpoints/guides/) of your Image artifacts will stay the same way on how your custom image is used as the base image. This means that Hugging Face Endpoints will create a unique image artifact derived from your provided image including all Model Artifacts. 
 
 The Model Artifacts (weights) are stored under `/repository`. Meaning if you use` tensorflow/serving` as your custom image you have to set model_base_path to /repository. Below is an example:
 

@@ -40,4 +40,7 @@
   - local: guides/change_organization
     title: Change Organization or Account 
   title: Guides
-
+- sections: 
+  - local: others/runtime
+    title: Hugging Face Inference Endpoints Version
+  title: Others

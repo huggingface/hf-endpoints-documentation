@@ -42,5 +42,5 @@
   title: Guides
 - sections: 
   - local: others/runtime
-    title: Hugging Face Inference Endpoints Version
+    title: Inference Endpoints Version
   title: Others

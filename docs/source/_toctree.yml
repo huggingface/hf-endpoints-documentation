@@ -37,5 +37,7 @@
     title: Access and read Logs
   - local: guides/metrics
     title: Access and view Metrics
+  - local: guides/change_organization
+    title: Change Organization or Account 
   title: Guides
 

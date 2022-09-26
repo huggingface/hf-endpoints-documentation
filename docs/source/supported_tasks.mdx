@@ -1,6 +1,6 @@
 # Supported Transformers Tasks
 
-Below is a table of Hugging Face managed supported tasks for Inference Endpoint. These tasks don't require any form of code or [custom container]([“Create your own inference handler”](/docs/inference-endpoints/guides/docs/guides/custom_container)) to deploy an Endpoint. 
+Below is a table of Hugging Face managed supported tasks for Inference Endpoint. These tasks don't require any form of code or [“custom container”](/docs/inference-endpoints/guides/docs/guides/custom_container) to deploy an Endpoint. 
 If you want to customize any of the tasks below, or want to write your own custom task, check out the [“Create your own inference handler”](/docs/inference-endpoints/guides/docs/guides/custom_handler) section for more information.
 
 | Task                           | Framework             | Out of the box Support |
@@ -28,3 +28,292 @@ If you want to customize any of the tasks below, or want to write your own custo
 | Custom                         | Custom                | ✅                      |
 | Visual Question Answering      | Transformers          | ❌                      |
 | Zero Shot Image Classification | Transformers          | ❌                      |
+
+
+## Example Request payloads
+
+See the following request examples for some of the tasks:
+
+### Custom Handler
+
+```json
+{
+  "inputs": "This is a sample input",
+  "moreData": 1,
+  "customTask": true
+}
+```
+
+### Text Classification
+
+```json
+{
+  "inputs": "This sound track was beautiful! It paints the senery in your mind so well I would recomend it
+  even to people who hate vid. game music!"
+}
+```
+
+### Zero Shot Classification
+
+```json
+{
+  "inputs": "Hi, I recently bought a device from your company but it is not working as advertised and I would like to get reimbursed!",
+  "parameters": {
+    "candidate_labels": ["refund", "legal", "faq"]
+  }
+}
+```
+
+### Token Classifiation
+
+```json
+{
+  "inputs": "This sound track was beautiful! It paints the senery in your mind so well I would recomend it
+  even to people who hate vid. game music!"
+}
+```
+
+### Question Answering
+
+```json
+{
+  "inputs": {
+    "question": "What is used for inference?",
+    "context": "My Name is Philipp and I live in Nuremberg. This model is used with sagemaker for inference."
+  }
+}
+```
+
+### Fill Mask
+
+```json
+{
+  "inputs": "This sound track was <mask>! It paints the senery in your mind so well I would recomend it
+  even to people who hate vid. game music!"
+}
+```
+
+### Summarization
+
+```json
+{
+  "inputs": "This sound track was beautiful! It paints the senery in your mind so well I would recomend it
+  even to people who hate vid. game music!"
+}
+```
+
+### Translation
+
+```json
+{
+  "inputs": "This sound track was beautiful! It paints the senery in your mind so well I would recomend it
+  even to people who hate vid. game music!"
+}
+```
+
+### Text to Text Generation
+
+```json
+{
+  "inputs": "This sound track was beautiful! It paints the senery in your mind so well I would recomend it
+  even to people who hate vid. game music!"
+}
+```
+
+### Text Generation
+
+```json
+{
+  "inputs": "This sound track was beautiful! It paints the senery in your mind so well I would recomend it
+  even to people who hate vid. game music!"
+}
+```
+
+### Feature Extraction
+
+```json
+{
+  "inputs": "This sound track was beautiful! It paints the senery in your mind so well I would recomend it
+  even to people who hate vid. game music!"
+}
+```
+
+### Sentence Embeddings
+
+```json
+{
+  "inputs": "This sound track was beautiful! It paints the senery in your mind so well I would recomend it
+  even to people who hate vid. game music!"
+}
+```
+
+### Sentence similarity
+
+```json
+{
+  "inputs": ["This sound track was beautiful!", "It paints the senery in your mind so well"]
+}
+```
+
+### Ranking
+
+```json
+{
+  "inputs": ["This sound track was beautiful!", "It paints the senery in your mind so well"]
+}
+```
+
+### Image Classification
+
+Image Classification can receive `json` payloads or binary data from a `image` directly.
+
+**JSON**
+
+```json
+{
+  "inputs": "/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAMCAgI"
+}
+```
+
+**Binary**
+```bash
+curl --request POST \
+  --url https://{ENDPOINT}/ \
+  --header 'Content-Type: image/jpg' \
+  --header 'Authorization: Bearer {HF_TOKEN}' \
+  --data-binary '@test.jpg'
+```
+
+### Automatic Speech Recognition
+
+Automatic Speech Recognition can receive `json` payloads or binary data from a `audio` directly.
+
+**JSON**
+
+```json
+{
+  "inputs": "/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAMCAgI"
+}
+```
+
+**Binary**
+```bash
+curl --request POST \
+  --url https://{ENDPOINT}/ \
+  --header 'Content-Type: audio/x-flac' \
+  --header 'Authorization: Bearer {HF_TOKEN}' \
+  --data-binary '@sample.flac'
+```
+
+
+### Audio Classification
+
+Audio Classification can receive `json` payloads or binary data from a `audio` directly.
+
+**JSON**
+
+```json
+{
+  "inputs": "/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAMCAgI"
+}
+```
+
+**Binary**
+```bash
+curl --request POST \
+  --url https://{ENDPOINT}/ \
+  --header 'Content-Type: audio/x-flac' \
+  --header 'Authorization: Bearer {HF_TOKEN}' \
+  --data-binary '@sample.flac'
+```
+
+
+### Object Detection 
+
+Object Detection can receive `json` payloads or binary data from a `image` directly.
+
+**JSON**
+
+```json
+{
+  "inputs": "/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAMCAgI"
+}
+```
+
+**Binary**
+
+```bash
+curl --request POST \
+  --url https://{ENDPOINT}/ \
+  --header 'Content-Type: image/jpg' \
+  --header 'Authorization: Bearer {HF_TOKEN}' \
+  --data-binary '@test.jpg'
+```
+
+### Image Segmentation
+
+Image Segmentation can receive `json` payloads or binary data from a `image` directly.
+
+**JSON**
+
+```json
+{
+  "inputs": "/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAMCAgI"
+}
+```
+
+**Binary**
+
+```bash
+curl --request POST \
+  --url https://{ENDPOINT}/ \
+  --header 'Content-Type: image/jpg' \
+  --header 'Authorization: Bearer {HF_TOKEN}' \
+  --data-binary '@test.jpg'
+```
+
+### Table Question Answering
+
+```json
+{
+  "inputs": {
+    "query": "How many stars does the transformers repository have?",
+    "table": {
+      "Repository": ["Transformers", "Datasets", "Tokenizers"],
+      "Stars": ["36542", "4512", "3934"],
+      "Contributors": ["651", "77", "34"],
+      "Programming language": ["Python", "Python", "Rust, Python and NodeJS"]
+    }
+  }
+}
+```
+
+### Conversational
+
+```json
+{        
+  "inputs": {
+    "past_user_inputs": ["Which movie is the best ?"],
+    "generated_responses": ["It's Die Hard for sure."],
+    "text": "Can you explain why?",
+  }
+}
+```
+
+
+### Additional parameters
+
+You can add additional parameters, which are supported by the `pipelines` api from transformers. 
+
+For Example if you have a `text-generation` pipeline you can provide `generation_kwargs` for `repetition_penalty` or `max_length`
+
+```json
+{
+  "inputs": "Hugging Face, the winner of VentureBeat’s Innovation in Natural Language Process/Understanding Award for 2021, is looking to level the playing field. The team, launched by Clément Delangue and Julien Chaumond in 2016, was recognized for its work in democratizing NLP, the global market value for which is expected to hit $35.1 billion by 2026. This week, Google’s former head of Ethical AI Margaret Mitchell joined the team.",
+  "parameters": {
+    "repetition_penalty": 4.0,
+    "max_length": 128
+  }
+}
+```
+

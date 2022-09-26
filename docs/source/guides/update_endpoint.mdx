@@ -1,4 +1,22 @@
 # Update your Endpoint
 
-Currently, you can update the min & max number of replicas configuring the autoscaling range.
-At Launch, it will also be possible to update the repository revision, instance type, and task.
+You can update `running` endpoints, to change the autoscaling configuration and instance size.
+If your endpoint is in the `failed` state you would have to currently create a new endpoint.
+
+_We are working on adding support for revision and task as well._ 
+
+## Update instance size 
+
+You can update the instance size of your endpoint on the endpoint overview menu. You can change the instance size of your instance type. 
+This means you can increase or decrease the same instance type, e.g. `CPU` but not yet upgrade from CPU to GPU.
+
+
+<img
+  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/update_instance_type.png"
+  alt="Instance Type selection"
+/>
+
+## Update autoscaling
+
+You can update the autoscaling configuration of your endpoint on the endpoint overview menu. You can change the minimum and maximum number of replicas.
+

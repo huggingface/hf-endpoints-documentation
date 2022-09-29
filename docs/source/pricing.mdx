@@ -1,15 +1,7 @@
 # Hugging Face Inference Endpoint Pricing
 
-<div class="flex justify-center md:justify-start mb-2 text-gray-400 items-center">
-  <a
-    href="https://ui.endpoints.huggingface.co/new"
-    class="btn-fuchsia btn-fuchsia-lg text-xl border-2"
-    data-ga-category="inference-endpoints-page"
-    data-ga-action="clicked deploy your first model"
-    data-ga-label="deploy your first model"
-  >
-    Deploy your first model
-  </a>
+<div class="flex md:justify-start mb-2 text-gray-400 items-center">
+<a href="/join"><button class="shadow-sm bg-white bg-gradient-to-br from-gray-100/20 to-gray-200/60 hover:to-gray-100/70 text-gray-700 py-1.5 rounded-lg ring-1 ring-gray-300/60 hover:ring-gray-300/30 font-semibold active:shadow-inner px-5">Sign Up</button></a>
   <span class="ml-4 mr-1">Or</span>
   <a
     href="mailto:api-enterprise@huggingface.co"
@@ -22,19 +14,50 @@
   </a>
 </div>
 
-# How pricing works
-
 With Inference Endpoints, you can easily deploy machine learning models on dedicated hardware. When you create an Endpoint in Inference Endpoint, you configure the instance type, which will be used to power your models. You are billed for the computing and memory resources used when your endpoint is up and running. This means as long as your Endpoint is in the “running” state, you will pay for computing capacity by the hour.
 
 ## Pricing Example
 
-| Example 1: Simple Endpoint                                                                                                                                                                                                                                                                                                         |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Endpoint configuration:**<br>-Cloud: AWS<br>Region: us-east-1<br>Instance type: CPU - medium (0.12\$/h)<br>Autoscaling:<br>Min replica: 1<br>Max replica: 1<br>Calculation<br>Instance type * (hours * # min replica) <br>Hourly cost:<br>0.12\$/h _ (1h _ 1) = 0.13$ / h<br>Monthly cost:<br>0.12\$/h * (730h * 1) = 87.6$ / month |
 
-| <br>Example 2: Advanced Endpoint with Autoscaling                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Endpoint configuration:<br>Cloud: AWS<br>Region: us-east-1<br>Instance type: GPU - small (0.6\$/h)<br>Autoscaling:<br>Min replica: 1<br>Max replica: 3<br>Each hour there is a spike of load where the endpoint scales to 3 replica for 15 minutes<br>Calculation<br>Instance type * ((hours * # min replica) + (scale-out hours * # addional replica) ) <br>Hourly cost:<br>0.6\$/h * ((1h * 1) * (0,25 * 2)) = 0.9$ / hour<br>Monthly cost:<br>0.6\$/h * ((730h * 1) * (182,5h * 2))  = 657$ / month |
+### Example 1: Simple Endpoint
+
+**Endpoint configuration:**
+* Cloud: AWS
+* Region: us-east-1
+* Instance type: CPU - medium (0.12$/h)
+* Autoscaling:
+    * Min replica: 1
+    * Max replica: 1
+
+**Calculation**
+`Instance type * (hours * # min replica)`
+
+**Hourly cost:**
+`0.12$/h * (1h * 1) = 0.13$ / h`
+
+**Monthly cost:**
+`0.12$/h * (730h * 1) = 87.6$ / month`
+
+
+### Example 2: Advanced Endpoint with Autoscaling
+
+**Endpoint configuration:**
+* Cloud: AWS
+* Region: us-east-1
+* Instance type: GPU - small (0.6$/h)
+* Autoscaling:
+    * Min replica: 1
+    * Max replica: 3
+    * Each hour there is a spike of load where the endpoint scales to 3 replica for 15 minutes
+
+**Calculation**
+`Instance type * ((hours * # min replica) + (scale-out hours * # addional replica))`
+
+**Hourly cost:**
+`0.6$h * ((1h * 1) * (0,25 * 2)) = 0.9$ / hour`
+
+**Monthly cost:**
+`0.6$h * ((730h * 1) * (182,5h * 2))  = 657$ / month`
 
 # Compute pricing
 

@@ -1,0 +1,69 @@
+# Hugging Face Inference Endpoint Pricing
+
+<div class="flex justify-center md:justify-start mb-2 text-gray-400 items-center">
+  <a
+    href="https://ui.endpoints.huggingface.co/new"
+    class="btn-fuchsia btn-fuchsia-lg text-xl border-2"
+    data-ga-category="inference-endpoints-page"
+    data-ga-action="clicked deploy your first model"
+    data-ga-label="deploy your first model"
+  >
+    Deploy your first model
+  </a>
+  <span class="ml-4 mr-1">Or</span>
+  <a
+    href="mailto:api-enterprise@huggingface.co"
+    class="underline"
+    data-ga-category="inference-endpoints-page"
+    data-ga-action="clicked read the docs"
+    data-ga-label="read the docs"
+  >
+    Request a quote
+  </a>
+</div>
+
+# How pricing works
+
+With Inference Endpoints, you can easily deploy machine learning models on dedicated hardware. When you create an Endpoint in Inference Endpoint, you configure the instance type, which will be used to power your models. You are billed for the computing and memory resources used when your endpoint is up and running. This means as long as your Endpoint is in the “running” state, you will pay for computing capacity by the hour.
+
+## Pricing Example
+
+| Example 1: Simple Endpoint                                                                                                                                                                                                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Endpoint configuration:**<br>-Cloud: AWS<br>Region: us-east-1<br>Instance type: CPU - medium (0.12\$/h)<br>Autoscaling:<br>Min replica: 1<br>Max replica: 1<br>Calculation<br>Instance type * (hours * # min replica) <br>Hourly cost:<br>0.12\$/h _ (1h _ 1) = 0.13$ / h<br>Monthly cost:<br>0.12\$/h * (730h * 1) = 87.6$ / month |
+
+| <br>Example 2: Advanced Endpoint with Autoscaling                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Endpoint configuration:<br>Cloud: AWS<br>Region: us-east-1<br>Instance type: GPU - small (0.6\$/h)<br>Autoscaling:<br>Min replica: 1<br>Max replica: 3<br>Each hour there is a spike of load where the endpoint scales to 3 replica for 15 minutes<br>Calculation<br>Instance type * ((hours * # min replica) + (scale-out hours * # addional replica) ) <br>Hourly cost:<br>0.6\$/h * ((1h * 1) * (0,25 * 2)) = 0.9$ / hour<br>Monthly cost:<br>0.6\$/h * ((730h * 1) * (182,5h * 2))  = 657$ / month |
+
+# Compute pricing
+
+The pricing below includes the public on-demand pricing for endpoints. If you are interested in custom pricing, please [contact us](https://huggingface.co/inference-endpoints/enterprise).
+
+## CPU Instances
+
+Below is a table of currently available CPU instances and their pricing. If the instance type cannot be selected in the application, you need to request a quota to use it. [Request Instance Quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20{INSTANCE%20TYPE}%20for%20the%20following%20account%20{HF%20ACCOUNT}.). You will only be billed while your endpoint is running.
+
+| Provider | Instance Size | hourly-rate | vCPUs | Memory | Architecture         |
+| -------- | ------------- | ----------- | ----- | ------ | -------------------- |
+| aws      | small         | $0.06       | 1     | 2GB    | Intel Xeon - ice lake |
+| aws      | medium        | $0.12       | 2     | 4GB    | Intel Xeon - ice lake |
+| aws      | large         | $0.24       | 4     | 8GB    | Intel Xeon - ice lake |
+| aws      | xlarge        | $0.48       | 8     | 16GB   | Intel Xeon - ice lake |
+| azure    | small         | $0.06       | 1     | 2GB    | Intel Xeon           |
+| azure    | medium        | $0.12       | 2     | 4GB    | Intel Xeon           |
+| azure    | large         | $0.24       | 4     | 8GB    | Intel Xeon           |
+| azure    | xlarge        | $0.48       | 8     | 16GB   | Intel Xeon           |
+
+## GPU Instances
+
+Below is a table of currently available GPU instances and their pricing. If the instance type cannot be selected in the application, you need to request a quota to use it. [Request Instance Quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20{INSTANCE%20TYPE}%20for%20the%20following%20account%20{HF%20ACCOUNT}.). You will only be billed while your endpoint is running.
+
+| Provider | Instance Size | hourly-rate | GPUs | Memory | Architecture |
+| -------- | ------------- | ----------- | ---- | ------ | ------------ |
+| aws      | small         | $0.60       | 1    | 14GB   | NVIDIA T4    |
+| aws      | medium        | $1.30       | 1    | 24GB   | NVIDIA A10G  |
+| aws      | large         | $4.50       | 4    | 56GB   | NVIDIA T4    |
+| aws      | xlarge        | $6.50       | 1    | 80GB   | NVIDIA A100  |
+| aws      | xxlarge       | $7.00       | 4    | 96GB   | NVIDIA A10G  |
+| aws      | xxxlarge      | $45.00      | 8    | 640GB  | NVIDIA A100  |

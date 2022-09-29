@@ -29,13 +29,16 @@ With Inference Endpoints, you can easily deploy machine learning models on dedic
     * Min replica: 1
     * Max replica: 1
 
-**Calculation**
+**Calculation:**
+
 `Instance type * (hours * # min replica)`
 
 **Hourly cost:**
+
 `0.12$/h * (1h * 1) = 0.13$ / h`
 
 **Monthly cost:**
+
 `0.12$/h * (730h * 1) = 87.6$ / month`
 
 
@@ -50,13 +53,16 @@ With Inference Endpoints, you can easily deploy machine learning models on dedic
     * Max replica: 3
     * Each hour there is a spike of load where the endpoint scales to 3 replica for 15 minutes
 
-**Calculation**
+**Calculation:**
+
 `Instance type * ((hours * # min replica) + (scale-out hours * # addional replica))`
 
 **Hourly cost:**
+
 `0.6$h * ((1h * 1) * (0,25 * 2)) = 0.9$ / hour`
 
 **Monthly cost:**
+
 `0.6$h * ((730h * 1) * (182,5h * 2))  = 657$ / month`
 
 # Compute pricing

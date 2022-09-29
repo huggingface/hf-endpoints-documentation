@@ -1,14 +1,15 @@
 # Hugging Face Inference Endpoint Pricing
 
 <div class="flex md:justify-start mb-2 text-gray-400 items-center">
-<a href="/join"><button class="shadow-sm bg-white bg-gradient-to-br from-gray-100/20 to-gray-200/60 hover:to-gray-100/70 text-gray-700 py-1.5 rounded-lg ring-1 ring-gray-300/60 hover:ring-gray-300/30 font-semibold active:shadow-inner px-5">Sign Up</button></a>
+  <a href="https://ui.endpoints.huggingface.co/new">
+    <button class="shadow-sm bg-white bg-gradient-to-br from-gray-100/20 to-gray-200/60 hover:to-gray-100/70 text-gray-700 py-1.5 rounded-lg ring-1 ring-gray-300/60 hover:ring-gray-300/30 font-semibold active:shadow-inner px-5">
+      Deploy your first model
+    </button>
+  </a>
   <span class="ml-4 mr-1">Or</span>
   <a
     href="mailto:api-enterprise@huggingface.co"
     class="underline"
-    data-ga-category="inference-endpoints-page"
-    data-ga-action="clicked read the docs"
-    data-ga-label="read the docs"
   >
     Request a quote
   </a>
@@ -18,16 +19,16 @@ With Inference Endpoints, you can easily deploy machine learning models on dedic
 
 ## Pricing Example
 
-
 ### Example 1: Simple Endpoint
 
 **Endpoint configuration:**
-* Cloud: AWS
-* Region: us-east-1
-* Instance type: CPU - medium (0.12$/h)
-* Autoscaling:
-    * Min replica: 1
-    * Max replica: 1
+
+- Cloud: AWS
+- Region: us-east-1
+- Instance type: CPU - medium (0.12$/h)
+- Autoscaling:
+  - Min replica: 1
+  - Max replica: 1
 
 **Calculation:**
 
@@ -41,17 +42,17 @@ With Inference Endpoints, you can easily deploy machine learning models on dedic
 
 `0.12$/h * (730h * 1) = 87.6$ / month`
 
-
 ### Example 2: Advanced Endpoint with Autoscaling
 
 **Endpoint configuration:**
-* Cloud: AWS
-* Region: us-east-1
-* Instance type: GPU - small (0.6$/h)
-* Autoscaling:
-    * Min replica: 1
-    * Max replica: 3
-    * Each hour there is a spike of load where the endpoint scales to 3 replica for 15 minutes
+
+- Cloud: AWS
+- Region: us-east-1
+- Instance type: GPU - small (0.6$/h)
+- Autoscaling:
+  - Min replica: 1
+  - Max replica: 3
+  - Each hour there is a spike of load where the endpoint scales to 3 replica for 15 minutes
 
 **Calculation:**
 
@@ -63,7 +64,7 @@ With Inference Endpoints, you can easily deploy machine learning models on dedic
 
 **Monthly cost:**
 
-`0.6$h * ((730h * 1) * (182,5h * 2))  = 657$ / month`
+`0.6$h * ((730h * 1) * (182,5h * 2)) = 657$ / month`
 
 # Compute pricing
 
@@ -73,16 +74,16 @@ The pricing below includes the public on-demand pricing for endpoints. If you ar
 
 Below is a table of currently available CPU instances and their pricing. If the instance type cannot be selected in the application, you need to request a quota to use it. [Request Instance Quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20{INSTANCE%20TYPE}%20for%20the%20following%20account%20{HF%20ACCOUNT}.). You will only be billed while your endpoint is running.
 
-| Provider | Instance Size | hourly-rate | vCPUs | Memory | Architecture         |
-| -------- | ------------- | ----------- | ----- | ------ | -------------------- |
+| Provider | Instance Size | hourly-rate | vCPUs | Memory | Architecture          |
+| -------- | ------------- | ----------- | ----- | ------ | --------------------- |
 | aws      | small         | $0.06       | 1     | 2GB    | Intel Xeon - ice lake |
 | aws      | medium        | $0.12       | 2     | 4GB    | Intel Xeon - ice lake |
 | aws      | large         | $0.24       | 4     | 8GB    | Intel Xeon - ice lake |
 | aws      | xlarge        | $0.48       | 8     | 16GB   | Intel Xeon - ice lake |
-| azure    | small         | $0.06       | 1     | 2GB    | Intel Xeon           |
-| azure    | medium        | $0.12       | 2     | 4GB    | Intel Xeon           |
-| azure    | large         | $0.24       | 4     | 8GB    | Intel Xeon           |
-| azure    | xlarge        | $0.48       | 8     | 16GB   | Intel Xeon           |
+| azure    | small         | $0.06       | 1     | 2GB    | Intel Xeon            |
+| azure    | medium        | $0.12       | 2     | 4GB    | Intel Xeon            |
+| azure    | large         | $0.24       | 4     | 8GB    | Intel Xeon            |
+| azure    | xlarge        | $0.48       | 8     | 16GB   | Intel Xeon            |
 
 ## GPU Instances
 

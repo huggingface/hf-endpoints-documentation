@@ -10,7 +10,7 @@
   - local: api_reference
     title: API Reference (Swagger)
   - local: pricing
-    title: Endpoint Pricing
+    title: Pricing
   - local: support
     title: Help & Support
   - local: faq

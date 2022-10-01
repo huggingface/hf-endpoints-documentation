@@ -9,10 +9,12 @@
     title: Supported Transformers Tasks
   - local: api_reference
     title: API Reference (Swagger)
-  - local: faq
-    title: FAQ
+  - local: pricing
+    title: Pricing
   - local: support
     title: Help & Support
+  - local: faq
+    title: FAQ
   title: Overview
 - sections: 
   - local: guides/access

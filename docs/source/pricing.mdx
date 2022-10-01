@@ -89,16 +89,16 @@ Below are pricing examples for a simple Endpoint and more advanced Endpoint conf
 - Autoscaling:
   - Min replica: 1
   - Max replica: 3
-  - Every hour, a spike of load makes the Endpoint automatically scale from 1 to 3 replicas during 15 minutes
+  - Every hour, a spike of load makes the Endpoint automatically scale from 1 to 3 replicas for a duration of 15 minutes
 
 **Cost calculation:**
 
-`Instance hourly rate * ((non scale-out hours * # min replica) + (scale-out hours * # additional replicas))`
+`Instance hourly rate * ((hours * # min replica) + (scale-out hours * # additional replicas))`
 
 **Hourly cost:**
 
-`$0.6/h * ((0.75h * 1) + (0.25h * 2)) = $0.75/hour`
+`$0.6/h * ((1h * 1) + (0.25h * 2)) = $0.9/hour`
 
 **Monthly cost:**
 
-`$0.6/h * ((547.5h * 1) + (182.5h * 2)) = 547.5$/month`
+`$0.6/h * ((730h * 1) + (182.5h * 2)) = 657$/month`

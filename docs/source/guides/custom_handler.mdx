@@ -33,14 +33,15 @@ You can also search for already existing Custom Handlers here: [https://huggingf
 
 ### 1. Set up Development Environment
 
-The easiest way to develop your Custom Handler is to set up a local development environment and to implement, test, and iterate on your handler and then deploy it as an Inference Endpoint. The first step is to install all required development dependencies (needed to create the CP, not needed for inference).
+The easiest way to develop our custom handler is to set up a local development environment, to implement, test, and iterate there, and then deploy it as an Inference Endpoint. The first step is to install all required development dependencies.
+_needed to create the custom handler, not needed for inference_
 
 ```
 # install git-lfs to interact with the repository
-!sudo apt-get update
-!sudo apt-get install git-lfs
+sudo apt-get update
+sudo apt-get install git-lfs
 # install transformers (not needed since it is installed by default in the container)
-!pip install transformers[sklearn,sentencepiece,audio,vision]
+pip install transformers[sklearn,sentencepiece,audio,vision]
 ```
 
 After we have installed our libraries we will clone our repository to our development environment.
@@ -48,8 +49,8 @@ After we have installed our libraries we will clone our repository to our develo
 We will use [philschmid/distilbert-base-uncased-emotion](https://huggingface.co/philschmid/distilbert-base-uncased-emotion) during the tutorial.
 
 ```
-!git lfs install
-!git clone https://huggingface.co/philschmid/distilbert-base-uncased-emotion
+git lfs install
+git clone https://huggingface.co/philschmid/distilbert-base-uncased-emotion
 ```
 
 To be able to push our CP later you need to login into our HF account. This can be done by using the `huggingface-cli`.
@@ -58,19 +59,18 @@ _Note: Make sure to configure git config as well._
 
 ```
 # setup cli with token
-!huggingface-cli login
-!git config --global credential.helper store
+huggingface-cli login
+git config --global credential.helper store
 ```
 
 ### 2. Create EndpointHandler (CP)
 
-After you have set up your environment, you can start creating your CP. The CP is a Python class (`EndpointHandler`) inside a `handler.py` file in our repository. The handler.py needs to implement the EndpointHandler class with a `__init__` and a `__call__` method.
+After we have set up our environment, we can start creating your custom handler. The custom handler is a Python class (`EndpointHandler`) inside a `handler.py` file in our repository. The `EndpointHandler` needs to implement an `__init__` and a `__call__` method.
 
-The `__init__` method will be called when starting the Endpoint and will receive 1 argument, a string with the path to your model weights. This allows you to load your model correctly.
+- The `__init__` method will be called when starting the Endpoint and will receive 1 argument, a string with the path to your model weights. This allows you to load your model correctly.
+- The `__call__` method will be called on every request and receive a dictionary with your request body as a python dictionary. It will always contain the `inputs` key.
 
-The `__call__` method will be called on every request and receive a dictionary with your request body as a python dictionary. It will always contain the `inputs` key.
-
-To create your `handler.py` you have to first switch into your repository and create the file.
+The first step is to create our `handler.py` in the local clone of our repository.
 
 ```
 !cd distilbert-base-uncased-emotion && touch handler.py

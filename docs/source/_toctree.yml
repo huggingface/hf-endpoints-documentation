@@ -2,7 +2,7 @@
 
 - sections: 
   - local: index
-    title: Hugging Face Inference Endpoints
+    title: 🤗 Inference Endpoints
   - local: security
     title: Security & Compliance
   - local: supported_tasks

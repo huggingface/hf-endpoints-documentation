@@ -1,4 +1,4 @@
-# Hugging Face Inference Endpoint Pricing
+# Pricing
 
 <div class="flex md:justify-start mb-2 text-gray-400 items-center">
   <a href="https://ui.endpoints.huggingface.co/new">
@@ -15,17 +15,13 @@
   </a>
 </div>
 
-With Inference Endpoints, you can easily deploy machine learning models on dedicated infrastructure. When you create an Endpoint, you can select the instance type to deploy and scale your model, which defines an hourly price. Inference Endpoints is accessible to Hugging Face accounts with an active subscription and a credit card on file. At the end of the subscription period, the user or organization account will be charged for the compute resources used while Endpoints are up and running, that is in the “running” state.
+Easily deploy machine learning models on dedicated infrastructure with 🤗 Inference Endpoints. When you create an Endpoint, you can select the instance type to deploy and scale your model according to an hourly rate. 🤗 Inference Endpoints is accessible to Hugging Face accounts with an active subscription and credit card on file. At the end of the subscription period, the user or organization account will be charged for the compute resources used while Endpoints are up and in a *running* state.
 
-You can find below the hourly pricing for all available instances for Inference Endpoints, as well as examples showing how the pricing is applied.
+You can find the hourly pricing for all available instances for 🤗 Inference Endpoints, and examples of how costs are calculated below. While the prices are shown by the hour, the actual cost is calculated by the minute.
 
-## Instance pricing
+## CPU Instances
 
-The pricing below shows public on-demand pricing for Inference Endpoints. You or your organization will only be billed while your Endpoint is running. While the prices are by the hour, the actual cost will be calculated by the minutes.
-
-### CPU Instances
-
-The table below shows currently available CPU instances and their hourly pricing. If the instance type cannot be selected in the application, you need to request a quota to use it. [Request Instance Quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20{INSTANCE%20TYPE}%20for%20the%20following%20account%20{HF%20ACCOUNT}.).
+The table below shows currently available CPU instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request a quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20{INSTANCE%20TYPE}%20for%20the%20following%20account%20{HF%20ACCOUNT}.) to use it.
 
 | Provider | Instance Size | hourly rate | vCPUs | Memory | Architecture          |
 | -------- | ------------- | ----------- | ----- | ------ | --------------------- |
@@ -38,9 +34,9 @@ The table below shows currently available CPU instances and their hourly pricing
 | azure    | large         | $0.24       | 4     | 8GB    | Intel Xeon            |
 | azure    | xlarge        | $0.48       | 8     | 16GB   | Intel Xeon            |
 
-### GPU Instances
+## GPU Instances
 
-The table below shows currently available GPU instances and their pricing. If the instance type cannot be selected in the application, you need to request a quota to use it. [Request Instance Quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20{INSTANCE%20TYPE}%20for%20the%20following%20account%20{HF%20ACCOUNT}.).
+The table below shows currently available GPU instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request a quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20{INSTANCE%20TYPE}%20for%20the%20following%20account%20{HF%20ACCOUNT}.) to use it.
 
 | Provider | Instance Size | hourly rate | GPUs | Memory | Architecture |
 | -------- | ------------- | ----------- | ---- | ------ | ------------ |
@@ -51,54 +47,9 @@ The table below shows currently available GPU instances and their pricing. If th
 | aws      | xxlarge       | $7.00       | 4    | 96GB   | NVIDIA A10G  |
 | aws      | xxxlarge      | $45.00      | 8    | 640GB  | NVIDIA A100  |
 
+The following pricing scenarios demonstrate how costs are calculated for a simple Endpoint and a more advanced Endpoint with autoscaling.
 
-## Pricing Examples
-
-Below are pricing examples for a simple Endpoint and more advanced Endpoint configuration.
-
-### Example 1: Simple Endpoint
-
-**Endpoint configuration:**
-
-- Cloud: AWS
-- Region: us-east-1
-- Instance type: CPU - medium (0.12$/h)
-- Autoscaling:
-  - Min replica: 1
-  - Max replica: 1
-
-**Cost calculation:**
-
-`Instance hourly rate * (hours * # min replica)`
-
-**Hourly cost:**
-
-`$0.12/h * (1h * 1) = $0.12/h`
-
-**Monthly cost:**
-
-`$0.12/h * (730h * 1) = $87.6/month`
-
-### Example 2: Advanced Endpoint with Autoscaling
-
-**Endpoint configuration:**
-
-- Cloud: AWS
-- Region: us-east-1
-- Instance type: GPU - small ($0.6/h)
-- Autoscaling:
-  - Min replica: 1
-  - Max replica: 3
-  - Every hour, a spike of load makes the Endpoint automatically scale from 1 to 3 replicas for a duration of 15 minutes
-
-**Cost calculation:**
-
-`Instance hourly rate * ((hours * # min replica) + (scale-out hours * # additional replicas))`
-
-**Hourly cost:**
-
-`$0.6/h * ((1h * 1) + (0.25h * 2)) = $0.9/hour`
-
-**Monthly cost:**
-
-`$0.6/h * ((730h * 1) + (182.5h * 2)) = 657$/month`
+| Provider | Region    | Instance type           | Autoscaling                                                                                                                          | Cost                                                                                      | Hourly cost | Monthly cost |
+|----------|-----------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-------------|--------------|
+| aws      | us-east-1 | CPU - medium ($0.12/hr) | - min replica: 1<br> - max replica: 1                                                                                                | instance hourly rate * (hrs * # min replica)                                              | $0.12       | $87.6        |
+| aws      | us-east-1 | GPU - small ($0.6/hr)   | - min replica: 1<br> - max replica: 3<br> - every hr a load spike automatically scales the Endpoint from 1 to 3 replicas for 15 mins | instance hourly rate * ((hrs * # min replica) + (scale-up hours * # additional replicas)) | $0.9        | $657         |

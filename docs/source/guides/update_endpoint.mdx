@@ -1,22 +1,20 @@
 # Update your Endpoint
 
-You can update `running` endpoints, to change the autoscaling configuration and instance size.
-If your endpoint is in the `failed` state you would have to currently create a new endpoint.
+You can update `running` Endpoints to change some of the configurations. However, if your endpoint is in a `failed` state, you need to create a new Endpoint.
 
-_We are working on adding support for revision and task as well._ 
+Currently, only the instance size and autoscaling options can be updated and we are working on adding support for task type and revision as well.
 
-## Update instance size 
+## Instance size 
 
-You can update the instance size of your endpoint on the endpoint overview menu. You can change the instance size of your instance type. 
-This means you can increase or decrease the same instance type, e.g. `CPU` but not yet upgrade from CPU to GPU.
+You can update the instance size of your Endpoint in the Endpoint overview menu to match your evolving needs. For example, you can downsize to a smaller instance type if you don't need the compute or alternatively, you can upgrade to a larger instance type if you need to increase your compute.
 
+You're only allowed to update your *current* instance type, CPU or GPU. In other words, you can't update from one instance type to another (CPU to GPU or vice versa).
 
 <img
   src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/update_instance_type.png"
   alt="Instance Type selection"
 />
 
-## Update autoscaling
+## Autoscaling
 
-You can update the autoscaling configuration of your endpoint on the endpoint overview menu. You can change the minimum and maximum number of replicas.
-
+You can update the autoscaling configuration of your Endpoint in the Endpoint overview menu. Adjust the minimum and maximum number of replicas to upscale or downscale your Endpoint.

@@ -1,31 +1,61 @@
-# Create your first Endpoint
+# Create an Endpoint
 
 After your first login, you will be directed to the [Endpoint creation page](https://ui.endpoints.huggingface.co/new). As an example, this guide will go through the steps to deploy [distilbert-base-uncased-finetuned-sst-2-english](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english) for text classification. 
 
-### 1. Enter the Hugging Face Repository ID and your desired endpoint name:
+1. Enter the Hugging Face Repository ID and your desired endpoint name:
 
 <img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/1_repository.png" alt="select repository" />
 
-### 2. Select your Cloud Provider and Region:
+2. Select your Cloud Provider and region. Initially, only AWS will be available as a Cloud Provider with the `us-east-1` and `eu-west-1` regions. We will add Azure soon, and if you need to test Endpoints with other Cloud Providers or regions, please let us know.
 
 <img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/1_region.png" alt="select region" />
 
-_Note: Initially, only AWS will be available as a Cloud Provider, with us-east-1 and eu-west-1 Regions. We will add Azure soon. If you need to test Endpoints in other Clouds or Regions, please let us know._
-
-### 3. Define the Security Level for the Endpoint:
+3. Define the [Security Level](security) for the Endpoint:
 
 <img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/1_security.png" alt="define security" />
 
-### 4. Create your Endpoint by clicking “create endpoint”: 
+4. Create your Endpoint by clicking **Create Endpoint**. By default, your Endpoint is created with a medium CPU (2 x 4GB vCPUs with Intel Xeon Ice Lake) The cost estimate assumes the Endpoint will be up for an entire month, and does not take autoscaling into account.
 
 <img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/1_create_cost.png" alt="create endpoint" />
 
-_Note: The cost estimate assumes the Endpoint will be up for an entire month, and does not take autoscaling into account at the time of writing._
-
-### 5. Wait for the Endpoint to be ready (building -> initializing -> running), which can take between 1 to 5 minutes
+5. Wait for the Endpoint to build, initialize and run which can take between 1 to 5 minutes.
 
 <img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/overview.png" alt="overview" />
 
-### 6. Test your Endpoint in the overview, with the Inference Widget  🏁🎉!
+6. Test your Endpoint in the overview with the Inference widget 🏁 🎉!
 
 <img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/1_inference.png" alt="run inference" />
+
+## Advanced configuration
+
+You can also configure additional options for your Endpoint when you click on the **Advanced configuration** button.
+
+### Instance types
+
+In addition to the default instance type, 🤗 Inference Endpoints offers a selection of curated CPU and GPU instances so you can choose an instance for your needs. Your Hugging Face account comes with a capacity quota for CPU and GPU instances. To increase your quota or request new instance types, please let us know.
+
+<div class="flex justify-center">
+    <img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/instance_types.png" alt="copy curl" />
+</div>
+
+### Replica autoscaling
+
+Set the range, minimum (>=1) and maximum number of replicas, you want your Endpoint to automatically scale to based on load and compute usage. The default minimum number of replica is 1, and the maximum number of replica is 2.
+
+### Tasks
+
+Select a [supported Machine Learning Task](/docs/inference-endpoints/supported_tasks) or set to [Custom](/docs/inference-endpoints/guides/custom_handler). By default, the model task is derived from the model repository. A custom task can and should be used when you are not using a Transformers-based model or when you want to customize the inference pipeline (see [Create your own Inference handler](/docs/inference-endpoints/guides/custom_handler) for more information).
+
+### Framework
+
+For Transformers models, if both PyTorch and TensorFlow weights are available, you can select which model weights to use. By default, the Endpoint is created with PyTorch weights if they're available. This will help reduce the image artifact size and accelerate startups and scaling of your endpoints.
+
+### Revision
+
+Create your Endpoint with a specific revision commit from its source repository on the [Model Hub](https://huggingface.co/models). By default, the Endpoint is created with the most recent commit. This allows you to version your endpoint and make sure you are always using the same weights even if you are updating the Model Repository.
+
+### Image
+
+The Image option allows you to provide a custom container Image you want to deploy to an Endpoint. These can be public images like [`tensorflow/serving:2.7.3`](https://hub.docker.com/layers/serving/tensorflow/serving/2.7.3/images/sha256-4134b2a1c41c8edf2b00bc8110702a7ca783eca844ed0be6db5ded211bbf114e?context=explore). private Images hosted on [Docker Hub](https://hub.docker.com/), [AWS ECR](https://aws.amazon.com/ecr/?nc1=h_ls), [Azure ACR](https://azure.microsoft.com/de-de/services/container-registry/), or [Google GCR](https://cloud.google.com/container-registry?hl=de). 
+
+For more details about using a custom container Image, take a look at [Use your own custom container](/docs/inference-endpoints/guides/custom_handler).

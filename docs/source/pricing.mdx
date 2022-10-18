@@ -47,9 +47,41 @@ The table below shows currently available GPU instances and their hourly pricing
 | aws      | xxlarge       | $7.00       | 4    | 96GB   | NVIDIA A10G  |
 | aws      | xxxlarge      | $45.00      | 8    | 640GB  | NVIDIA A100  |
 
-The following pricing scenarios demonstrate how costs are calculated for a simple Endpoint and a more advanced Endpoint with autoscaling.
+The following example pricing scenarios demonstrate how costs are calculated. You can find the hourly rate for all instance types and sizes in the tables above. Use the following formula to calculate the costs:
 
-| Provider | Region    | Instance type           | Autoscaling                                                                                                                          | Cost                                                                                      | Hourly cost | Monthly cost |
-|----------|-----------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-------------|--------------|
-| aws      | us-east-1 | CPU - medium ($0.12/hr) | - min replica: 1<br> - max replica: 1                                                                                                | instance hourly rate * (hrs * # min replica)                                              | $0.12       | $87.6        |
-| aws      | us-east-1 | GPU - small ($0.6/hr)   | - min replica: 1<br> - max replica: 3<br> - every hr a load spike automatically scales the Endpoint from 1 to 3 replicas for 15 mins | instance hourly rate * ((hrs * # min replica) + (scale-up hours * # additional replicas)) | $0.9        | $657         |
+```
+instance hourly rate * ((hours * # min replica) + (scale-up hrs * # additional replicas))
+```
+
+If you are using a **medium CPU by AWS without any autoscaling** for **1 hr**, the cost would be:
+
+```
+cost = $0.12/hr * ((1 hr * 1 replica) + (0 hrs * 0 additional replicas))
+$0.12/hr
+```
+
+| Hourly cost | Monthly cost |
+|-------------|--------------|
+| $0.12       | $87.6        |
+
+Now imagine you want to use a slightly larger instance, like a **large CPU by Azure and a maximum of 3 replicas**. Again, you're only using this CPU for **1 hour**, but a spike in traffic scales the Endpoint from **1 to 3 replicas** for half a hour:
+
+```
+cost = $0.24/hr * ((1 hr * 1 replica) + (0.5 hrs * 2 additional replicas))
+$1.24
+```
+
+| Hourly cost | Monthly cost |
+|-------------|--------------|
+| $1.24       | $905.2       |
+
+But now you want something more powerful, so you decide to use a **large GPU by AWS and a maximum of 5 replicas**. This time, you'll use the GPU for **3 hours** and you get a spike in traffic every **0.25** hours which scales the Endpoint from **1 to 4 replicas**. You didn't need to scale to the maximum number of replicas, so you're only charged for what you actually use.
+
+```
+cost = $6.50/hr * ((3 hrs * 1 replica) + (0.25 hrs * 3 additional replicas))
+cost = $24.375
+```
+
+| Hourly cost | Monthly cost |
+|-------------|--------------|
+| $24.375     | $17793.75    |

@@ -1,0 +1,42 @@
+# Serialization & Deserialization for Requests
+
+Hugging Face Inference Endpount comes with a default serving container which is used for all [supported Transformers and Sentence-Transformers tasks](/docs/inference-endpoints/supported_tasks) and for [custom inference handler](/docs/inference-endpoints/guides/custom_handler).
+The serving container takes care of serialization and deserialization of the request and response payloads based on the `content-type` headers of the request.
+That means that when you send a request with a JSON body and a `content-type: application/json` header, the serving container will deserialize the JSON payload into a Python dictionary and pass it to the inference handler.
+
+Below is a list of support `content-types` and the deserialized payload that is passed to the inference handler.
+
+
+| Content-Type           | Payload                        | Example |
+| ---------------------- | ------------------------------ | ------------------------------ |
+| application/json       | `dict`                         |
+| text/csv               | `raw`                          |
+| text/plain             | `raw`                          |
+| image/png              | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
+| image/jpeg             | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
+| image/jpg              | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
+| image/tiff             | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
+| image/bmp              | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
+| image/gif              | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
+| image/webp             | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
+| image/x-image          | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
+| audio/x-flac           | `{"inputs": bytes(body)}`                     |
+| audio/flac             | `{"inputs": bytes(body)}`                     |
+| audio/mpeg             | `{"inputs": bytes(body)}`                     |
+| audio/x-mpeg-3         | `{"inputs": bytes(body)}`                     |
+| audio/wave             | `{"inputs": bytes(body)}`                     |
+| audio/wav              | `{"inputs": bytes(body)}`                     |
+| audio/x-wav            | `{"inputs": bytes(body)}`                     |
+| audio/ogg              | `{"inputs": bytes(body)}`                     |
+| audio/x-audio          | `{"inputs": bytes(body)}`                     |
+| audio/webm             | `{"inputs": bytes(body)}`                     |
+| audio/webm;codecs=opus | `{"inputs": bytes(body)}`                     |
+| audio/AMR              | `{"inputs": bytes(body)}`                     |
+| audio/amr              | `{"inputs": bytes(body)}`                     |
+| audio/AMR-WB           | `{"inputs": bytes(body)}`                     |
+| audio/AMR-WB+          | `{"inputs": bytes(body)}`                     |
+| audio/m4a              | `{"inputs": bytes(body)}`                     |
+| audio/x-m4a            | `{"inputs": bytes(body)}`                     |
+
+
+The serving container currently only supports serialization of the response payload into JSON format. The response payload is serialized into a JSON string and the `content-type` header is set to `application/json`.

@@ -45,4 +45,6 @@
 - sections: 
   - local: others/runtime
     title: Inference Endpoints Version
+  - local: others/serialization
+    title: Serialization & Deserialization for Requests
   title: Others

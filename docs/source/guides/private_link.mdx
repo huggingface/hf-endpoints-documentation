@@ -9,14 +9,14 @@ Public and Protected Endpoints do not require any additional configuration. But 
   alt="select private link"
 />
 
-After you provide your AWS Account ID and click **Create Endpoint** the Inference Service creates a VPC Endpoint which you'll see shortly in your overview.
+After you provide your AWS Account ID and click **Create Endpoint**, the Inference Service creates a VPC Endpoint and you should see the VPC Service Name in your overview.
 
 <img
   src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_service_name.png"
   alt="service link"
 />
 
-The VPC Service Name is used to create the VPC Interface Endpoint in your (customer) cloud account. Open your cloud account [console](https://console.aws.amazon.com/vpc/home?#Endpoints) to view the VPC Interface Endpoint.
+The VPC Service Name is used to create the VPC Interface Endpoint in your (customer) cloud account. Open your cloud account [console](https://console.aws.amazon.com/vpc/home?#Endpoints) to go create the VPC Interface Endpoint.
 
 An example of the VPC Endpoint configuration is shown below. You will need to select the VPC and subnets, as well as the security groups you want to use.
 
@@ -32,4 +32,4 @@ Once your Inference Endpoint is created successfully, go to the corresponding AW
   alt="endpoint url"
 />
 
-After the VPC Endpoint status changes from **Pending** to **available**, you should see a Endpoint URL in the overview. This URL can now be used inside your VPC to access your Endpoint in a secure and protected way, ensuring traffic is only occurring between the two endpoints and will never leave AWS.
+After the VPC Endpoint status changes from **pending** to **available**, you should see a Endpoint URL in the overview. This URL can now be used inside your VPC to access your Endpoint in a secure and protected way, ensuring traffic is only occurring between the two endpoints and will never leave AWS.

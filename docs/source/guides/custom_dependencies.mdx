@@ -1,9 +1,11 @@
 # Add custom Dependencies
 
+Inference Endpoints’ base image includes all required libraries to run inference on 🤗 Transformers models, but it also supports custom dependencies. This is useful if you want to:
 
-Hugging Face Endpoints’ base image includes all required libraries to run inference on transformers models, but sometimes that can be too limited. For example, you want to [customize your inference pipeline](/docs/inference-endpoints/guides/custom_handler) and need additional python dependencies or you want to run a model which requires special dependencies or the newest/a fixed version of a library, e.g. `tapas` (`torch-scatter`). Therefore Endpoints support **custom dependencies**. 
+* [customize your inference pipeline](/docs/inference-endpoints/guides/custom_handler) and need additional Python dependencies
+* run a model which requires special dependencies like the newest or a fixed version of a library (for example, `tapas` (`torch-scatter`)).
 
-To add custom dependencies add a <code>[requirements.txt](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/requirements.txt)</code> file to your model repository on the Hugging Face Hub with the Python dependencies you want to install. When your Endpoint and Image artifacts are created, Inference Endpoints will check if the Model Repository contains a <code>requirements.txt </code>file and installs the dependencies. 
+To add custom dependencies, add a `[requirements.txt](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/requirements.txt)` file with the Python dependencies you want to install in your model repository on the Hugging Face Hub. When your Endpoint and Image artifacts are created, Inference Endpoints checks if the model repository contains a `requirements.txt ` file and installs the dependencies listed within.
 
 ```bash
 optimum[onnxruntime]==1.2.3
@@ -11,9 +13,9 @@ mkl-include
 mkl
 ```
 
-**Examples:**
+Take a look at the `requirements.txt` files in the following model repositories as an example:
 
 * [Optimum and onnxruntime](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/requirements.txt)
 * [diffusers](https://huggingface.co/philschmid/stable-diffusion-v1-4-endpoints/blob/main/requirements.txt)
 
-If you need further customization you can [use your own custom container](/docs/inference-endpoints/guides/custom_handler) for inference.
+For more information, take a look at how you can create and install dependencies when you [use your own custom container](/docs/inference-endpoints/guides/custom_handler#3-customize-endpointhandler) for inference.

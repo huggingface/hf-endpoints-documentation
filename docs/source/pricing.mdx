@@ -55,6 +55,40 @@ The following example pricing scenarios demonstrate how costs are calculated. Yo
 instance hourly rate * ((hours * # min replica) + (scale-up hrs * # additional replicas))
 ```
 
-![basic-pricing](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/basic-pricing.png)
+### Basic Endpoint
 
-![advanced-pricing](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/advanced-pricing.png)
+* AWS CPU medium (2 x 4GB vCPUs)
+* Autoscaling (minimum 1 replica, maximum 1 replica)
+
+**hourly cost**
+```
+instance hourly rate * (hours * # min replica) = hourly cost
+$0.12/hr * (1hr * 1 replica) = $0.12/hr
+```
+
+**monthly cost**
+```
+instance hourly rate * (hours * # min replica) = monthly cost
+$0.12/hr * (730hr * 1 replica) = $87.6/month
+```
+
+![basic-chart](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/basic-chart.png)
+
+### Advanced Endpoint
+
+* AWS GPU small (1 x 14GB GPU)
+* Autoscaling (minimum 1 replica, maximum 3 replica), every hour a spike in traffic scales the Endpoint from 1 to 3 replicas for 15 minutes
+
+**hourly cost**
+```
+instance hourly rate * ((hours * # min replica) + (scale-up hrs * # additional replicas)) = hourly cost
+$0.6/hr * ((1hr * 1 replica) + (0.25hr * 2 replicas)) = $0.9/hr
+```
+
+**monthly cost**
+```
+instance hourly rate * ((hours * # min replica) + (scale-up hrs * # additional replicas)) = monthly cost
+$0.6/hr * ((730hr * 1 replica) + (182.5hr * 2 replicas)) = $657/month
+```
+
+![advanced-chart](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/advanced-chart.png)

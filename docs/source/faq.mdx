@@ -81,3 +81,12 @@ A: Please contact us if you feel your model would do better on a different insta
 ### Q: I accidentally leaked my token. Do I need to delete my endpoint?
 
 A: You can invalidate existing personal tokens and create new ones in your settings here: [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). For organization tokens, go to the organization settings.
+
+### Q: How does autoscaling work?
+
+A: If your Endpoint is using a CPU accelerator, once the average CPU utilization of all your endpoints hits 80%, a new endpoint will be added.
+
+As for the GPU accelerator, once the average GPU utilization of all your endpoints averaged over a 2 minute window reaches 80%, a new endpoint will be added. One Endpoint can be scaled up every 3 minutes.
+
+Note that if we do not have enough resources available for your new endpoint, a new VM needs to be created which generally takes 1 to 5 minutes.
+

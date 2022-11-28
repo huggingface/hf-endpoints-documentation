@@ -1,8 +1,9 @@
 # Serialization & Deserialization for Requests
 
 Hugging Face Inference Endpount comes with a default serving container which is used for all [supported Transformers and Sentence-Transformers tasks](/docs/inference-endpoints/supported_tasks) and for [custom inference handler](/docs/inference-endpoints/guides/custom_handler).
-The serving container takes care of serialization and deserialization of the request and response payloads based on the `content-type` headers of the request.
-That means that when you send a request with a JSON body and a `content-type: application/json` header, the serving container will deserialize the JSON payload into a Python dictionary and pass it to the inference handler.
+The serving container takes care of serialization and deserialization of the request and response payloads based on the `content-type` and `accept` headers of the request.
+That means that when you send a request with a JSON body and a `content-type: application/json` header, the serving container will deserialize the JSON payload into a Python dictionary and pass it to the inference handler and if you send 
+a request with a `accept: image/png` header, the serving container will seralize the response from the task/custom handler into a image.
 
 Below is a list of supported `content-types` and the deserialized payload that is passed to the inference handler.
 
@@ -12,14 +13,14 @@ Below is a list of supported `content-types` and the deserialized payload that i
 | application/json       | `dict`                         |
 | text/csv               | `raw`                          |
 | text/plain             | `raw`                          |
-| image/png              | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
-| image/jpeg             | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
-| image/jpg              | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
-| image/tiff             | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
-| image/bmp              | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
-| image/gif              | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
-| image/webp             | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
-| image/x-image          | `{"inputs":  Image.open(BytesIO(body)).convert("RGB")}` |
+| image/png              | `binary`  |
+| image/jpeg             | `binary`  |
+| image/jpg              | `binary`  |
+| image/tiff             | `binary`  |
+| image/bmp              | `binary`  |
+| image/gif              | `binary`  |
+| image/webp             | `binary`  |
+| image/x-image          | `binary`  |
 | audio/x-flac           | `{"inputs": bytes(body)}`                     |
 | audio/flac             | `{"inputs": bytes(body)}`                     |
 | audio/mpeg             | `{"inputs": bytes(body)}`                     |
@@ -38,5 +39,22 @@ Below is a list of supported `content-types` and the deserialized payload that i
 | audio/m4a              | `{"inputs": bytes(body)}`                     |
 | audio/x-m4a            | `{"inputs": bytes(body)}`                     |
 
+Below is a list of supported `accept` headers and the serialized payload is returned.
 
-The serving container currently only supports serialization of the response payload into JSON format. The response payload is serialized into a JSON string and the `content-type` header is set to `application/json`.
+
+| Accept          | Payload                        | 
+| ---------------------- | ------------------------------ | 
+| application/json       | `JSON`                         |
+| text/csv               | `raw`                          |
+| text/plain             | `raw`                          |
+| image/png              | `binary` |
+| image/jpeg             | `binary`  |
+| image/jpg              | `binary`  |
+| image/tiff             | `binary`  |
+| image/bmp              | `binary`  |
+| image/gif              | `binary`  |
+| image/webp             | `binary`  |
+| image/x-image          | `binary`  |
+
+
+

@@ -1,4 +1,4 @@
-# Supported Transformers Tasks
+# Supported Transformers & Diffusers Tasks
 
 Below is a table of Hugging Face managed supported tasks for Inference Endpoint. These tasks don't require any form of code or [“custom container”](/docs/inference-endpoints/guides/docs/guides/custom_container) to deploy an Endpoint. 
 If you want to customize any of the tasks below, or want to write your own custom task, check out the [“Create your own inference handler”](/docs/inference-endpoints/guides/custom_handler) section for more information.
@@ -25,6 +25,7 @@ If you want to customize any of the tasks below, or want to write your own custo
 | Image Segmentation             | Transformers          | ✅                      |
 | Table Question Answering       | Transformers          | ✅                      |
 | Conversational                 | Transformers          | ✅                      |
+| Text To Image                 | Diffusers          | ✅                      |
 | Custom                         | Custom                | ✅                      |
 | Visual Question Answering      | Transformers          | ❌                      |
 | Zero Shot Image Classification | Transformers          | ❌                      |
@@ -297,6 +298,14 @@ curl --request POST \
     "generated_responses": ["It's Die Hard for sure."],
     "text": "Can you explain why?",
   }
+}
+```
+
+### Text To Image
+
+```json
+{        
+  "inputs": "realistic render portrait realistic render portrait of group of flying blue whales towards the moon, intricate, toy, sci - fi, extremely detailed, digital painting, sculpted in zbrush, artstation, concept art, smooth, sharp focus, illustration, chiaroscuro lighting, golden ratio, incredible art by artgerm and greg rutkowski and alphonse mucha and simon stalenhag",
 }
 ```
 

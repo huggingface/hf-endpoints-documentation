@@ -6,7 +6,7 @@
   - local: security
     title: Security & Compliance
   - local: supported_tasks
-    title: Supported Transformers Tasks
+    title: Supported Tasks
   - local: api_reference
     title: API Reference (Swagger)
   - local: pricing

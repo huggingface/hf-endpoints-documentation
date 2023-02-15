@@ -41,6 +41,8 @@
     title: Access and view Metrics
   - local: guides/change_organization
     title: Change Organization or Account 
+  - local: guides/pause_endpoint
+    title: Pause and Resume your Endpoint
   title: Guides
 - sections: 
   - local: others/runtime

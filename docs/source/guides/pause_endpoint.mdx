@@ -1,0 +1,42 @@
+# Pause and Resume your Endpoint
+
+You can `pause` & `resume` endpoints to save cost and configurations. Please note that if your endpoint is in a `failed` state, you will need to create a new endpoint. To `pause`/`resume` your endpoint, navigate to the "overview" tab and click the button at top right corner, which will show "Pause endpoint" to pause, or "Resume endpoint" to reactivate the paused endpoint.
+
+When pausing an endpoint the min & max number of replicas will be set to 0. When resuming an endpoint the min & max number of replicas will be set to 1. This allows you to programmatically pause and resume your endpoint by updating the "min_replicas" and "max_replicas" fields in the API.
+Paused inference endpoints will have the following status: `PAUSED`. Paused endpoints will be NOT be billed until resumed. Pausing & Resuming an endpoint is a great way to save costs when you don't need your endpoint to be running. For example, you can easily pause your endpoint during the night or weekends. You should pause your endpoint when you don't need it for the time being.
+
+The url of your endpoint will remain the same, even if you pause and resume it. This means that you can pause your endpoint and resume it later without having to update your code.
+
+## Pause an Inference Endpoint
+
+To pause an endpoint, navigate to the "overview" tab and click the button at top right corner, which says "Pause endpoint".
+
+<img
+  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/pause_endpoint.png"
+  alt="Pause an Inference Endpoint"
+/>
+
+After clicking the button, you will be asked to confirm the action. Click "Pause {ENDPOINT-NAME}" to confirm.
+
+<img
+  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/pause_endpoint_confirm.png"
+  alt="Pause modal confirm Inference Endpoint"
+/>
+
+After that your replicas will be set to 0 and your endpoint will be paused. You can see the status change of your endpoint in the "overview" tab to `PAUSED`. If you do not see the `PAUSED` status make sure you've followed these instructions or contact us for help.
+
+<img
+  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/paused_endpoint.png"
+  alt="Paused Inference Endpoint"
+/>
+
+## Resume an Inference Endpoint
+
+To resume an endpoint, navigate to the "overview" tab and click the button at top right corner showing "Resume endpoint".
+
+<img
+  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/resume_endpoint.png"
+  alt="Resume Inference Endpoint"
+/>
+
+Your endpoint will be resumed and the status will change to `Initalizing` and then to `Running`. Once your endpoint is running, you can start using it again and billing usage will incur.

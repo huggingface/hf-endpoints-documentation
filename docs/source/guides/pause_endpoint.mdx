@@ -3,7 +3,7 @@
 You can `pause` & `resume` endpoints to save cost and configurations. Please note that if your endpoint is in a `failed` state, you will need to create a new endpoint. To `pause`/`resume` your endpoint, navigate to the "overview" tab and click the button at top right corner, which will show "Pause endpoint" to pause, or "Resume endpoint" to reactivate the paused endpoint.
 
 When pausing an endpoint the min & max number of replicas will be set to 0. When resuming an endpoint the min & max number of replicas will be set to 1. This allows you to programmatically pause and resume your endpoint by updating the "min_replicas" and "max_replicas" fields in the API.
-Paused inference endpoint will have the following status: `PAUSED`, and not usage will be charged. Pausing & Resuming an endpoint is a great way to save cost when you don't need your endpoint to be running. For example, you can pause your endpoint during the night or on weekends. You can also pause your endpoint when you don't need it anymore.
+Paused inference endpoints will have the following status: `PAUSED`. Paused endpoints will be NOT be billed until resumed. Pausing & Resuming an endpoint is a great way to save costs when you don't need your endpoint to be running. For example, you can easily pause your endpoint during the night or weekends. You should pause your endpoint when you don't need it for the time being.
 
 The url of your endpoint will remain the same, even if you pause and resume it. This means that you can pause your endpoint and resume it later without having to update your code.
 

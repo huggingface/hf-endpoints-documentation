@@ -1,37 +1,37 @@
 # Inference Endpoints Version
 
-Hugging Face Inference Endpoints comes with a default serving container which is used for all [supported Transformers and Sentence-Transformers tasks](/docs/inference-endpoints/supported_tasks) and for [custom inference handler](/docs/inference-endpoints/guides/custom_handler) and implement batching. 
-Below you will find information about the installed packages and versions used. 
+Hugging Face Inference Endpoints comes with a default serving container which is used for all [supported Transformers and Sentence-Transformers tasks](/docs/inference-endpoints/supported_tasks) and for [custom inference handler](/docs/inference-endpoints/guides/custom_handler) and implement batching.
+Below you will find information about the installed packages and versions used.
 
 You can always upgrade installed packages and a custom packages by adding a `requirements.txt` file to your model repository. Read more in [Add custom Dependencies](/docs/inference-endpoints/guides/custom_dependencies).
 
 ## Installed packages & version
 
-The installed packages are split into `general`, `CPU` & `GPU` packages. The `general` packages are installed in all containers, the `CPU` and `GPU` packages are only installed in the corresponding containers. 
+The installed packages are split into `general`, `CPU` & `GPU` packages. The `general` packages are installed in all containers, the `CPU` and `GPU` packages are only installed in the corresponding containers.
 The Hugging Face Inference Runtime has separate versions for `PyTorch` and `TensorFlow` for `CPU` and `GPU`, which are used based on the selected `framework` when creating an Inference Endpoint. The `TensorFlow` and `PyTorch` flavors are grouped together in the list below.
 
 ### General
 
-* `Python`: `3.9.13`
+- `Python`: `3.9.13`
 
 ### CPU
 
-* `transformers[sklearn,sentencepiece,audio,vision]`: `4.24.0`
-* `diffusers`: `0.9.0`
-* `accelerate`: `0.14.0`
-* `sentence_transformers`: `latest`
-* `pandas`: `latest`
-* `pytorch`: `1.13.0`
-* `torchvision`: `0.12.0`
-* `tensorflow`: `2.9.1`
+- `transformers[sklearn,sentencepiece,audio,vision]`: `4.27.2`
+- `diffusers`: `0.14.0`
+- `accelerate`: `0.17.1`
+- `sentence_transformers`: `latest`
+- `pandas`: `latest`
+- `pytorch`: `1.13.1`
+- `torchvision`: `0.14.1`
+- `tensorflow`: `2.9.1`
 
 ### GPU
 
-* `transformers[sklearn,sentencepiece,audio,vision]`: `4.24.0`
-* `diffusers`: `0.9.0`
-* `accelerate`: `0.14.0`
-* `sentence_transformers`: `latest`
-* `pandas`: `latest`
-* `pytorch`: `1.13.0=py3.9_cuda11.6*`
-* `torchvision`: `0.14.0`
-* `tensorflow`: `2.9.1=*cuda112*py39*`
+- `transformers[sklearn,sentencepiece,audio,vision]`: `4.27.2`
+- `diffusers`: `0.14.0`
+- `accelerate`: `0.17.1`
+- `sentence_transformers`: `latest`
+- `pandas`: `latest`
+- `pytorch`: `1.13.1=py3.9_cuda11.8*`
+- `torchvision`: `0.14.1`
+- `tensorflow`: `2.9.1=*cuda112*py39*`

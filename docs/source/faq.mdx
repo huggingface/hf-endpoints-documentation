@@ -86,7 +86,7 @@ A: You can invalidate existing personal tokens and create new ones in your setti
 
 A: If your Endpoint is using a CPU accelerator, once the average CPU utilization of all your endpoints hits 80%, a new endpoint will be added.
 
-As for the GPU accelerator, once the average GPU utilization of all your endpoints averaged over a 2 minute window reaches 80%, a new endpoint will be added. One Endpoint can be scaled up every 3 minutes.
+As for the GPU accelerator, once the average GPU utilization of all your endpoints averaged over a 2 minute window reaches 80%, a new endpoint will be added. One Endpoint can be scaled up every 3 minutes and scale down time is 5 minutes. Please note that if your model requires a significant amount of time to initialize, autoscaling may not be effective. This is because the average GPU utilization may fall below the threshold, causing your endpoint to be automatically scaled down.
 
 Note that if we do not have enough resources available for your new endpoint, a new VM needs to be created which generally takes 1 to 5 minutes.
 

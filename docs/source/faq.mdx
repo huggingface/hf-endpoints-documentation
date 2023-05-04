@@ -84,9 +84,11 @@ A: You can invalidate existing personal tokens and create new ones in your setti
 
 ### Q: How does autoscaling work?
 
-A: If your Endpoint is using a CPU accelerator, once the average CPU utilization of all your endpoints hits 80%, a new endpoint will be added.
+A: Autoscaling automatically adjusts the number of endpoint replicas running your model based on the accelerator's utilization.
 
-As for the GPU accelerator, once the average GPU utilization of all your endpoints averaged over a 2 minute window reaches 80%, a new endpoint will be added. One Endpoint can be scaled up every 3 minutes and scale down time is 5 minutes. Please note that if your model requires a significant amount of time to initialize, autoscaling may not be effective. This is because the average GPU utilization may fall below the threshold, causing your endpoint to be automatically scaled down.
+For CPU accelerators, a new replica is added when the average CPU utilization of all replicas reaches 80%. For GPU accelerators, a new replica is added when the average GPU utilization of all replicas over a 2-minute window reaches 80%. The scaling up process takes place every 3 minutes, while the scaling down process takes 5 minutes.
 
-Note that if we do not have enough resources available for your new endpoint, a new VM needs to be created which generally takes 1 to 5 minutes.
+Note that if your model takes a long time to initialize, autoscaling may not be effective. This is because the average GPU utilization may fall below the threshold, which triggers the automatic scaling down of your endpoint.
+
+If there are insufficient resources available for your new replica, a new virtual machine (VM) will be created, typically taking 1 to 5 minutes.
 

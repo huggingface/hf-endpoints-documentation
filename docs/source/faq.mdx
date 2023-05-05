@@ -88,7 +88,7 @@ A: Autoscaling automatically adjusts the number of endpoint replicas running you
 
 For CPU accelerators, a new replica is added when the average CPU utilization of all replicas reaches 80%. For GPU accelerators, a new replica is added when the average GPU utilization of all replicas over a 2-minute window reaches 80%. The scaling up process takes place every 3 minutes, while the scaling down process takes 5 minutes.
 
-Note that if your model takes a long time to initialize, autoscaling may not be effective. This is because the average GPU utilization may fall below the threshold, which triggers the automatic scaling down of your endpoint.
+It's important to note that if your model takes a long time to initialize, autoscaling may not be effective. This is because the average GPU utilization may fall below the threshold, which triggers the automatic scaling down of your endpoint. If you have an enterprise plan, you have full control over the autoscaling definitions.
 
 If there are insufficient resources available for your new replica, a new virtual machine (VM) will be created, typically taking 1 to 5 minutes.
 

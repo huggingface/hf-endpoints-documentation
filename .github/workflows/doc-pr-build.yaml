@@ -20,5 +20,3 @@ jobs:
       package: hf-endpoints-documentation
       package_name: inference-endpoints
       additional_args: --not_python_module
-    secrets:
-      token: ${{ secrets.HUGGINGFACE_PUSH }}

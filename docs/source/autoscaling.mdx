@@ -18,7 +18,7 @@ While autoscaling offers convenient resource management, certain considerations 
 
 - **Model Initialization Time**: During the initialization of a new replica, the model is downloaded and loaded into memory. If your replicas have a long initialization time, autoscaling may not be as effective. This is because the average GPU utilization might fall below the threshold during that time, triggering the automatic scaling down of your endpoint.
 
-- **Enterprise Plan Control**: If you have an enterprise plan, you have full control over the autoscaling definitions. This allows you to customize the scaling thresholds and behavior based on your specific requirements.
+- **Enterprise Plan Control**: If you have an [enterprise plan](https://huggingface.co/inference-endpoints/enterprise), you have full control over the autoscaling definitions. This allows you to customize the scaling thresholds and behavior based on your specific requirements.
 
 ## Scaling to 0
 

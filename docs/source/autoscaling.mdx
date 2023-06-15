@@ -1,0 +1,30 @@
+# Autoscaling
+
+Autoscaling allows you to dynamically adjust the number of endpoint replicas running your models based on traffic and accelerator utilization. By leveraging autoscaling, you can seamlessly handle varying workloads while optimizing costs and ensuring high availability.
+
+## Scaling Criteria
+
+The autoscaling process is triggered based on the accelerator's utilization metrics. The criteria for scaling differ depending on the type of accelerator being used:
+
+- **CPU Accelerators**: A new replica is added when the average CPU utilization of all replicas reaches 80%.
+
+- **GPU Accelerators**: A new replica is added when the average GPU utilization of all replicas over a 2-minute window reaches 80%.
+
+It's important to note that the scaling up process takes place every 3 minutes, while the scaling down process takes 5 minutes. This frequency ensures a balance between responsiveness and stability of the autoscaling system.
+
+## Considerations for Effective Autoscaling
+
+While autoscaling offers convenient resource management, certain considerations should be kept in mind to ensure its effectiveness:
+
+- **Model Initialization Time**: During the initialization of a new replica, the model is downloaded and loaded into memory. If your replicas have a long initialization time, autoscaling may not be as effective. This is because the average GPU utilization might fall below the threshold during that time, triggering the automatic scaling down of your endpoint.
+
+- **Enterprise Plan Control**: If you have an [enterprise plan](https://huggingface.co/inference-endpoints/enterprise), you have full control over the autoscaling definitions. This allows you to customize the scaling thresholds, behavior and criteria based on your specific requirements.
+
+## Scaling to 0
+
+Inference Endpoints also supports autoscaling to 0, which means reducing the number of replicas to 0 when there is no incoming traffic. This feature is based on request patterns rather than accelerator utilization. When an endpoint remains idle without receiving any requests for over 15 minutes, the system automatically scales down the endpoint to 0 replicas. To enable the feature, go to the Settings page and you'll find a section called "Automatic Scale-to-Zero".
+
+Scaling to 0 replicas helps optimize cost savings by minimizing resource usage during periods of inactivity. However, it's important to be aware that scaling to 0 implies a cold start period when the endpoint receives a new request. Additionally, the HTTP server will respond with a status code `502 Bad Gateway` while the new replica is initializing. Please note that there is currently no queueing system in place for incoming requests. Therefore, we recommend developing your own request queue client-side with proper error handling to optimize throughput and latency.
+
+The duration of the cold start period varies depending on your model's size. It is recommended to consider the potential latency impact when enabling scaling to 0 and managing user expectations.
+

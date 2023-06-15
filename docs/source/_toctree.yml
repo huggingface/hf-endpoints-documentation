@@ -9,6 +9,8 @@
     title: Supported Tasks
   - local: api_reference
     title: API Reference (Swagger)
+  - local: autoscaling
+    title: Autoscaling
   - local: pricing
     title: Pricing
   - local: support

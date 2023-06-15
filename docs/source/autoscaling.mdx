@@ -20,7 +20,7 @@ While autoscaling offers convenient resource management, certain considerations 
 
 - **Enterprise Plan Control**: If you have an [enterprise plan](https://huggingface.co/inference-endpoints/enterprise), you have full control over the autoscaling definitions. This allows you to customize the scaling thresholds, behavior and criteria based on your specific requirements.
 
-## <a name="scaling-to-0"></a>Scaling to 0
+## Scaling to 0
 
 Inference Endpoints also supports autoscaling to 0, which means reducing the number of replicas to 0 when there is no incoming traffic. This feature is based on request patterns rather than accelerator utilization. When an endpoint remains idle without receiving any requests for over 15 minutes, the system automatically scales down the endpoint to 0 replicas. To enable the feature, go to the Settings page and you'll find a section called "Automatic Scale-to-Zero".
 

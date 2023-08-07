@@ -50,11 +50,11 @@ const gpt2 = inference.endpoint('https://xyz.eu-west-1.aws.endpoints.huggingface
 const { generated_text } = await gpt2.textGeneration({ inputs: 'The answer to the universe is' })
 ```
 
-**custom handler**
+### Custom handler
 
-`@huggingface/inference` supports tasks from https://huggingface.co/tasks, and is typed accordingly. But what if your model as additional inputs, or even custom inputs or outputs?
+`@huggingface/inference` supports tasks from https://huggingface.co/tasks, and is typed accordingly. 
 
-You can use `.request` and `.streamingRequest` now!
+If your model has additional inputs, or even custom inputs / outputs you can use the more generic `.request` / `streamingRequest`:
 
 ```ts
 const output = await inference.request({

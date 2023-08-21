@@ -1,6 +1,8 @@
 # Send Requests to Endpoints
 
-You can send requests to Inference Endpoints using the UI leveraging the Inference Widget or programmatically, e.g. with cURL or the `@huggingface/inference` library. Below you can find examples for each of these methods.
+You can send requests to Inference Endpoints using the UI leveraging the Inference Widget or programmatically, e.g. with cURL, `@huggingface/inference`, `huggingface_hub` or any REST client. The Endpoint overview not only provides a interactive widget for you to test the Endpoint, but also generates code for `python`, `javascript` and `curl`. You can use this code to quickly get started with your Endpoint in your favorite programming language.
+
+Below are also examples on how to use the `@huggingface/inference` library to call an inference endpoint.
 
 ## Use the UI to send requests
 
@@ -52,7 +54,7 @@ const { generated_text } = await gpt2.textGeneration({ inputs: 'The answer to th
 
 ### Custom handler
 
-`@huggingface/inference` supports tasks from https://huggingface.co/tasks, and is typed accordingly. 
+`@huggingface/inference` supports tasks from https://huggingface.co/tasks, and is typed accordingly.
 
 If your model has additional inputs, or even custom inputs / outputs you can use the more generic `.request` / `streamingRequest`:
 

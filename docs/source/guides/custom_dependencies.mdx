@@ -5,7 +5,7 @@ Inference Endpoints’ base image includes all required libraries to run inferen
 * [customize your inference pipeline](/docs/inference-endpoints/guides/custom_handler) and need additional Python dependencies
 * run a model which requires special dependencies like the newest or a fixed version of a library (for example, `tapas` (`torch-scatter`)).
 
-To add custom dependencies, add a `[requirements.txt](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/requirements.txt)` file with the Python dependencies you want to install in your model repository on the Hugging Face Hub. When your Endpoint and Image artifacts are created, Inference Endpoints checks if the model repository contains a `requirements.txt ` file and installs the dependencies listed within.
+To add custom dependencies, add a `requirements.txt` [file](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/requirements.txt) with the Python dependencies you want to install in your model repository on the Hugging Face Hub. When your Endpoint and Image artifacts are created, Inference Endpoints checks if the model repository contains a `requirements.txt ` file and installs the dependencies listed within.
 
 ```bash
 optimum[onnxruntime]==1.2.3

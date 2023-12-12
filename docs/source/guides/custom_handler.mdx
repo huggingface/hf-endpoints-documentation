@@ -197,8 +197,8 @@ Now, you should see your `handler.py` and `requirements.txt` in your repository 
 
 ### 6. Deploy your Custom Handler as an Inference Endpoint
 
-The last step is to deploy your Custom Handler as an Inference Endpoint. You can deploy your custom Custom Handler the same way as a regular Inference Endpoint. Add your repository, select your cloud and region, your instance and security setting, and deploy.
+The last step is to deploy your Custom Handler as an Inference Endpoint. You can deploy your Custom Handler like you would a regular Inference Endpoint. Add your repository, select your cloud and region, your instance and security setting, and deploy.
 
-The Inference Endpoint Service will check during the creation of your Endpoint if there is a `handler.py` available and valid and will use it for serving requests no matter which “Task” you select.
+When creating your Endpoint, the Inference Endpoint Service will check for an available and valid `handler.py`, and will use it for serving requests no matter which “Task” you select.
 
 _Note: In your [Inference Endpoints dashboard](https://ui.endpoints.huggingface.co/), the Task for this Endpoint should now be set to Custom_

@@ -292,13 +292,20 @@ curl --request POST \
 ### Conversational
 
 ```json
-{        
-  "inputs": {
-    "past_user_inputs": ["Which movie is the best ?"],
-    "generated_responses": ["It's Die Hard for sure."],
-    "text": "Can you explain why?",
+{"inputs": [
+  {
+      "role": "user",
+      "content": "Which movie is the best ?"
+  },
+  {
+      "role": "assistant",
+      "content": "It's Die Hard for sure."
+  },
+  {
+      "role": "user",
+      "content": "Can you explain why?"
   }
-}
+]}
 ```
 
 ### Text To Image

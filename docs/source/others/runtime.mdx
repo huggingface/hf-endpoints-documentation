@@ -7,33 +7,22 @@ You can always upgrade installed packages and a custom packages by adding a `req
 
 ## Installed packages & version
 
-The installed packages are split into `general`, `CPU` & `GPU` packages. The `general` packages are installed in all containers, the `CPU` and `GPU` packages are only installed in the corresponding containers.
 The Hugging Face Inference Runtime has separate versions for `PyTorch` and `TensorFlow` for `CPU` and `GPU`, which are used based on the selected `framework` when creating an Inference Endpoint. The `TensorFlow` and `PyTorch` flavors are grouped together in the list below.
 
 ### General
 
 - `Python`: `3.11`
-
-### CPU
-
-- `transformers[sklearn,sentencepiece,audio,vision]`: `4.38.1`
+- `huggingface_hub`: `0.20.3`
+- `pytorch`: `2.2.0`
+- `transformers[sklearn,sentencepiece,audio,vision]`: `4.38.2`
 - `diffusers`: `0.26.3`
 - `accelerate`: `0.27.2`
 - `sentence_transformers`: `2.4.0`
 - `pandas`: `latest`
-- `pytorch`: `2.2.0`
-- `torchvision`: `latest`
+- `peft`: `0.9.0`
 - `tensorflow`: `latest`
 
 ### GPU
 
 - `CUDA`: `12.3`
 
-- `transformers[sklearn,sentencepiece,audio,vision]`: `4.38.1`
-- `diffusers`: `0.26.3`
-- `accelerate`: `0.27.2`
-- `sentence_transformers`: `2.4.0`
-- `pandas`: `latest`
-- `pytorch`: `2.2.0`
-- `torchvision`: `latest`
-- `tensorflow`: `latest`

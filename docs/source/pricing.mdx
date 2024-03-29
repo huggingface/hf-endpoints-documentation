@@ -76,13 +76,13 @@ instance hourly rate * ((hours * # min replica) + (scale-up hrs * # additional r
 **hourly cost**
 ```
 instance hourly rate * (hours * # min replica) = hourly cost
-$0.12/hr * (1hr * 1 replica) = $0.12/hr
+$0.064/hr * (1hr * 1 replica) = $0.064/hr
 ```
 
 **monthly cost**
 ```
 instance hourly rate * (hours * # min replica) = monthly cost
-$0.12/hr * (730hr * 1 replica) = $87.6/month
+$0.064/hr * (730hr * 1 replica) = $46.72/month
 ```
 
 ![basic-chart](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/basic-chart.png)
@@ -95,13 +95,13 @@ $0.12/hr * (730hr * 1 replica) = $87.6/month
 **hourly cost**
 ```
 instance hourly rate * ((hours * # min replica) + (scale-up hrs * # additional replicas)) = hourly cost
-$0.6/hr * ((1hr * 1 replica) + (0.25hr * 2 replicas)) = $0.9/hr
+$0.5/hr * ((1hr * 1 replica) + (0.25hr * 2 replicas)) = $0.75/hr
 ```
 
 **monthly cost**
 ```
 instance hourly rate * ((hours * # min replica) + (scale-up hrs * # additional replicas)) = monthly cost
-$0.6/hr * ((730hr * 1 replica) + (182.5hr * 2 replicas)) = $657/month
-```
+$0.5/hr * ((730hr * 1 replica) + (182.5hr * 2 replicas)) = $547.5/month
+``` 
 
 ![advanced-chart](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/advanced-chart.png)

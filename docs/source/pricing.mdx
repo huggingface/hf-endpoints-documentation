@@ -23,32 +23,31 @@ You can find the hourly pricing for all available instances for 🤗 Inference E
 
 The table below shows currently available CPU instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request a quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20[INSTANCE%20TYPE]%20for%20the%20following%20account%20[HF%20ACCOUNT].) to use it.
 
-| Provider | Instance Size | hourly rate | vCPUs | Memory | Architecture          |
-| -------- | ------------- | ----------- | ----- | ------ | --------------------- |
-| aws      | small         | $0.06       | 1     | 2GB    | Intel Xeon - Ice Lake |
-| aws      | medium        | $0.12       | 2     | 4GB    | Intel Xeon - Ice Lake |
-| aws      | large         | $0.24       | 4     | 8GB    | Intel Xeon - Ice Lake |
-| aws      | xlarge        | $0.48       | 8     | 16GB   | Intel Xeon - Ice Lake |
-| azure    | small         | $0.06       | 1     | 2GB    | Intel Xeon            |
-| azure    | medium        | $0.12       | 2     | 4GB    | Intel Xeon            |
-| azure    | large         | $0.24       | 4     | 8GB    | Intel Xeon            |
-| azure    | xlarge        | $0.48       | 8     | 16GB   | Intel Xeon            |
+| Provider | Instance Size | Hourly rate | vCPUs | Memory | Architecture          | ID                     |
+| -------- | ------------- | ----------- | ----- | ------ | --------------------- | ---------------------- |
+| aws      | small         | $0.032      | 1     | 2GB    | Intel Ice Lake        | aws-c6i-small          |
+| aws      | medium        | $0.064      | 2     | 4GB    | Intel Ice Lake        | aws-c6i-medium         |
+| aws      | large         | $0.128      | 4     | 8GB    | Intel Ice Lake        | aws-c6i-large          |
+| aws      | xlarge        | $0.256      | 8     | 16GB   | Intel Ice Lake        | aws-c6i-xlarge         |
+| azure    | small         | $0.060      | 1     | 2GB    | Intel Xeon            | azure-fsv2-small       |
+| azure    | medium        | $0.120      | 2     | 4GB    | Intel Xeon            | azure-fsv2-medium      |
+| azure    | large         | $0.240      | 4     | 8GB    | Intel Xeon            | azure-fsv2-large       |
+| azure    | xlarge        | $0.480      | 8     | 16GB   | Intel Xeon            | azure-fsv2-xlarge      |
 
 ## GPU Instances
 
 The table below shows currently available GPU instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request a quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20[INSTANCE%20TYPE]%20for%20the%20following%20account%20[HF%20ACCOUNT].) to use it.
 
-| Provider | Instance Size | hourly rate | GPUs | Memory | Architecture |
-| -------- | ------------- | ----------- | ---- | ------ | ------------ |
-| aws      | small         | $0.60       | 1    | 14GB   | NVIDIA T4    |
-| aws      | medium        | $1.30       | 1    | 24GB   | NVIDIA A10G  |
-| aws      | large         | $4.50       | 4    | 56GB   | NVIDIA T4    |
-| aws      | xlarge        | $6.50       | 1    | 80GB   | NVIDIA A100  |
-| aws      | xxlarge       | $7.00       | 4    | 96GB   | NVIDIA A10G  |
-| aws      | 2xlarge      | $13.00      | 2    | 160GB  | NVIDIA A100  |
-| aws      | 4xlarge      | $26.00      | 4    | 320GB  | NVIDIA A100  |
-| aws      | 8xlarge      | $45.00      | 8    | 640GB  | NVIDIA A100  |
-
+| Provider | Instance Size | Hourly rate | GPUs | Memory | Architecture | ID                      |
+| -------- | ------------- | ----------- | ---- | ------ | ------------ | ----------------------- |
+| aws      | small         | $0.5        | 1    | 14GB   | NVIDIA T4    | aws-g4dn-xlarge-small   |
+| aws      | medium        | $1          | 1    | 24GB   | NVIDIA A10G  | aws-g5-2xlarge-medium   |
+| aws      | large         | $3          | 4    | 56GB   | NVIDIA T4    | aws-g4dn-12xlarge-large |
+| aws      | xlarge        | $4          | 1    | 80GB   | NVIDIA A100  | aws-p4de-xlarge         |
+| aws      | xxlarge       | $5          | 4    | 96GB   | NVIDIA A10G  | aws-g5-12xlarge-xxlarge |
+| aws      | 2xlarge       | $8          | 2    | 160GB  | NVIDIA A100  | aws-p4de-2xlarge        |
+| aws      | 4xlarge       | $16         | 4    | 320GB  | NVIDIA A100  | aws-p4de-4xlarge        |
+| aws      | 8xlarge       | $32         | 8    | 640GB  | NVIDIA A100  | not available           |
 
 ## Pricing examples
 
@@ -66,13 +65,13 @@ instance hourly rate * ((hours * # min replica) + (scale-up hrs * # additional r
 **hourly cost**
 ```
 instance hourly rate * (hours * # min replica) = hourly cost
-$0.12/hr * (1hr * 1 replica) = $0.12/hr
+$0.064/hr * (1hr * 1 replica) = $0.064/hr
 ```
 
 **monthly cost**
 ```
 instance hourly rate * (hours * # min replica) = monthly cost
-$0.12/hr * (730hr * 1 replica) = $87.6/month
+$0.064/hr * (730hr * 1 replica) = $46.72/month
 ```
 
 ![basic-chart](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/basic-chart.png)
@@ -85,13 +84,13 @@ $0.12/hr * (730hr * 1 replica) = $87.6/month
 **hourly cost**
 ```
 instance hourly rate * ((hours * # min replica) + (scale-up hrs * # additional replicas)) = hourly cost
-$0.6/hr * ((1hr * 1 replica) + (0.25hr * 2 replicas)) = $0.9/hr
+$0.5/hr * ((1hr * 1 replica) + (0.25hr * 2 replicas)) = $0.75/hr
 ```
 
 **monthly cost**
 ```
 instance hourly rate * ((hours * # min replica) + (scale-up hrs * # additional replicas)) = monthly cost
-$0.6/hr * ((730hr * 1 replica) + (182.5hr * 2 replicas)) = $657/month
-```
+$0.5/hr * ((730hr * 1 replica) + (182.5hr * 2 replicas)) = $547.5/month
+``` 
 
 ![advanced-chart](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/advanced-chart.png)

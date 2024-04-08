@@ -4,24 +4,32 @@ After your first login, you will be directed to the [Endpoint creation page](htt
 
 ## 1. Enter the Hugging Face Repository ID and your desired endpoint name:
 
-<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/1_repository.png" alt="select repository" />
+<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/CreateEndpoint.png" alt="Create" />
 
-## 2. Select your Cloud Provider and region. Initially, only AWS will be available as a Cloud Provider with the `us-east-1` and `eu-west-1` regions. We will add Azure soon, and if you need to test Endpoints with other Cloud Providers or regions, please let us know.
+##3 2. Select your Instance Configuration. Choose cloud provider, region, and instance type. If you're looking for a specific cloud provider, region, or instance that you don't yet see available, please let us know.
 
-<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/1_region.png" alt="select region" />
+<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/InstanceConfiguration.png" alt="select region" />
 
-## 3. Define the [Security Level](security) for the Endpoint:
+## 3. Apply Automatic Scale-to-Zero for your Endpoint or leave as is.
 
-<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/1_security.png" alt="define security" />
+<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/Scale-to-Zero.png" alt="autoscaling" />
 
-## 4. Create your Endpoint by clicking **Create Endpoint**. By default, your Endpoint is created with a medium CPU (2 x 4GB vCPUs with Intel Xeon Ice Lake) The cost estimate assumes the Endpoint will be up for an entire month, and does not take autoscaling into account.
+## 4. Define the [Security Level](security) for the Endpoint:
 
-<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/1_create_cost.png" alt="create endpoint" />
+<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/SecurityLevel.png" alt="define security" />
 
-## 5. Wait for the Endpoint to build, initialize and run which can take between 1 to 5 minutes.
+## 5. Feel free to customize your Endpoint further in Advanced Configuration: replica utoscaling, task, revision, framework, and container type are accessible in this section. 
 
-<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/overview.png" alt="overview" />
+<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/AdvancedConfigs.png" alt="advanced configuration" />
 
-## 6. Test your Endpoint in the overview with the Inference widget 🏁 🎉!
+## 6. Create your Endpoint by clicking **Create Endpoint**. By default, your Endpoint is created with a medium CPU (2 x 4GB vCPUs with Intel Xeon Ice Lake). The cost estimate displayed is per hour and does not take autoscaling into account.
 
-<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/1_inference.png" alt="run inference" />
+<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/Create+Cost.png" alt="create endpoint" />
+
+## 7. Wait for the Endpoint to build, initialize and run. Note that initializing time depends on the model size and typically takes between 1 to 5 minutes.
+
+<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/RunningEndpoint.png" alt="running" />
+
+## 8. Test your Endpoint in the Overview with Playground 🏁 🎉!
+
+<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/TestEndpoint.png" alt="playground" />

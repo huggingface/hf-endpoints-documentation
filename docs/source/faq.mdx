@@ -6,8 +6,7 @@
 
 ### Q: In which regions are Inference Endpoints available?
 
-A: Inference Endpoints are currently available on AWS in us-east-1 (N. Virginia) & eu-west-1 (Ireland) and on Azure in eastus (Virginia). If you need to deploy in a different region, please let us know.
-
+A: Inference Endpoints are currently available on AWS in us-east-1 (N. Virginia) & eu-west-1 (Ireland), on Azure in eastus (Virginia), and on GCP in us-east4 (Virginia). If you need to deploy in a different region, please let us know.
 
 
 
@@ -32,7 +31,7 @@ A: It depends on the Task. The [supported Tasks](/docs/inference-endpoints/suppo
 
 ### Q: How can I scale my deployment?
 
-A: The Endpoints are scaled automatically for you, the only information you need to provide is a min replica target and a max replica target. Then the system will scale your Endpoint based on the load. Scaling to zero is supported.  
+A: The Endpoints are scaled automatically for you, the only information you need to provide is a min replica target and a max replica target. Then the system will scale your Endpoint based on the load. Scaling to zero is supported with a variety of timing options.  
 
 
 
@@ -50,7 +49,7 @@ A:  Yes, you can deploy any repository from the [Hugging Face Hub](https://huggi
 
 ### Q: How much does it cost to run my Endpoint?
 
-A: The Endpoints are billed based on the compute hours of your Running Endpoints, and the associated instance types. We may add usage costs for load balancers and Private Links in the future. 
+A: Dedicated Endpoints are billed based on the compute hours of your Running Endpoints, and the associated instance types. We may add usage costs for load balancers and Private Links in the future. 
 
 
 

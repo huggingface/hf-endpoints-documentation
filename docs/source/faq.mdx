@@ -82,6 +82,19 @@ A: Please contact us if you feel your model would do better on a different insta
 A: You can invalidate existing personal tokens and create new ones in your settings here: [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). For organization tokens, go to the organization settings.
 
 
+### Q: I need to add a custom env variable when using the default inference container. How can I do this?
+
+A: This is currently possible via the API: 
+
+{
+  "model": {
+    "image": {
+      "huggingface": {
+        "env": { "var1": "value" }
+      }
+    },
+}
+
 
 ### Q: What’s the difference between Dedicated and Serverless Endpoints? 
 

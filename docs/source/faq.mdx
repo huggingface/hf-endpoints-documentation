@@ -79,13 +79,14 @@ A: Please contact us if you feel your model would do better on a different insta
 
 ### Q: I accidentally leaked my token. Do I need to delete my endpoint?
 
-A: You can invalidate existing personal tokens and create new ones in your settings here: [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). For organization tokens, go to the organization settings.
+A: You can invalidate existing personal tokens and create new ones in your settings here: [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). Note  fine-grained tokens are not yet supported in Inference Endpoints - coming soon!
 
 
 ### Q: I need to add a custom env variable when using the default inference container. How can I do this?
 
 A: This is currently possible via the API: 
 
+```
 {
   "model": {
     "image": {
@@ -94,6 +95,11 @@ A: This is currently possible via the API:
       }
     },
 }
+```
+
+### Q: I'm using the text-generation-inference container type for my Endpoint. Is there more information about using TGI? 
+
+A: Yes! Please check out our [TGI documentation](https://huggingface.co/docs/text-generation-inference/index) and this [video](https://www.youtube.com/watch?v=jlMAX2Oaht0) on TGI deploys.
 
 
 ### Q: What’s the difference between Dedicated and Serverless Endpoints? 

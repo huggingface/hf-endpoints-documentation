@@ -1,7 +1,9 @@
 # Supported Transformers & Diffusers Tasks
 
 Inference Endpoints offers out-of-the-box support for Machine Learning tasks from the Transformers, Sentence-Transformers and Diffusers libraries. Below is a table of Hugging Face managed supported tasks for Inference Endpoint. These tasks don't require any form of code or [“custom container”](/docs/inference-endpoints/guides/docs/guides/custom_container) to deploy an Endpoint. 
-If you want to customize any of the tasks below, or want to write your own custom task, check out the [“Create your own inference handler”](/docs/inference-endpoints/guides/custom_handler) section for more information.
+If you want to customize any of the tasks below, or want to write your own custom task, check out the [“Create your own inference handler”](/docs/inference-endpoints/guides/custom_handler) section for more information. 
+
+Most of the tasks below uses the `pipeline` object, and more information about what additional parameters can be sent to the endpoint is available [here](https://huggingface.co/docs/transformers/main_classes/pipelines).
 
 | Task                           | Framework             | Out of the box Support |
 |--------------------------------|-----------------------|------------------------|
@@ -17,7 +19,7 @@ If you want to customize any of the tasks below, or want to write your own custo
 | Text Generation                | Transformers          | ✅                      |
 | Feature Extraction             | Transformers          | ✅                      |
 | Sentence Embeddings            | Sentence Transformers | ✅                      |
-| Sentence similarity            | Sentence Transformers | ✅                      |
+| Sentence Similarity            | Sentence Transformers | ✅                      |
 | Ranking                        | Sentence Transformers | ✅                      |
 | Image Classification           | Transformers          | ✅                      |
 | Automatic Speech Recognition   | Transformers          | ✅                      |
@@ -47,6 +49,10 @@ See the following request examples for some of the tasks:
 
 ### Text Classification
 
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TextClassificationPipeline).
+
+
+#### Classifying a single text
 ```json
 {
   "inputs": "This sound track was beautiful! It paints the scenery in your mind so well I would recomend it
@@ -54,7 +60,19 @@ See the following request examples for some of the tasks:
 }
 ```
 
+#### Classifying a text pair
+```json
+{
+  "inputs": {
+    "text": "This sound track was beautiful!",
+    "text_pair": "It paints the scenery in your mind so well I would recomend it even to people who hate vid. game music!"
+  } 
+}
+```
+
 ### Zero Shot Classification
+
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.ZeroShotClassificationPipeline).
 
 ```json
 {
@@ -67,6 +85,8 @@ See the following request examples for some of the tasks:
 
 ### Token Classifiation
 
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TokenClassificationPipeline).
+
 ```json
 {
   "inputs": "This sound track was beautiful! It paints the scenery in your mind so well I would recomend it
@@ -75,6 +95,8 @@ See the following request examples for some of the tasks:
 ```
 
 ### Question Answering
+
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.QuestionAnsweringPipeline).
 
 ```json
 {
@@ -87,6 +109,8 @@ See the following request examples for some of the tasks:
 
 ### Fill Mask
 
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.FillMaskPipeline).
+
 ```json
 {
   "inputs": "This sound track was <mask>! It paints the scenery in your mind so well I would recomend it
@@ -95,6 +119,8 @@ See the following request examples for some of the tasks:
 ```
 
 ### Summarization
+
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.SummarizationPipeline).
 
 ```json
 {
@@ -105,6 +131,8 @@ See the following request examples for some of the tasks:
 
 ### Translation
 
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TranslationPipeline).
+
 ```json
 {
   "inputs": "This sound track was beautiful! It paints the scenery in your mind so well I would recomend it
@@ -113,6 +141,8 @@ See the following request examples for some of the tasks:
 ```
 
 ### Text to Text Generation
+
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.Text2TextGenerationPipeline).
 
 ```json
 {
@@ -123,6 +153,8 @@ See the following request examples for some of the tasks:
 
 ### Text Generation
 
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TextGenerationPipeline).
+
 ```json
 {
   "inputs": "This sound track was beautiful! It paints the scenery in your mind so well I would recomend it
@@ -132,6 +164,8 @@ See the following request examples for some of the tasks:
 
 ### Feature Extraction
 
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.FeatureExtractionPipeline).
+
 ```json
 {
   "inputs": "This sound track was beautiful! It paints the scenery in your mind so well I would recomend it
@@ -140,6 +174,8 @@ See the following request examples for some of the tasks:
 ```
 
 ### Sentence Embeddings
+
+If using a [TEI container](https://github.com/huggingface/text-embeddings-inference), see [this reference](https://huggingface.github.io/text-embeddings-inference/) for additional parameters.
 
 ```json
 {
@@ -190,7 +226,7 @@ curl --request POST \
 
 ### Automatic Speech Recognition
 
-Automatic Speech Recognition can receive `json` payloads or binary data from a `audio` directly.
+Automatic Speech Recognition can receive `json` payloads or binary data from a `audio` directly. For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.AutomaticSpeechRecognitionPipeline).
 
 **JSON**
 
@@ -212,7 +248,7 @@ curl --request POST \
 
 ### Audio Classification
 
-Audio Classification can receive `json` payloads or binary data from a `audio` directly.
+Audio Classification can receive `json` payloads or binary data from a `audio` directly. For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.AudioClassificationPipeline).
 
 **JSON**
 
@@ -234,7 +270,7 @@ curl --request POST \
 
 ### Object Detection 
 
-Object Detection can receive `json` payloads or binary data from a `image` directly.
+Object Detection can receive `json` payloads or binary data from a `image` directly. For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.ObjectDetectionPipeline).
 
 **JSON**
 
@@ -256,7 +292,7 @@ curl --request POST \
 
 ### Image Segmentation
 
-Image Segmentation can receive `json` payloads or binary data from a `image` directly.
+Image Segmentation can receive `json` payloads or binary data from a `image` directly. For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.ImageSegmentationPipeline).
 
 **JSON**
 
@@ -278,6 +314,8 @@ curl --request POST \
 
 ### Table Question Answering
 
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TableQuestionAnsweringPipeline).
+
 ```json
 {
   "inputs": {
@@ -293,6 +331,8 @@ curl --request POST \
 ```
 
 ### Conversational
+
+For additional parameters, see this [reference](https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.Conversation).
 
 ```json
 {"inputs": [

@@ -44,9 +44,11 @@ The table below shows currently available GPU instances and their hourly pricing
 
 | Provider | Instance Type | Instance Size | Hourly rate | GPUs | Memory | Architecture |
 | -------- | ------------- | ------------- |------------ | ---- | ------ | ------------ |
-| aws      | nvidia-t4     | x1            | $0.5        | 1    | 14GB   | NVIDIA T4    |
 | aws      | nvidia-a10g   | x1            | $1          | 1    | 24GB   | NVIDIA A10G  |
+| aws      | nvidia-t4     | x1            | $0.5        | 1    | 14GB   | NVIDIA T4    |
 | aws      | nvidia-t4     | x4            | $3          | 4    | 56GB   | NVIDIA T4    |
+| gcp      | nvidia-l4     | x1            | $0.8        | 1    | 24GB   | NVIDIA L4    |
+| gcp      | nvidia-l4     | x4            | $3.8        | 4    | 96GB   | NVIDIA L4    |
 | aws      | nvidia-a100   | x1            | $4          | 1    | 80GB   | NVIDIA A100  |
 | aws      | nvidia-a10g   | x4            | $5          | 4    | 96GB   | NVIDIA A10G  |
 | aws      | nvidia-a100   | x2            | $8          | 2    | 160GB  | NVIDIA A100  |
@@ -64,14 +66,14 @@ The table below shows currently available GPU instances and their hourly pricing
 | gcp      | nvidia-h100   | x4            | $50         | 4    | 320 GB | NVIDIA H100  |
 | gcp      | nvidia-h100   | x8            | $100        | 8    | 640 GB | NVIDIA H100  |
 
-## Accelerator Instances 
+## Accelerator Instances
 
 The table below shows currently available custom Accelerators instances (AWS Inferentia2, Google TPUs) and their hourly pricing. If the instance type cannot be selected in the application, you need to [request a quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20[INSTANCE%20TYPE]%20for%20the%20following%20account%20[HF%20ACCOUNT].) to use it.
 
-| Provider | Instance Type | Instance Size | Hourly rate | Accelerators | Memory | Architecture |
-| -------- | ------------- | ------------- |------------ | ---- | ------ | ------------ |
-| aws      | inf2     | x1            | $0.75        | 1    | 32GB   | AWS Inferentia2    |
-| aws      | inf2   | x12            | $12          | 12    | 384GB   | AWS Inferentia2  |
+| Provider | Instance Type | Instance Size | Hourly rate | Accelerators | Memory | Architecture     |
+| -------- | ------------- | ------------- |------------ | ------------ | ------ | ---------------- |
+| aws      | inf2          | x1            | $0.75       | 1            | 32GB   | AWS Inferentia2  |
+| aws      | inf2          | x12           | $12         | 12           | 384GB  | AWS Inferentia2  |
 
 ## Pricing examples
 

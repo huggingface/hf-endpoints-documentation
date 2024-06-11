@@ -25,10 +25,14 @@ The table below shows currently available CPU instances and their hourly pricing
 
 | Provider | Instance Type | Instance Size | Hourly rate | vCPUs | Memory | Architecture          |
 | -------- | ------------- | ------------- | ----------- | ----- | ------ | --------------------- |
-| aws      | intel-icl     | x1            | $0.032      | 1     | 2GB    | Intel Ice Lake        |
-| aws      | intel-icl     | x2            | $0.064      | 2     | 4GB    | Intel Ice Lake        |
-| aws      | intel-icl     | x4            | $0.128      | 4     | 8GB    | Intel Ice Lake        |
-| aws      | intel-icl     | x8            | $0.256      | 8     | 16GB   | Intel Ice Lake        |
+| aws      | intel-icl     | x1            | $0.032      | 1     | 2GB    | Intel Ice Lake        | (Soon to be deprecated)
+| aws      | intel-icl     | x2            | $0.064      | 2     | 4GB    | Intel Ice Lake        | (Soon to be deprecated)
+| aws      | intel-icl     | x4            | $0.128      | 4     | 8GB    | Intel Ice Lake        | (Soon to be deprecated)
+| aws      | intel-icl     | x8            | $0.256      | 8     | 16GB   | Intel Ice Lake        | (Soon to be deprecated)
+| aws      | intel-spr     | x1            | $0.033      | 1     | 4GB    | Intel Sapphire Rapids |
+| aws      | intel-spr     | x2            | $0.067      | 2     | 4GB    | Intel Sapphire Rapids |
+| aws      | intel-spr     | x4            | $0.134      | 4     | 8GB    | Intel Sapphire Rapids |
+| aws      | intel-spr     | x8            | $0.268      | 8     | 16GB   | Intel Sapphire Rapids |
 | azure    | intel-xeon    | x1            | $0.060      | 1     | 2GB    | Intel Xeon            |
 | azure    | intel-xeon    | x2            | $0.120      | 2     | 4GB    | Intel Xeon            |
 | azure    | intel-xeon    | x4            | $0.240      | 4     | 8GB    | Intel Xeon            |
@@ -85,13 +89,13 @@ instance hourly rate * ((hours * # min replica) + (scale-up hrs * # additional r
 
 ### Basic Endpoint
 
-* AWS CPU intel-icl x2 (2x vCPUs 4GB RAM)
+* AWS CPU intel-spr x2 (2x vCPUs 4GB RAM)
 * Autoscaling (minimum 1 replica, maximum 1 replica)
 
 **hourly cost**
 ```
 instance hourly rate * (hours * # min replica) = hourly cost
-$0.064/hr * (1hr * 1 replica) = $0.064/hr
+$0.067/hr * (1hr * 1 replica) = $0.067/hr
 ```
 
 **monthly cost**

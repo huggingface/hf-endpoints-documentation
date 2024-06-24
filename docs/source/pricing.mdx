@@ -48,19 +48,19 @@ The table below shows currently available GPU instances and their hourly pricing
 
 | Provider | Instance Type | Instance Size | Hourly rate | GPUs | Memory | Architecture |
 | -------- | ------------- | ------------- |------------ | ---- | ------ | ------------ |
-| aws      | nvidia-a10g   | x1            | $1          | 1    | 24GB   | NVIDIA A10G  |
-| aws      | nvidia-t4     | x1            | $0.5        | 1    | 14GB   | NVIDIA T4    |
-| aws      | nvidia-t4     | x4            | $3          | 4    | 56GB   | NVIDIA T4    |
-| gcp      | nvidia-l4     | x1            | $0.8        | 1    | 24GB   | NVIDIA L4    |
-| gcp      | nvidia-l4     | x4            | $3.8        | 4    | 96GB   | NVIDIA L4    |
-| aws      | nvidia-a100   | x1            | $4          | 1    | 80GB   | NVIDIA A100  |
-| aws      | nvidia-a10g   | x4            | $5          | 4    | 96GB   | NVIDIA A10G  |
-| aws      | nvidia-a100   | x2            | $8          | 2    | 160GB  | NVIDIA A100  |
-| aws      | nvidia-a100   | x4            | $16         | 4    | 320GB  | NVIDIA A100  |
-| aws      | nvidia-a100   | x8            | $32         | 8    | 640GB  | NVIDIA A100  |
-| gcp      | nvidia-t4     | x1            | $0.5        | 1    | 16GB   | NVIDIA T4    |
-| gcp      | nvidia-l4     | x1            | $1          | 1    | 24GB   | NVIDIA L4    |
-| gcp      | nvidia-l4     | x4            | $5          | 4    | 96GB   | NVIDIA L4    |
+| aws      | nvidia-a10g   | x1            | $1          | 1    | 24 GB  | NVIDIA A10G  |
+| aws      | nvidia-t4     | x1            | $0.5        | 1    | 14 GB  | NVIDIA T4    |
+| aws      | nvidia-t4     | x4            | $3          | 4    | 56 GB  | NVIDIA T4    |
+| gcp      | nvidia-l4     | x1            | $0.8        | 1    | 24 GB  | NVIDIA L4    |
+| gcp      | nvidia-l4     | x4            | $3.8        | 4    | 96 GB  | NVIDIA L4    |
+| aws      | nvidia-a100   | x1            | $4          | 1    | 80 GB  | NVIDIA A100  |
+| aws      | nvidia-a10g   | x4            | $5          | 4    | 96 GB  | NVIDIA A10G  |
+| aws      | nvidia-a100   | x2            | $8          | 2    | 160 GB | NVIDIA A100  |
+| aws      | nvidia-a100   | x4            | $16         | 4    | 320 GB | NVIDIA A100  |
+| aws      | nvidia-a100   | x8            | $32         | 8    | 640 GB | NVIDIA A100  |
+| gcp      | nvidia-t4     | x1            | $0.5        | 1    | 16 GB  | NVIDIA T4    |
+| gcp      | nvidia-l4     | x1            | $1          | 1    | 24 GB  | NVIDIA L4    |
+| gcp      | nvidia-l4     | x4            | $5          | 4    | 96 GB  | NVIDIA L4    |
 | gcp      | nvidia-a100   | x1            | $6          | 1    | 80 GB  | NVIDIA A100  |
 | gcp      | nvidia-a100   | x2            | $12         | 2    | 160 GB | NVIDIA A100  |
 | gcp      | nvidia-a100   | x4            | $24         | 4    | 320 GB | NVIDIA A100  |
@@ -76,8 +76,11 @@ The table below shows currently available custom Accelerators instances (AWS Inf
 
 | Provider | Instance Type | Instance Size | Hourly rate | Accelerators | Memory | Architecture     |
 | -------- | ------------- | ------------- |------------ | ------------ | ------ | ---------------- |
-| aws      | inf2          | x1            | $0.75       | 1            | 32GB   | AWS Inferentia2  |
-| aws      | inf2          | x12           | $12         | 12           | 384GB  | AWS Inferentia2  |
+| aws      | inf2          | x1            | $0.75       | 1            | 32 GB  | AWS Inferentia2  |
+| aws      | inf2          | x12           | $12         | 12           | 384 GB | AWS Inferentia2  |
+| gcp      | tpu           | 1x1           | $1.38       | 1            | 44 GB  | GCP TPUv5e       |
+| gcp      | tpu           | 2x2           | $5.5        | 4            | 190 GB | GCP TPUv5e       |
+| gcp      | tpu           | 2x4           | $11         | 8            | 380 GB | GCP TPUv5e       |
 
 ## Pricing examples
 

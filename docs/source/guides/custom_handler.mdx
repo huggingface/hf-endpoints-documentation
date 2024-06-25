@@ -56,7 +56,7 @@ git lfs install
 git clone https://huggingface.co/philschmid/distilbert-base-uncased-emotion
 ```
 
-To be able to push our CP later you need to login into our HF account. This can be done by using the `huggingface-cli`.
+To be able to push our model repo later you need to login into our HF account. This can be done by using the `huggingface-cli`.
 
 _Note: Make sure to configure git config as well._
 
@@ -66,7 +66,7 @@ huggingface-cli login
 git config --global credential.helper store
 ```
 
-### 2. Create EndpointHandler (CP)
+### 2. Create EndpointHandler
 
 After we have set up our environment, we can start creating your custom handler. The custom handler is a Python class (`EndpointHandler`) inside a `handler.py` file in our repository. The `EndpointHandler` needs to implement an `__init__` and a `__call__` method.
 
@@ -105,7 +105,7 @@ class EndpointHandler():
 
 ### 3. Customize EndpointHandler
 
-Now, you can add all of the custom logic you want to use during initialization or inference to your CP. You can already find multiple [Custom Handler on the Hub](https://huggingface.co/models?other=endpoints-template) if you need some inspiration. In our example, we will add a custom condition based on additional payload information.
+Now, you can add all of the custom logic you want to use during initialization or inference to your Custom Endpoint. You can already find multiple [Custom Handler on the Hub](https://huggingface.co/models?other=endpoints-template) if you need some inspiration. In our example, we will add a custom condition based on additional payload information.
 
 *The model we are using in the tutorial is fine-tuned to detect emotions. We will add an additional payload field for the date, and will use an external package to check if it is a holiday, to add a condition so that when the input date is a holiday, the model returns “happy” - since everyone is happy when there are holidays *🌴🎉😆 
 

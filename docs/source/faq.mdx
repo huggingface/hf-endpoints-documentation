@@ -25,7 +25,7 @@ A: No, when creating a Private Endpoint (a Hugging Face Inference Endpoint linke
 
 ### Q: Can I run inference in batches?
 
-A: It depends on the Task. The [supported Tasks](/docs/inference-endpoints/supported_tasks) are using the transformers or sentence-transformers pipelines under the hood. If your Task pipeline supports batching, e.g. Zero-Shot Classification then batch inference is supported. In any case, you can always create your own [inference handler](/docs/inference-endpoints/guides/custom_handler) and implement batching. 
+A: It depends on the Task. The [supported Tasks](/docs/inference-endpoints/supported_tasks) are using the transformers, sentence-transformers, or diffusers pipelines under the hood. If your Task pipeline supports batching, e.g. Zero-Shot Classification then batch inference is supported. In any case, you can always create your own [inference handler](/docs/inference-endpoints/guides/custom_handler) and implement batching. 
 
 
 

@@ -1,36 +1,42 @@
 # Supported Transformers & Diffusers Tasks
 
-Inference Endpoints offers out-of-the-box support for Machine Learning tasks from the Transformers, Sentence-Transformers and Diffusers libraries. Below is a table of Hugging Face managed supported tasks for Inference Endpoint. These tasks don't require any form of code or [“custom container”](/docs/inference-endpoints/guides/custom_container) to deploy an Endpoint. 
+Inference Endpoints offers out-of-the-box support for Machine Learning tasks from the following libraries:
+
+- Transformers
+- Sentence-Transformers
+- Diffusers (for the Text To Image task)
+
+Below is a table of Hugging Face managed supported tasks for Inference Endpoint. These tasks don't require any form of code or [“custom container”](/docs/inference-endpoints/guides/custom_container) to deploy an Endpoint. 
 If you want to customize any of the tasks below, or want to write your own custom task, check out the [“Create your own inference handler”](/docs/inference-endpoints/guides/custom_handler) section for more information. 
 
 Most of the tasks below uses the `pipeline` object, and more information about what additional parameters can be sent to the endpoint is available [here](https://huggingface.co/docs/transformers/main_classes/pipelines).
 
-| Task                           | Framework             | Out of the box Support |
-|--------------------------------|-----------------------|------------------------|
-| Text To Image                  | Diffusers             | ✅                      |
-| Text Classification            | Transformers          | ✅                      |
-| Zero Shot Classification       | Transformers          | ✅                      |
-| Token Classifiation            | Transformers          | ✅                      |
-| Question Answering             | Transformers          | ✅                      |
-| Fill Mask                      | Transformers          | ✅                      |
-| Summarization                  | Transformers          | ✅                      |
-| Translation                    | Transformers          | ✅                      |
-| Text to Text Generation        | Transformers          | ✅                      |
-| Text Generation                | Transformers          | ✅                      |
-| Feature Extraction             | Transformers          | ✅                      |
-| Sentence Embeddings            | Sentence Transformers | ✅                      |
-| Sentence Similarity            | Sentence Transformers | ✅                      |
-| Ranking                        | Sentence Transformers | ✅                      |
-| Image Classification           | Transformers          | ✅                      |
-| Automatic Speech Recognition   | Transformers          | ✅                      |
-| Audio Classification           | Transformers          | ✅                      |
-| Object Detection               | Transformers          | ✅                      |
-| Image Segmentation             | Transformers          | ✅                      |
-| Table Question Answering       | Transformers          | ✅                      |
-| Conversational                 | Transformers          | ✅                      |
-| Custom                         | Custom                | ✅                      |
-| Visual Question Answering      | Transformers          | ❌                      |
-| Zero Shot Image Classification | Transformers          | ❌                      |
+| Task                           | Framework                                                                                             | Out of the box Support |
+|--------------------------------|-------------------------------------------------------------------------------------------------------|------------------------|
+| Text To Image                  | <span class="underline decoration-pink-400 decoration-2 font-semibold">Diffusers</span>               | ✅                      |
+| Text Classification            | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Zero Shot Classification       | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Token Classifiation            | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Question Answering             | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Fill Mask                      | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Summarization                  | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Translation                    | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Text to Text Generation        | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Text Generation                | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Feature Extraction             | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Sentence Embeddings            | <span class="underline decoration-yellow-400 decoration-2 font-semibold">Sentence Transformers</span> | ✅                      |
+| Sentence Similarity            | <span class="underline decoration-yellow-400 decoration-2 font-semibold">Sentence Transformers</span> | ✅                      |
+| Ranking                        | <span class="underline decoration-yellow-400 decoration-2 font-semibold">Sentence Transformers</span> | ✅                      |
+| Image Classification           | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Automatic Speech Recognition   | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Audio Classification           | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Object Detection               | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Image Segmentation             | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Table Question Answering       | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Conversational                 | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ✅                      |
+| Custom                         | Custom                                                                                                | ✅                      |
+| Visual Question Answering      | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ❌                      |
+| Zero Shot Image Classification | <span class="underline decoration-sky-400 decoration-2 font-semibold">Transformers</span>             | ❌                      |
 
 
 ## Example Request payloads

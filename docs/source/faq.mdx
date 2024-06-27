@@ -25,7 +25,7 @@ A: No, when creating a Private Endpoint (a Hugging Face Inference Endpoint linke
 
 ### Q: Can I run inference in batches?
 
-A: It depends on the Task. The [supported Tasks](/docs/inference-endpoints/supported_tasks) are using the transformers or sentence-transformers pipelines under the hood. If your Task pipeline supports batching, e.g. Zero-Shot Classification then batch inference is supported. In any case, you can always create your own [inference handler](/docs/inference-endpoints/guides/custom_handler) and implement batching. 
+A: It depends on the Task. The [supported Tasks](/docs/inference-endpoints/supported_tasks) are using the transformers, sentence-transformers, or diffusers pipelines under the hood. If your Task pipeline supports batching, e.g. Zero-Shot Classification then batch inference is supported. In any case, you can always create your own [inference handler](/docs/inference-endpoints/guides/custom_handler) and implement batching. 
 
 
 
@@ -79,7 +79,7 @@ A: Please contact us if you feel your model would do better on a different insta
 
 ### Q: I accidentally leaked my token. Do I need to delete my endpoint?
 
-A: You can invalidate existing personal tokens and create new ones in your settings here: [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). Note  fine-grained tokens are not yet supported in Inference Endpoints - coming soon!
+A: You can invalidate existing personal tokens and create new ones in your settings here: [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). Note that fine-grained tokens *are* supported in Inference Endpoints - please consider using them!
 
 
 ### Q: I need to add a custom env variable when using the default inference container. How can I do this?

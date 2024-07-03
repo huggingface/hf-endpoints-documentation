@@ -74,13 +74,13 @@ The table below shows currently available GPU instances and their hourly pricing
 
 The table below shows currently available custom Accelerators instances (AWS Inferentia2, Google TPUs) and their hourly pricing. If the instance type cannot be selected in the application, you need to [request a quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20[INSTANCE%20TYPE]%20for%20the%20following%20account%20[HF%20ACCOUNT].) to use it.
 
-| Provider | Instance Type | Instance Size | Hourly rate | Accelerators | Memory     | RAM     | Architecture     |
-| -------- | ------------- | ------------- |------------ | ------------ | ---------- | ------- | ---------------- |
-| aws      | inf2          | x1            | $0.75       | 1            | 32 GB      | 14.5 GB | AWS Inferentia2  |
-| aws      | inf2          | x12           | $12         | 12           | 384 GB     | 760 GB  | AWS Inferentia2  |
-| gcp      | tpu           | 1x1           | $1.38       | 1            | 16 GB      | 44 GB   | GCP TPUv5e       |
-| gcp      | tpu           | 2x2           | $5.5        | 4            | 64 GB      | 190 GB  | GCP TPUv5e       |
-| gcp      | tpu           | 2x4           | $11         | 8            | 128 GB     | 380 GB  | GCP TPUv5e       |
+| Provider | Instance Type | Instance Size | Hourly rate | Accelerators | Accelerator Memory | RAM     | Architecture     |
+| -------- | ------------- | ------------- |------------ | ------------ | ------------------ | ------- | ---------------- |
+| aws      | inf2          | x1            | $0.75       | 1            | 32 GB              | 14.5 GB | AWS Inferentia2  |
+| aws      | inf2          | x12           | $12         | 12           | 384 GB             | 760 GB  | AWS Inferentia2  |
+| gcp      | tpu           | 1x1           | $1.38       | 1            | 16 GB              | 44 GB   | GCP TPUv5e       |
+| gcp      | tpu           | 2x2           | $5.5        | 4            | 64 GB              | 190 GB  | GCP TPUv5e       |
+| gcp      | tpu           | 2x4           | $11         | 8            | 128 GB             | 380 GB  | GCP TPUv5e       |
 
 ## Pricing examples
 

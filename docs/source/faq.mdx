@@ -101,6 +101,9 @@ A: This is now possible in the UI, or via the API:
 
 A: Yes! Please check out our [TGI documentation](https://huggingface.co/docs/text-generation-inference/index) and this [video](https://www.youtube.com/watch?v=jlMAX2Oaht0) on TGI deploys.
 
+### Q: I'm sometimes running into a 503 error on a running endpoint in production. What can I do? 
+
+A: To help mitigate service interruptions on an Endpoint that needs to be highly available, please make sure to use at least 2 replicas, ie min replicas set to 2.
 
 ### Q: What’s the difference between Dedicated and Serverless Endpoints? 
 

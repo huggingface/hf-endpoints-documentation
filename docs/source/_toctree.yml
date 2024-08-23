@@ -51,4 +51,6 @@
     title: Inference Endpoints Version
   - local: others/serialization
     title: Serialization & Deserialization for Requests
+  - local: others/container_types
+    title: Inference Endpoints Container Types
   title: Others

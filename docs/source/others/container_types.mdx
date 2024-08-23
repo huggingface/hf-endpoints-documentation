@@ -1,0 +1,32 @@
+# Inference Endpoints Container Types
+
+When you create an Endpoint, you have a variety of options when selecting a container type.
+
+## Default
+
+The default container type is the easiest way to deploy endpoints and is flexible thanks to [custom Inference Handlers](https://huggingface.co/docs/inference-endpoints/guides/custom_handler). The Hugging Face Inference Toolkit is now public at https://github.com/huggingface/huggingface-inference-toolkit.
+
+## Custom
+
+Select a custom container type if you'd like to customize the image and include a [custom container](https://huggingface.co/docs/inference-endpoints/guides/custom_container). 
+
+## NVIDIA NIM (no longer available in UI) 
+
+*The NIM container type will no longer be officially supported for already existing Endpoints in Inference Endpoints beginning October 1st, 2024.*
+Select the NIM container type for models supported by NVIDIA. You'll see this option in the UI if supported for that model.
+
+## Text Embeddings Inference 
+
+Select the Text Embeddings Inference container type to gain all the benefits of [TEI](https://huggingface.co/docs/text-embeddings-inference/en/index) for your Endpoint. You'll see this option in the UI if supported for that model. 
+
+## Text Generation Inference 
+
+Select the Text Generation Inference container type to gain all the benefits of [TGI](https://huggingface.co/docs/text-generation-inference/index) for your Endpoint. You'll see this option in the UI if supported for that model.
+
+## Text Generation Inference (INF2)
+
+Select the Text Generation Inference Inferentia2 Neuron container type for models you'd like to deploy with TGI on an AWS Inferentia2 instance. You'll see this option in the UI if supported for that model.
+
+## Text Generation Inference (TPU)
+
+Select the Text Generation Inference TPU container type for models you'd like to deploy with TGI on a Google Cloud TPU instance. You'll see this option in the UI if supported for that model.

@@ -1,4 +1,4 @@
-# Pricing & Quotas
+# Pricing
 
 <div class="flex md:justify-start mb-2 text-gray-400 items-center">
   <a href="https://ui.endpoints.huggingface.co/new">
@@ -16,8 +16,6 @@
 </div>
 
 Easily deploy machine learning models on dedicated infrastructure with 🤗 Inference Endpoints. When you create an Endpoint, you can select the instance type to deploy and scale your model according to an hourly rate. 🤗 Inference Endpoints is accessible to Hugging Face accounts with an active subscription and credit card on file. At the end of the subscription period, the user or organization account will be charged for the compute resources used while successfully deployed Endpoints (ready to serve) are *initializing* and in a *running* state.
-
-Listed available quota can now be seen in the Inference dashboard at https://ui.endpoints.huggingface.co under "Quotas Used". The number displayed will reference the number of instances used / available instance quota. *Paused* endpoints will not count against "used" quota. *Scaled to Zero* endpoints will be counted as "used" quota - simply pause the scaled-to-zero endpoint should you like to unlock this quota. Please contact us if you'd like to increase quota allocations. PRO users and Enterprise Hub organizations will have access to higher quota amounts when requested. 
 
 You can find the hourly pricing for all available instances for 🤗 Inference Endpoints, and examples of how costs are calculated below. While the prices are shown by the hour, the actual cost is calculated by the minute.
 
@@ -129,3 +127,7 @@ $0.5/hr * ((730hr * 1 replica) + (182.5hr * 2 replicas)) = $547.5/month
 ```
 
 ![advanced-chart](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/advanced-chart.png)
+
+## Quotas
+
+Listed available quota can now be seen in the Inference dashboard at https://ui.endpoints.huggingface.co under "Quotas Used". The number displayed will reference the number of instances used / available instance quota. *Paused* endpoints will not count against "used" quota. *Scaled to Zero* endpoints will be counted as "used" quota - simply pause the scaled-to-zero endpoint should you like to unlock this quota. Please contact us if you'd like to increase quota allocations. PRO users and Enterprise Hub organizations will have access to higher quota amounts when requested. 

@@ -45,6 +45,8 @@
     title: Change Organization or Account 
   - local: guides/pause_endpoint
     title: Pause and Resume your Endpoint
+  - local: guides/llamacpp_container
+    title: Deploying a llama.cpp Container
   title: Guides
 - sections: 
   - local: others/runtime
@@ -53,6 +55,4 @@
     title: Serialization & Deserialization for Requests
   - local: others/container_types
     title: Inference Endpoints Container Types
-  - local: others/llamacpp_container
-    title: Deploying a llama.cpp Container
   title: Others

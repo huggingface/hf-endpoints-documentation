@@ -63,26 +63,25 @@ In case the deployment fails, please watch the log output for any error messages
 
 You can access the logs by clicking on the **Logs** tab on the endpoint details page. To learn more, refer to the [Logs](../guides/logs) documentation.
 
-**Malloc failed: out of memory**
+- **Malloc failed: out of memory**
+  If you see this error message in the log:
 
-If you see this error message in the log:
+  ```
+  ggml_backend_cuda_buffer_type_alloc_buffer: allocating 67200.00 MiB on device 0: cuda
+  Malloc failed: out of memory
+  llama_kv_cache_init: failed to allocate buffer for kv cache
+  llama_new_context_with_model: llama_kv_cache_init() failed for self-attention cache
+  ...
+  ```
 
-```
-ggml_backend_cuda_buffer_type_alloc_buffer: allocating 67200.00 MiB on device 0: cuda
-Malloc failed: out of memory
-llama_kv_cache_init: failed to allocate buffer for kv cache
-llama_new_context_with_model: llama_kv_cache_init() failed for self-attention cache
-...
-```
+  That means the selected hardware configuration does not have enough memory to accommodate the selected GGUF model. You can try to:
+  - Lower the number of maximum tokens per request
+  - Lower the number of concurrent requests
+  - Select a smaller GGUF model
+  - Select a larger hardware configuration
 
-That means the selected hardware configuration does not have enough memory to accommodate the selected GGUF model. You can try to:
-- Lower the number of maximum tokens per request
-- Lower the number of concurrent requests
-- Select a smaller GGUF model
-- Select a larger hardware configuration
+- **Workload evicted, storage limit exceeded**
+  This error message indicates that the hardware has too little memory to accommodate the selected GGUF model. Try selecting a smaller model or select a larger hardware configuration.
 
-**Workload evicted, storage limit exceeded**
-
-This error message indicates that the hardware has too little memory to accommodate the selected GGUF model. Try selecting a smaller model or select a larger hardware configuration.
-
-For other problems, please refer to the [llama.cpp issues page](https://github.com/ggerganov/llama.cpp/issues). In case you want to create a new issue, please also include the full log output in your bug report.
+- **Other problems**
+  For other problems, please refer to the [llama.cpp issues page](https://github.com/ggerganov/llama.cpp/issues). In case you want to create a new issue, please also include the full log output in your bug report.

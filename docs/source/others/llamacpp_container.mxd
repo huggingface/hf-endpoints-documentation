@@ -58,7 +58,9 @@ Please note that the following environment variables are reserved by the system 
 
 ## Troubleshooting
 
-In case the deployment fails, please have a look at log messages for more information. You can access the logs by clicking on the **Logs** tab in the endpoint details page. To learn more, refer to the [Logs](../guides/logs) documentation.
+In case the deployment fails, please watch the log output for any error messages.
+
+You can access the logs by clicking on the **Logs** tab in the endpoint details page. To learn more, refer to the [Logs](../guides/logs) documentation.
 
 **Malloc failed: out of memory**
 

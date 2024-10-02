@@ -1,8 +1,8 @@
 # Deploying a llama.cpp Container
 
-When creating an endpoint with a [GGUF](https://huggingface.co/docs/hub/en/gguf) model, a [llama.cpp](https://github.com/ggerganov/llama.cpp) container is automatically selected using the latest image built from the `master` branch of the llama.cpp repository. Upon deployment, a server with an OpenAI-compatible endpoint becomes available.
+You can deploy any llama.cpp compatible GGUF on the Hugging Face Endpoints. When you create an endpoint with a [GGUF](https://huggingface.co/docs/hub/en/gguf) model, a [llama.cpp](https://github.com/ggerganov/llama.cpp) container is automatically selected using the latest image built from the `master` branch of the llama.cpp repository. Upon successful deployment, a server with an OpenAI-compatible endpoint becomes available.
 
-For a comprehensive list of available endpoints, please refer to the [API documentation](https://github.com/ggerganov/llama.cpp/blob/master/examples/server/README.md#api-endpoints).
+Llama.cpp supports multiple endpoints like `/tokenize`, `/health`, `/embedding` and many more. For a comprehensive list of available endpoints, please refer to the [API documentation](https://github.com/ggerganov/llama.cpp/blob/master/examples/server/README.md#api-endpoints).
 
 ## Deployment Steps
 
@@ -20,7 +20,7 @@ To deploy an endpoint with a llama.cpp container, follow these steps:
 
 <img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/refs/heads/xsn/llamacpp/assets/llamacpp_3.png" alt="Select hardware" />
 
-4. Optionally, you can customize the container's configuration settings. For more information, please refer to the **Configurations** section below.
+4. Optionally, you can customize the container's configuration settings like `Max Tokens`, `Number of Concurrent Requests`. For more information on those, please refer to the **Configurations** section below.
 
 5. Click the **Create Endpoint** button to complete the deployment.
 
@@ -37,7 +37,8 @@ The llama.cpp container offers several configuration options that can be adjuste
 ### Basic Configurations
 
 - **Max Tokens (per Request)**: The maximum number of tokens that can be sent in a single request.
-- **Max Concurrent Requests**: The maximum number of concurrent requests allowed for this deployment. Increasing this limit requires additional memory allocation. For instance, setting this value to 4 requests with 1024 tokens maximum per request requires memory capacity for 4096 tokens in total.
+- **Max Concurrent Requests**: The maximum number of concurrent requests allowed for this deployment. Increasing this limit requires additional memory allocation. 
+For instance, setting this value to 4 requests with 1024 tokens maximum per request requires memory capacity for 4096 tokens in total.
 
 ### Advanced Configurations
 

@@ -53,4 +53,6 @@
     title: Serialization & Deserialization for Requests
   - local: others/container_types
     title: Inference Endpoints Container Types
+  - local: others/llamacpp_container
+    title: Deploying a llama.cpp Container
   title: Others

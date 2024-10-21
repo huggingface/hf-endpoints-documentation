@@ -109,3 +109,6 @@ A: To help mitigate service interruptions on an Endpoint that needs to be highly
 
 A: The Inference API (Serverless) is a solution to easily explore and evaluate models. For larger volumes of requests, or if you need guaranteed latency/performance, use [Inference Endpoints (Dedicated)](https://ui.endpoints.huggingface.co/new) to easily deploy your models on dedicated, fully-managed infrastructure.
 
+### Q: I can see from the logs that my endpoint is running but the status is stuck at "initializing"
+
+A: This usually means either the port mapping is incorrect or the `/health` route is missing. Ensure your app is listening on port 5000 and that the Docker container is exposing port 5000 externally. Additionally, confirm that you have a /health route implemented in your app that returns a status code 200, as this is how we check if your service is ready.

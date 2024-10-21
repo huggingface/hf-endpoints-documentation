@@ -113,6 +113,6 @@ A: The Inference API (Serverless) is a solution to easily explore and evaluate m
 
 A: This usually means that the port mapping is incorrect. Ensure your app is listening on port 80 and that the Docker container is exposing port 80 externally. If you're deploying a custom container you can change these values, but make sure to keep them aligned.
 
-### Q: I'm getting a 500 response in the beginning of my endpoint deployment?
+### Q: I'm getting a 500 response in the beginning of my endpoint deployment or when scaling is happening
 
 A: Confirm that you have a health route implemented in your app that returns a status code 200 when your application is ready to serve requests. Otherwise your app is considered ready as soon as the container has started, potentially resulting in 500s. You can configure the health route under the settings of your endpoint.

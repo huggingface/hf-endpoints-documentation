@@ -111,4 +111,4 @@ A: The Inference API (Serverless) is a solution to easily explore and evaluate m
 
 ### Q: I can see from the logs that my endpoint is running but the status is stuck at "initializing"
 
-A: This usually means either the port mapping is incorrect or the `/health` route is missing. Ensure your app is listening on port 80 and that the Docker container is exposing port 80 externally. If you're deploying a custom container you can change these values, make sure to keep them aligned. Additionally, confirm that you have a /health route implemented in your app that returns a status code 200, as this is how we check if your service is ready.
+A: This usually means either the port mapping is incorrect. Ensure your app is listening on port 80 and that the Docker container is exposing port 80 externally. If you're deploying a custom container you can change these values, make sure to keep them aligned. Additionally, confirm that you have a `/health` route implemented in your app that returns a status code 200, otherwise calls might be forwared to a starting container. Resulting in 500s.

@@ -8,9 +8,9 @@ The autoscaling process is triggered based on the accelerator's utilization metr
 
 - **CPU Accelerators**: A new replica is added when the average CPU utilization of all replicas reaches 80%.
 
-- **GPU Accelerators**: A new replica is added when the average GPU utilization of all replicas over a 2-minute window reaches 80%.
+- **GPU Accelerators**: A new replica is added when the average GPU utilization of all replicas over a 1-minute window reaches 80%.
 
-It's important to note that the scaling up process takes place every minute, while the scaling down process takes 2 minutes. This frequency ensures a balance between responsiveness and stability of the autoscaling system, with a stabilization of 300 seconds once scaled up or down. 
+It's important to note that the scaling up process takes place every minute and scaling down takes place every 2 minutes. This frequency ensures a balance between responsiveness and stability of the autoscaling system, with a stabilization of 300 seconds once scaled down. 
 
 ## Considerations for Effective Autoscaling
 

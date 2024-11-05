@@ -14,10 +14,10 @@ It's important to note that the scaling up process takes place every minute and 
 
 ### Scaling based on pending requests (experimental feature)
 
-You can change your scaling criteria to be based on pending request rather than utilization metrics. This is still an experimental feature, which means that it might change and we don't recommend using it for production workloads.
+You can change the scaling criteria to be based on pending requests instead of utilization metrics. This is currently an experimental feature, so it may change, and we don't recommend using it for production workloads.
 
-- Pending requests are requests that don't yet have an http status, meaning in-flight requests and requests being processed
-- If there are more than 1.5 pending requests per replica in the last 20 seconds, it triggers an autoscaling event, and adds a replica to your deployment
+- pending requests are requests that have not yet received an HTTP status, meaning they include in-flight requests and requests currently being processed.
+- if there are more than 1.5 pending requests per replica in the past 20 seconds, it triggers an autoscaling event and adds a replica to your deployment.
 
 
 ## Considerations for Effective Autoscaling

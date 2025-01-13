@@ -116,3 +116,7 @@ A: This usually means that the port mapping is incorrect. Ensure your app is lis
 ### Q: I'm getting a 500 response in the beginning of my endpoint deployment or when scaling is happening
 
 A: Confirm that you have a health route implemented in your app that returns a status code 200 when your application is ready to serve requests. Otherwise your app is considered ready as soon as the container has started, potentially resulting in 500s. You can configure the health route under the settings of your endpoint.
+
+### Q: I see there's an option to select a Download Pattern under Instance Configuration. What does this mean? 
+
+A: You have an option to choose the download pattern of the model's files when deploying an Endpoint, to help with limiting the volume of downloaded files. If a selected download pattern is not possible or compatible with the model, the system will not allow a change to the pattern.

@@ -19,7 +19,7 @@ A: No, you cannot access the instance hosting your Endpoint. But if you are miss
 
 ### Q: Can I see my Private Endpoint running on my VPC account?
 
-A: No, when creating a Private Endpoint (a Hugging Face Inference Endpoint linked to your VPC via AWS/Azure PrivateLink), you can only see the ENI in your VPC where the Endpoint is available. 
+A: No, when creating a Private Endpoint (a Hugging Face Inference Endpoint linked to your VPC via AWS PrivateLink), you can only see the ENI in your VPC where the Endpoint is available. 
 
 
 
@@ -59,15 +59,10 @@ A: Yes, data is encrypted during transit with TLS/SSL.
 
 
 
-### Q: How can I reduce the latency of my Endpoint?
-
-A: There are several ways to reduce the latency of your Endpoint. One is to deploy your Endpoint in a region close to your application to reduce the network overhead. Another is to optimize your model using [Hugging Face Optimum](https://huggingface.co/docs/optimum/index) before creating your Endpoint. If you need help or have more questions about reducing latency, please contact us.
-
-
 
 ### Q: How do I monitor my deployed Endpoint?
 
-A: You can currently monitor your Endpoint through the [🤗 Inference Endpoints web application](https://ui.endpoints.huggingface.co/endpoints), where you have access to the [Logs of your Endpoints](/docs/inference-endpoints/guides/logs) as well as a [metrics dashboard](/docs/inference-endpoints/guides/metrics). If you need programmatic access or more information, please contact us.
+A: You can currently monitor your Endpoint through the [🤗 Inference Endpoints web application](https://ui.endpoints.huggingface.co/endpoints), where you have access to the [Logs of your Endpoints](/docs/inference-endpoints/guides/logs) as well as a [metrics dashboard](/docs/inference-endpoints/guides/metrics). 
 
 
 
@@ -79,7 +74,7 @@ A: Please contact us if you feel your model would do better on a different insta
 
 ### Q: I accidentally leaked my token. Do I need to delete my endpoint?
 
-A: You can invalidate existing personal tokens and create new ones in your settings here: [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). Note that fine-grained tokens *are* supported in Inference Endpoints - please consider using them!
+A: You can invalidate existing personal tokens and create new ones in your settings here: [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). Please use fine-grained tokens when possible!
 
 
 ### Q: I need to add a custom environment variable (default or secrets) to my endpoint. How can I do this?
@@ -115,7 +110,7 @@ A: This usually means that the port mapping is incorrect. Ensure your app is lis
 
 ### Q: I'm getting a 500 response in the beginning of my endpoint deployment or when scaling is happening
 
-A: Confirm that you have a health route implemented in your app that returns a status code 200 when your application is ready to serve requests. Otherwise your app is considered ready as soon as the container has started, potentially resulting in 500s. You can configure the health route under the settings of your endpoint.
+A: Confirm that you have a health route implemented in your app that returns a status code 200 when your application is ready to serve requests. Otherwise your app is considered ready as soon as the container has started, potentially resulting in 500s. You can configure the health route in the custom settings of your endpoint.
 
 ### Q: I see there's an option to select a Download Pattern under Instance Configuration. What does this mean? 
 

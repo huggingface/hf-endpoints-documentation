@@ -1,6 +1,6 @@
 # Serialization & Deserialization for Requests
 
-Hugging Face Inference Endpount comes with a default serving container which is used for all [supported Transformers and Sentence-Transformers tasks](/docs/inference-endpoints/supported_tasks) and for [custom inference handler](/docs/inference-endpoints/guides/custom_handler).
+Hugging Face Inference Endpoint comes with a default serving container which is used for all [supported Transformers and Sentence-Transformers tasks](/docs/inference-endpoints/supported_tasks) and for [custom inference handler](/docs/inference-endpoints/guides/custom_handler).
 The serving container takes care of serialization and deserialization of the request and response payloads based on the `content-type` and `accept` headers of the request.
 That means that when you send a request with a JSON body and a `content-type: application/json` header, the serving container will deserialize the JSON payload into a Python dictionary and pass it to the inference handler and if you send 
 a request with a `accept: image/png` header, the serving container will serialize the response from the task/custom handler into a image.

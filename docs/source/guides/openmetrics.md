@@ -4,7 +4,10 @@
 
 You now have the ability to integrate the metrics of your Endpoint(s) to your internal tool. 
 
-Utilizing OpenMetrics, you can create an integration to allow for a more granular view of your Endpoint's metrics in almost-real-time, showing latency distribution and HTTP requests per replica IDs, and status codes. CPU, Memory, and GPU usage metrics can be analyzed, also shown per replica.  
+Utilizing OpenMetrics, you can create an integration to allow for a more granular view of your Endpoint's metrics in almost-real-time, showing for example:
+- requests grouped by replica
+- latency distribution of requests
+- hardware metrics for all accelerator types
 
 We set this up with OpenMetrics, which helps define a standardized format for representing and transmitting time series data, making it easier for systems to consume and process metrics, ensuring that the data is structured optimally for storage and transport.
 

@@ -9,7 +9,7 @@ Utilizing OpenMetrics, you can create an integration to allow for a more granula
 - latency distribution of requests
 - hardware metrics for all accelerator types
 
-OpenMetrics, is a standardized format for representing and transmitting time series data, making it easier for systems to consume and process metrics, ensuring that the data is structured optimally for storage and transport.
+OpenMetrics is a standardized format for representing and transmitting time series data, making it easier for systems to consume and process metrics, ensuring that the data is structured optimally for storage and transport.
 
 Further configurations and notifications can be set up for your Endpoints based on these metrics in your internal tool. 
 

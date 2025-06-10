@@ -18,7 +18,7 @@ Further configurations and notifications can be set up for your Endpoints based 
 There are a variety of tools that work with OpenMetrics. You'll need to set up an agent. Here's some example docs to help get you started:
 
 - [Datadog](https://docs.datadoghq.com/integrations/openmetrics/)
-- [Grafana](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/integrations/integration-reference/integration-metrics-endpoint/)
+- [Grafana](https://tinyurl.com/e4fypk5m)
 
 ## Subscribe to Enterprise
 

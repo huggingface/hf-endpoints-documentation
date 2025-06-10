@@ -55,4 +55,6 @@
     title: Serialization & Deserialization for Requests
   - local: others/container_types
     title: Inference Endpoints Container Types
+  - local: others/openmetrics
+    title: Connect Endpoints Metrics with your Internal Tool
   title: Others

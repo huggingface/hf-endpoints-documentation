@@ -1,12 +1,12 @@
 # Inference Endpoints
 
-Inference Endpoints offers a secure production solution to easily deploy any Transformers, Sentence-Transformers and Diffusers models from the Hub on dedicated and autoscaling infrastructure managed by Hugging Face.
+Inference Endpoints offers a secure production solution to easily deploy any model from the Hub on dedicated and autoscaling infrastructure managed by Hugging Face.
 
-A Hugging Face Endpoint is built from a [Hugging Face Model Repository](https://huggingface.co/models). When an Endpoint is created, the service creates image artifacts that are either built from the model you select or a custom-provided container image. The image artifacts are completely decoupled from the Hugging Face Hub source repositories to ensure the highest security and reliability levels.
+A Hugging Face Endpoint is built from a [Hugging Face Model Repository](https://huggingface.co/models). When an Endpoint is created, the service creates image artifacts that are either built from the model you select or a custom-provided container image. The image artifacts are completely decoupled from the Hugging Face Hub source repositories to ensure the highest security and reliability levels. All container types are supported such as, vLLM, TGI, TEI, llama.cpp, and more.
 
-Inference Endpoints support all of the [Transformers, Sentence-Transformers and Diffusers tasks](/docs/inference-endpoints/supported_tasks) as well as [custom tasks](/docs/inference-endpoints/guides/custom_handler) not supported by Transformers yet like speaker diarization and diffusion.
+Inference Endpoints support all of the [Transformers, Sentence-Transformers and Diffusers tasks](/docs/inference-endpoints/supported_tasks) out-of-the-box, as well as [custom tasks](/docs/inference-endpoints/guides/custom_handler) not supported by Transformers yet.
 
-In addition, Inference Endpoints gives you the option to use a custom container image managed on an external service, for instance, [Docker Hub](https://hub.docker.com/), [AWS ECR](https://aws.amazon.com/ecr/?nc1=h_ls), [Azure ACR](https://azure.microsoft.com/de-de/services/container-registry/), or [Google GCR](https://cloud.google.com/container-registry?hl=de). 
+In addition, Inference Endpoints gives you the option to use a custom container image managed on an external service, for example [Docker Hub](https://hub.docker.com/), [AWS ECR](https://aws.amazon.com/ecr/?nc1=h_ls), [Azure ACR](https://azure.microsoft.com/de-de/services/container-registry/), or [Google GCR](https://cloud.google.com/container-registry?hl=de). 
 
 ![creation-flow](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/creation_flow.png)
 
@@ -34,6 +34,8 @@ In addition, Inference Endpoints gives you the option to use a custom container 
 * [Access and view Metrics](/docs/inference-endpoints/guides/metrics)
 * [Change Organization or Account](/docs/inference-endpoints/guides/change_organization)
 * [Deploying a llama.cpp Container](/docs/inference-endpoints/guides/llamacpp_container)
+* [Connect Endpoint Metrics with your Internal Tool](/docs/inference-endpoints/guides/openmetrics)
+
 
 ### Others
 

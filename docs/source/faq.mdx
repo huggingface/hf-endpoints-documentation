@@ -110,7 +110,7 @@ A: This usually means that the port mapping is incorrect. Ensure your app is lis
 
 ### Q: I'm getting a 500 response in the beginning of my endpoint deployment or when scaling is happening
 
-A: Confirm that you have a health route implemented in your app that returns a status code 200 when your application is ready to serve requests. Otherwise your app is considered ready as soon as the container has started, potentially resulting in 500s. You can configure the health route in the custom settings of your endpoint.
+A: Confirm that you have a health route implemented in your app that returns a status code 200 when your application is ready to serve requests. Otherwise your app is considered ready as soon as the container has started, potentially resulting in 500s. You can configure the health route in the Container Configuration of your Endpoint. You can also add this header here: 'X-Scale-Up-Timeout: 600' which means that when the endpoint is scaling the proxy will hold requests until a replica is ready, or timeout after 600 seconds.
 
 ### Q: I see there's an option to select a Download Pattern under Instance Configuration. What does this mean? 
 

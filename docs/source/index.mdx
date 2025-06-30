@@ -1,66 +1,31 @@
 # Inference Endpoints
 
+![banner](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/banner.png)
+
 Inference Endpoints is a **managed service to deploy your AI model to production**. We offer a solution with dedicated instances, auto-scaling and security.
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-<a class="!no-underline block p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900" href="./">
-  <h3 class="font-bold text-lg text-indigo-600 dark:text-indigo-400 mb-2">How Inference Endpoints works</h3>
-  <p class="text-sm text-gray-600 dark:text-gray-400">Understand the main components and benefits of Inference endpoints</p>
-</a>
 <a class="!no-underline block p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900" href="./guides/create_endpoint.mdx">
-  <h3 class="font-bold text-lg text-purple-600 dark:text-purple-400 mb-2">Quick start</h3>
+  <h3 class="font-bold text-lg text-purple-600 dark:text-purple-400 mb-2">Quick start 🔥</h3>
   <p class="text-sm text-gray-600 dark:text-gray-400">Deploy an AI model in just 5 minutes</p>
 </a>
+<a class="!no-underline block p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900" href="./">
+  <h3 class="font-bold text-lg text-indigo-600 dark:text-indigo-400 mb-2">How Inference Endpoints works 🔍</h3>
+  <p class="text-sm text-gray-600 dark:text-gray-400">Understand the main components and benefits of Inference endpoints</p>
+</a>
 <a class="!no-underline block p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900" href="./guides/access.mdx">
-  <h3 class="font-bold text-lg text-pink-600 dark:text-pink-400 mb-2">Guides</h3>
+  <h3 class="font-bold text-lg text-pink-600 dark:text-pink-400 mb-2">Guides 📖</h3>
   <p class="text-sm text-gray-600 dark:text-gray-400">Explore our guides to configure your deployment</p>
 </a>
 <a class="!no-underline block p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900" href="./api_reference.mdx">
-  <h3 class="font-bold text-lg text-teal-600 dark:text-teal-400 mb-2">API Reference</h3>
-  <p class="text-sm text-gray-600 dark:text-gray-400">Check the API reference for detailed information</p>
+  <h3 class="font-bold text-lg text-teal-600 dark:text-teal-400 mb-2">Tutorials 🧑‍💻</h3>
+  <p class="text-sm text-gray-600 dark:text-gray-400">Step by step guides for common use cases</p>
 </a>
 </div>
 
-Inference Endpoints offers a secure production solution to easily deploy any model from the Hub on dedicated and autoscaling infrastructure managed by Hugging Face.
+## Why use Inference Endpoints
 
-A Hugging Face Endpoint is built from a [Hugging Face Model Repository](https://huggingface.co/models). When an Endpoint is created, the service creates image artifacts that are either built from the model you select or a custom-provided container image. The image artifacts are completely decoupled from the Hugging Face Hub source repositories to ensure the highest security and reliability levels.
+## Key Features 
 
-Inference Endpoints support all of the [Transformers, Sentence-Transformers and Diffusers tasks](/docs/inference-endpoints/supported_tasks) as well as [custom tasks](/docs/inference-endpoints/guides/custom_handler) not supported by Transformers yet.
+Try out the Quick Start today!
 
-In addition, Inference Endpoints gives you the option to use a custom container image managed on an external service, for instance, [Docker Hub](https://hub.docker.com/), [AWS ECR](https://aws.amazon.com/ecr/?nc1=h_ls), [Azure ACR](https://azure.microsoft.com/en-gb/products/container-registry/), or [Google GCR](https://cloud.google.com/artifact-registry/docs?h%3A=en). 
-
-Inference Endpoints support all container types, for example: vLLM, TGI (text-generation-inference), TEI (text-embeddings-inference), llama.cpp, and more.
-
-![creation-flow](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/creation_flow.png)
-
-## Documentation and Examples
-
-* [Security & Compliance](/docs/inference-endpoints/security)
-* [Supported Transformers Task](/docs/inference-endpoints/supported_tasks)
-* [API Reference](/docs/inference-endpoints/api_reference)
-* [Autoscaling](/docs/inference-endpoints/autoscaling)
-* [FAQ](/docs/inference-endpoints/faq)
-* [Help & Support](/docs/inference-endpoints/support)
-
-### Guides
-
-* [Access the solution (UI)](/docs/inference-endpoints/guides/access)
-* [Create your first Endpoint](/docs/inference-endpoints/guides/create_endpoint)
-* [Send Requests to Endpoints](/docs/inference-endpoints/guides/test_endpoint)
-* [Update your Endpoint](/docs/inference-endpoints/guides/update_endpoint)
-* [Advanced Setup (Instance Types, Auto Scaling, Versioning)](/docs/inference-endpoints/guides/advanced)
-* [Create a Private Endpoint with AWS PrivateLink](/docs/inference-endpoints/guides/private_link)
-* [Add custom Dependencies](/docs/inference-endpoints/guides/custom_dependencies)
-* [Create custom Inference Handler](/docs/inference-endpoints/guides/custom_handler)
-* [Use a custom Container Image](/docs/inference-endpoints/guides/custom_container)
-* [Access and read Logs](/docs/inference-endpoints/guides/logs)
-* [Access and view Metrics](/docs/inference-endpoints/guides/metrics)
-* [Change Organization or Account](/docs/inference-endpoints/guides/change_organization)
-* [Deploying a llama.cpp Container](/docs/inference-endpoints/guides/llamacpp_container)
-* [Connect Endpoints Metrics with your Internal Tool](/docs/inference-endpoints/guides/openmetrics)
-
-### Others
-
-* [Inference Endpoints Versions](/docs/inference-endpoints/others/runtime)
-* [Serialization & Deserialization for Requests](/docs/inference-endpoints/others/serialization)
-* [Inference Endpoints Container Types](/docs/inference-endpoints/others/container_types)

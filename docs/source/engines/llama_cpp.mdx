@@ -1,6 +1,18 @@
 # llama.cpp 
 
-You can deploy any llama.cpp compatible GGUF on the Hugging Face Endpoints. When you create an endpoint with a [GGUF](https://huggingface.co/docs/hub/en/gguf) model, a [llama.cpp](https://github.com/ggerganov/llama.cpp) container is automatically selected using the latest image built from the `master` branch of the llama.cpp repository. Upon successful deployment, a server with an OpenAI-compatible endpoint becomes available.
+llama.cpp is a high-performance inference engine written in C/C++, tailored for running Llama and compatible models in the GGUF format.
+
+Core features:
+- **GGUF Model Support**: Native compatibility with the GGUF format and all quantization types that comes with it.
+- **Multi-Platform**: Optimized for both CPU and GPU execution, with support for AVX, AVX2, AVX512, and CUDA acceleration.
+- **OpenAI-Compatible API**: Provides endpoints for chat, completion, embedding, and more, enabling seamless integration with existing tools and workflows.
+- **Active Community and Ecosystem**: Rapid development and a rich ecosystem of tools, extensions, and integrations
+
+
+When you create an endpoint with a [GGUF](https://huggingface.co/docs/hub/en/gguf) model,
+a [llama.cpp](https://github.com/ggerganov/llama.cpp) container is automatically selected
+using the latest image built from the `master` branch of the llama.cpp repository.
+Upon successful deployment, a server with an OpenAI-compatible endpoint becomes available.
 
 Llama.cpp supports multiple endpoints like `/tokenize`, `/health`, `/embedding` and many more. For a comprehensive list of available endpoints, please refer to the [API documentation](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md#api-endpoints).
 
@@ -40,7 +52,8 @@ For instance, setting this value to 4 requests with 1024 tokens maximum per requ
 
 ### Advanced Configurations
 
-In addition to the basic configurations, you can also modify specific settings by setting environment variables. A list of available environment variables can be found in the [API documentation](https://github.com/ggerganov/llama.cpp/blob/master/examples/server/README.md#usage).
+In addition to the basic configurations, you can also modify specific settings by setting environment variables.
+A list of available environment variables can be found in the [API documentation](https://github.com/ggerganov/llama.cpp/blob/master/examples/server/README.md#usage).
 
 Please note that the following environment variables are reserved by the system and cannot be modified:
 

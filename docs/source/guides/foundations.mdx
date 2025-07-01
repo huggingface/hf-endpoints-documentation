@@ -20,12 +20,6 @@ any Hugging Face repository.
 
 After this you will be directed to the configuration page. You can read [here](./configuration) more in detail about all the configuration options.
 
-### Viewing Endpoint Information
-The endpoints table displays critical information for each deployment. Click Edit Columns to show or hide specific
-information columns. Available columns include State, Task, Instance, Vendor, Container, Access, Tags, URL, Created, and Updated timestamps
-
-![catalog](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/foundations/3-list.png)
-
 ### Endpoint States
 Endpoints can be in one of several states:
 - **Running**: Endpoint is ready to serve requests
@@ -33,6 +27,32 @@ Endpoints can be in one of several states:
 - **Paused**: Endpoint has been stopped, which counts towards your quota
 - **Scaled to Zero**: Endpoint is idle and consuming no compute resources
 - **Failed**: Endpoint encountered an error and is not operational
+
+### Managing existing endpoints
+
+The endpoint details page provides gives you information and let's you control the configuration of an individual endpoint.
+Access this view by clicking on any endpoint from the main endpoints list.
+
+The endpoint name displays with its current state. You can pause a running endpoint or wake up an endpoint scaled to zero.
+
+- **Overview**: Current status and configuration summary
+- **Analytics**: Performance metrics and usage statistics, for more in-depth reading please [visit here](./metrics)
+- **Logs**: Runtime logs and debugging information, more in-depth docs can be found [here](./logs)
+- **Usage & Cost**: Billing information and resource consumption
+- **Settings**: Configuration and management options
+
+The page displays the configuration options that are available for each endpoint. You'll find a more in-depth walk through all of the under
+the [configuration section](./configuration)
+
+![endpoint](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/foundations/8-endpoint.png)
+
+## Using the Dashboard
+
+### Viewing Endpoint Information
+The endpoints table displays critical information for each deployment. Click Edit Columns to show or hide specific
+information columns. Available columns include State, Task, Instance, Vendor, Container, Access, Tags, URL, Created, and Updated timestamps
+
+![list](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/foundations/3-list.png)
 
 ### Filtering and Search
 Use the search bar to filter endpoints by name, provider, task, or tags.
@@ -70,11 +90,11 @@ deployments.
 ### Log Entry Structure
 Each audit log entry contains:
 - **User Avatar and name**
-- **Action Type**: Type of operation performed (resumed, updated)
-- **Endpoint Name**: 
-- **Timestamp**:
+- **Action Type**: Type of operation performed (resumed, updated etc.)
+- **Endpoint Name**
+- **Timestamp**
 - **Action Details**:
-    - Instance Changes: For exmaple hardware scaling modifications
+    - Instance Changes: For example hardware scaling modifications
     - Configuration Updates: Parameter adjustments
     - State Changes: Operational status modifications
 - **Request Metadata**: Technical details for troubleshooting:

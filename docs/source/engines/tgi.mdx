@@ -1,8 +1,7 @@
 # Text Generation Inference (TGI)
 
 TGI is a production-grade inference engine built in Rust and Python, designed for high-performance
-serving of open-source LLMs (e.g. LLaMA, Falcon, StarCoder, BLOOM and many more). If a model is supported by TGI it's one of the
-recommended choices. The core features that make TGI a good choice are:
+serving of open-source LLMs (e.g. LLaMA, Falcon, StarCoder, BLOOM and many more). The core features that make TGI a good choice are:
 - **Continuous batching + streaming**: Dynamically groups in-flight requests and streams tokens via Server-Sent Events (SSE)
 - **Optimized attention & decoding**: TGI uses Flash Attention, Paged Attention, KV-caching, and custom CUDA kernels for latency and memory efficiency
 - **Quantization & weight loading speed**: Supports quantizations methods like bitsandbytes and GPTQ and uses Safetensors to reduce load times
@@ -11,7 +10,7 @@ recommended choices. The core features that make TGI a good choice are:
 When selecting a model to deploy, the Inference Endpoints UI automatically checks whether a model is supported by TGI. If it is, you'll see
 the option presented under `Container Configuration` where you can change the following settings:
 
-![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/tgi/tgi-config.png)
+![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/tgi/tgi_config.png)
 
 - **Quantization**: Which quantization method, if any, to use for the model.
 - **Max Number of Tokens (per query)**: Changes the maximum amount of tokens a request can contain.
@@ -39,12 +38,15 @@ you can only serve up to 3 concurrent requests. In some cases, it's fine to drop
 allow the server to process 6 concurrent requests.
 you can configure this by setting max input length to 64k and then let TGI auto configure the rest.
 
-## Deploy a model using TGI
+## Supported models
 
 You can find the models that are supported by TGI by either:
 - Browse supported models on the [Hugging Face Hub](https://huggingface.co/models?apps=tgi&sort=trending)
 - In the TGI documentation under the [supported models](https://huggingface.co/docs/text-generation-inference/supported_models) section
 - A selection of popular models the [Inference Endpoints Catalog](https://endpoints.huggingface.co/huggingface/catalog)
+
+If a model is supported by TGI the Inferernce Endpoints UI will indicate this by disabling/enabling the selection under `Container Type` configuration.
+![selection](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/tgi/tgi_selection.png)
 
 ## References
 

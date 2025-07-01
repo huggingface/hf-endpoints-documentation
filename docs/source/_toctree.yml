@@ -42,7 +42,7 @@
   - local: engines/vllm
     title: vLLM 
   - local: engines/tei
-    title: Text Embedding Inference (TEI)
+    title: Text Embeddings Inference (TEI)
   - local: engines/llama_cpp
     title: llama.cpp 
   - local: engines/default

@@ -2,7 +2,7 @@
 
 - sections: 
   - local: index
-    title: 🤗 Inference Endpoints
+    title: Inference Endpoints
   - local: quick_start
     title: Quick Start 
   - local: pricing
@@ -37,17 +37,17 @@
     title: Manage Inference Endpoints programatically
   title: Guides
 - sections:
-  - local: frameworks/tgi
-    title: Text generation inference
-  - local: frameworks/vllm
+  - local: engines/tgi
+    title: Text Generation Inference (TGI)
+  - local: engines/vllm
     title: vLLM 
-  - local: frameworks/tei
-    title: Text embedding inference
-  - local: frameworks/llama_cpp
+  - local: engines/tei
+    title: Text Embedding Inference (TEI)
+  - local: engines/llama_cpp
     title: llama.cpp 
-  - local: frameworks/default
+  - local: engines/default
     title: Default
-  title: Frameworks
+  title: Inference Engines
 - sections: 
   - local: tutorials/chat_bot
     title: Deploy your own chat application

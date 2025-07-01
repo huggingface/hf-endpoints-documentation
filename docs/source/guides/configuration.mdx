@@ -1,6 +1,6 @@
 # Configuration
 
-This document describes the configuration options available when creating a new inference endpoint. Each section of
+This section describes the configuration options available when creating a new inference endpoint. Each section of
 the interface allows fine-grained control over how the model is deployed, accessed, and scaled.
 
 ## Endpoint name, model and organization
@@ -41,26 +41,26 @@ selected region are grayed out and unclickable.
 ## Security Level
 
 This section determines who can access your deployed endpoint. Available options are:
-- Protected (default): Accessible only to members of your Hugging Face organization using personal access tokens. The endpoint is secured with TLS/SSL.
-- Public: Anyone on the internet can access the endpoint.
-- HF Restricted: Anyone with a Hugging Face account can access it, using a personal Hugging Face Token generated from their account.
-- AWS Private: The endpoint is only available through an intra-region secured AWS PrivateLink connection.
+- **Protected (default)**: Accessible only to members of your Hugging Face organization using personal access tokens. The endpoint is secured with TLS/SSL.
+- **Public**: Anyone on the internet can access the endpoint.
+- **HF Restricted**: Anyone with a Hugging Face account can access it, using a personal Hugging Face Token generated from their account.
+- **AWS Private**: The endpoint is only available through an intra-region secured AWS PrivateLink connection.
 
 ![security](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/configuration/3-security.png)
 
 ## Autoscaling
 
 The Autoscaling section configures how many replicas of your model run and whether the system scales down to zero during inactivity. For more
-information we recommend reading the [in-depth guide on autoscaling](./guides/autoscaling).
+information we recommend reading the [in-depth guide on autoscaling](./autoscaling).
 
 ![autoscaling](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/configuration/4-autoscaling.png)
 
-- Automatic Scale-to-Zero: A dropdown lets you choose how long the system should wait after the last request before
+- **Automatic Scale-to-Zero**: A dropdown lets you choose how long the system should wait after the last request before
 scaling down to zero. Default is after 1 hour with no activity.
-- Number of Replicas:
+- **Number of Replicas**:
     - Min: Minimum number of replicas to keep running. Note that enabling automatic scale-to-zero requires settning this to 0.
     - Max: Maximum number of replicas allowed (e.g., 1)
-- Autoscaling strategy:
+- **Autoscaling strategy**:
     - Based on hardware usage: For exmaple a scale up will be triggered if the average hardware utilisation (%) exceeds this threshold for more than 20 seconds.
     - Pengin requests: A scale up event will be triggered if the average number of pending requests exceeds this threshold for more than 20 seconds.
 
@@ -70,8 +70,8 @@ For configuration details please read the [Inferernce Engine](https://not-here) 
 
 ## Environment Variables
 Environment variables can be provided to customize container behavior or pass secrets.
-- Default Env: Key-value pairs passed as plain environment variables.
-- Secret Env: Key-value pairs stored securely and injected at runtime.
+- **Default Env**: Key-value pairs passed as plain environment variables.
+- **Secret Env**: Key-value pairs stored securely and injected at runtime.
 
 Each section allows you to add multiple entries using the Add button.
 
@@ -89,9 +89,9 @@ Advanced Settings offer more fine-grained control over deployment.
 
 ![advanced](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/configuration/7-advanced.png)
 
-- Commit Revision: Optionally specify a commit hash to which revision of the model repository on the Hugging Face Hub
+- **Commit Revision**: Optionally specify a commit hash to which revision of the model repository on the Hugging Face Hub
 you want to download the model artifacts from
-- Task: Defines the type of model task. This is usually inferred from the model repository.
-- Container Arguments: Pass CLI-style arguments to the container entrypoint.
-- Container Command: Override the container entrypoint entirely.
-- Download Pattern: Defines which model files are downloaded.
+- **Task**: Defines the type of model task. This is usually inferred from the model repository.
+- **Container Arguments**: Pass CLI-style arguments to the container entrypoint.
+- **Container Command**: Override the container entrypoint entirely.
+- **Download Pattern**: Defines which model files are downloaded.

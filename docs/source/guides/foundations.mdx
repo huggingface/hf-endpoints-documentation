@@ -70,6 +70,10 @@ billing information, and access token management.
 The Quotas section displays your current resource usage and limits across different cloud providers and hardware types.
 Access this view to monitor consumption and request additional capacity when needed.
 
+Note that:
+- *Paused* endpoints will not count against "used" quota.
+- *Scaled to Zero* endpoints will be counted as "used" quota - simply pause the scaled-to-zero endpoint should you like to unlock this quota. 
+
 ![quotas](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/foundations/6-quotas.png)
 
 ### Requesting Additional Quota

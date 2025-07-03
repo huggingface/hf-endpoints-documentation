@@ -1,24 +1,57 @@
 # Autoscaling
 
-Autoscaling allows you to dynamically adjust the number of endpoint replicas running your models based on traffic and accelerator utilization. By leveraging autoscaling, you can seamlessly handle varying workloads while optimizing costs and ensuring high availability.
+Autoscaling allows you to dynamically adjust the number of endpoint replicas running your models based on traffic and hardware
+utilization. By leveraging autoscaling, you can seamlessly handle varying workloads while optimizing costs and ensuring high availability.
 
-## Scaling Criteria
+## Scale to Zero
 
-The autoscaling process is triggered based on the accelerator's utilization metrics. The criteria for scaling differ depending on the type of accelerator being used:
+Scaling to zero means that your Inference Endpoint will go idle after a given duration (1 hour by default) of inactivity. This is typically
+very useful when you want to optimize for low costs, or your workloads are 
 
-- **CPU Accelerators**: A new replica is added when the average CPU utilization of all replicas reaches 80%.
+<Tip>
+Note that scaling up always takes 2-5 minutes. Which means that scaling from 0 to 1 based on a request is typically not recommended if your
+application needs to be responsive,  
+</Tip>
 
-- **GPU Accelerators**: A new replica is added when the average GPU utilization of all replicas over a 1-minute window reaches 80%.
+## Number of replicas
 
-It's important to note that the scaling up process takes place every minute and scaling down takes place every 2 minutes. This frequency ensures a balance between responsiveness and stability of the autoscaling system, with a stabilization of 300 seconds once scaled down. 
+With this setting you can change the maximum and minimum amount of replicas. This means that you control the ceiling and the floor of your costs.
+Typically, you'd set the minumin to a value such that at the lowest amount of traffic, you're still serving your users at a acceptable rate.
+And the maximum so that you stay within buget, but that you can serve your users even at the highest points of traffic.
+
+<Tip>
+Note that if scale to zero is enabled, the minimum number of replicas needs to be 0.
+</Tip>
+
+
+## Autoscaling Strategy
+
+For the autoscaling system to work well there needs to be a signal that tells when to scale up and down. For this we have to strategies.
+
+### Scaling based on hardware utilization
+
+The autoscaling process is triggered based on the hardware's utilization metrics. The criteria for scaling differ depending on the
+type of accelerator being used:
+
+- **CPU**: A new replica is added when the average CPU utilization of all replicas reaches the threashold value (default 80%).
+- **GPU**: A new replica is added when the average GPU utilization of all replicas over a 1-minute window reaches the threashold value (default 80%).
+
+It's important to note that the scaling up process takes place every minute and scaling down takes place every 2 minutes. This
+frequency ensures a balance between responsiveness and stability of the autoscaling system, with a stabilization of 300 seconds
+once scaled down. 
 
 ### Scaling based on pending requests (beta feature)
 
-You can change the scaling criteria to be based on pending requests instead of utilization metrics. This is currently an experimental feature and we advise testing prior to using it for production workloads.
+In some cases the hardware utilisation is not a "fast" enough metric. The reason is that hardware metrics are always slightly lagging from
+the actual requests. A metric which is more of a leading indicator is pending requests.
 
-- pending requests are requests that have not yet received an HTTP status, meaning they include in-flight requests and requests currently being processed.
-- by default, if there are more than 1.5 pending requests per replica in the past 20 seconds, it triggers an autoscaling event and adds a replica to your deployment.
-    - you can adjust this threshold to meet your specific requirements under Endpoint settings.
+- **Pending requests** are requests that have not yet received an HTTP status, meaning they include in-flight requests and requests currently being processed.
+- **By default**, if there are more than 1.5 pending requests per replica in the past 20 seconds, it triggers an autoscaling event and adds a replica to your deployment.
+You can adjust this threashold value to meet your specific requirements under Endpoint settings.
+
+<Tip warning={true}>
+This is currently an experimental feature and we advise testing prior to using it for production workloads.
+</Tip>
 
 ## Considerations for Effective Autoscaling
 

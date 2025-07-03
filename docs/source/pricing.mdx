@@ -1,23 +1,12 @@
 # Pricing
 
-<div class="flex md:justify-start mb-2 text-gray-400 items-center">
-  <a href="https://endpoints.huggingface.co/new">
-    <button class="shadow-sm bg-white bg-gradient-to-br from-gray-100/20 to-gray-200/60 hover:to-gray-100/70 text-gray-700 py-1.5 rounded-lg ring-1 ring-gray-300/60 hover:ring-gray-300/30 font-semibold active:shadow-inner px-5">
-      Deploy a model
-    </button>
-  </a>
-  <span class="mx-4 ">Or</span>
-  <a
-    href="mailto:api-enterprise@huggingface.co"
-    class="underline"
-  >
-    Request a quote
-  </a>
-</div>
+When you create an Endpoint, you can select the instance type to deploy and scale your model according to an hourly rate.
+Inference Endpoints is accessible to Hugging Face accounts with an active subscription and credit card on file. At
+the end of the subscription period, the user or organization account will be charged for the compute resources used while
+successfully deployed Endpoints (ready to serve) are *initializing* and in a *running* state.
 
-Easily deploy machine learning models on dedicated infrastructure with 🤗 Inference Endpoints. When you create an Endpoint, you can select the instance type to deploy and scale your model according to an hourly rate. 🤗 Inference Endpoints is accessible to Hugging Face accounts with an active subscription and credit card on file. At the end of the subscription period, the user or organization account will be charged for the compute resources used while successfully deployed Endpoints (ready to serve) are *initializing* and in a *running* state.
-
-You can find the hourly pricing for all available instances for 🤗 Inference Endpoints, and examples of how costs are calculated below. While the prices are shown by the hour, the actual cost is calculated by the minute.
+You can find the hourly pricing for all available instances for Inference Endpoints, and examples of how costs are calculated below.
+While the prices are shown by the hour, the actual cost is calculated by the minute.
 
 ## CPU Instances
 
@@ -78,17 +67,14 @@ The table below shows currently available GPU instances and their hourly pricing
 | gcp      | nvidia-h100   | x4            | $40         | 4    | 320 GB | NVIDIA H100  |
 | gcp      | nvidia-h100   | x8            | $80         | 8    | 640 GB | NVIDIA H100  |
 
-## Accelerator Instances
+## INF2 Instances
 
-The table below shows currently available custom Accelerators instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request a quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20[INSTANCE%20TYPE]%20for%20the%20following%20account%20[HF%20ACCOUNT].) to use it.
+The table below shows currently available INF2 instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request a quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20[INSTANCE%20TYPE]%20for%20the%20following%20account%20[HF%20ACCOUNT].) to use it.
 
 | Provider | Instance Type | Instance Size | Hourly rate | Accelerators | Accelerator Memory | RAM     | Architecture     |
 | -------- | ------------- | ------------- |------------ | ------------ | ------------------ | ------- | ---------------- |
 | aws      | inf2          | x1            | $0.75       | 1            | 32 GB              | 14.5 GB | AWS Inferentia2  |
 | aws      | inf2          | x12           | $12         | 12           | 384 GB             | 760 GB  | AWS Inferentia2  |
-| gcp      | tpu           | 1x1           | $1.2        | 1            | 16 GB              | 44 GB   | Google TPU v5e   |
-| gcp      | tpu           | 2x2           | $4.75       | 4            | 64 GB              | 186 GB  | Google TPU v5e   |
-| gcp      | tpu           | 2x4           | $9.5        | 8            | 128 GB             | 380 GB  | Google TPU v5e   |
 
 ## Pricing examples
 
@@ -135,11 +121,3 @@ $0.5/hr * ((730hr * 1 replica) + (182.5hr * 2 replicas)) = $547.5/month
 ```
 
 ![advanced-chart](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/advanced-chart.png)
-
-## Quotas
-
-Listed available quota can now be seen in the Inference dashboard at https://endpoints.huggingface.co under "Quotas Used". 
-
-The number displayed will reference the number of instances used / available instance quota. *Paused* endpoints will not count against "used" quota. *Scaled to Zero* endpoints will be counted as "used" quota - simply pause the scaled-to-zero endpoint should you like to unlock this quota. 
-
-Please contact us if you'd like to increase quota allocations. PRO users and Enterprise Hub organizations will have access to higher quota amounts when requested. 

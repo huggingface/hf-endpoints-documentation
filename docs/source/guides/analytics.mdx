@@ -1,0 +1,110 @@
+# Analytics and Metrics
+
+The Analytics page is like the control center for your deployed models. It tells you in real-time what's going on, how many users are
+calling your models, about hardware usage, latencies and much more. In this documentation we'll dive into what each metric means and
+how to analyze the graphs.
+
+![intro](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/1-intro.png)
+
+In the top bar you can configure for which time frame you'll inspect the metrics, this setting affects all graphs on the page. You can choose
+between any of the existing settings from the drop down, or click-and-drag over any graph for a custom timeframe. You can also enable/disable
+auto refresh or view the metrics per replica or for all.
+
+![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/2-config.png)
+
+## Understanding the graphs
+
+### Number of Request
+
+The first graph to the top left shows you how many requests your Inference Endpoint has received. By default they are grouped by HTTP response
+classes, but by switching the toggle you can view them by individual status. As a reminder the HTTP response classes are:
+
+- **Informational responses (100-199)**: The server has received your request and is working on it. For example, `102 Processing` means the server is still handling your request.
+- **Successful responses (200-299)**: Your request was received and completed successfully. For example, `200 OK` means everything worked as expected.
+- **Redirection messages (300-399)**: The server is telling your client to look somewhere else for the information or to take another action. For example, `301 Moved Permanently` means the resource has a new address.
+- **Client error responses (400-499)**: There was a problem with the request sent by your client (like a typo in the URL or missing data). For example, `404 Not Found` means the server couldn't find what you asked for.
+- **Server error responses (500-599)**: The server ran into an issue while trying to process your request. For example, `502 Bad Gateway` means the server got an invalid response from another server it tried to contact.
+
+We recommend checking the [Mdn web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status) for more information on individual
+status codes.
+
+![http](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/3-http-reqs.png)
+
+### Pending Request
+
+Pending requests are requests that have not yet received an HTTP status, meaning they include in-flight requests and requests currently
+being processed. If this metrics increases too much it means that you're requests are queing up, and your users have to wait for requests
+to finish. In this case you should consider increasing your number of replicas or alternatively use autoscaling, you can read more about
+it in the [autoscaling guide](./autoscaling#scalingbasedonpendingrequests(betafeature))
+
+![pending](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/4-pendging-reqs.png)
+
+### Latency Distribution
+
+From this graph you'll be able to see how long it takes for your Inference Endpoint to generate a response. Latency is reported as:
+
+- **p99**: meaning that 99% of all requests were faster than this value
+- **p95**: meaning that 95% of all requests were faster than this value
+- **p90**: meaning that 90% of all requests were faster than this value
+- **median**: meaning that 50% of all requests were faster than this value
+
+Usually a good metric is also to look at how big the difference is between the median and p99. The closer the values are to each other, the more
+uniform the latency is, whereas if the difference is large, it means that the users of your Inference Endpoint have in general a fast response but
+the worst case latencies can be long.
+
+![latency](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/5-latency.png)
+
+### Replica Status
+
+In the replica status graph you'll see in the basic view how many running replicas you during a point in time. And the red line shows
+what currently is your maximum replicas. 
+
+![status](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/6-status.png)
+
+If you toggle the advanced setting, you'll instead see the different statuses of the individual replicas. Going from *pending* all the way
+to *running*. This is very useful to get a sense of how long it takes for an endpoint to actually become ready to serve requests.
+
+![advanced](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/7-status-advanced.png)
+
+### Hardware Usage
+
+The last four graphs are dedicated for the hardware usage. You'll find:
+
+- CPU usage: How much processing power is being used.
+- Memory usage: How much RAM is being used.
+- GPU usage: How much of the GPU's processing power is being used.
+- GPU Memory (VRAM) usage: How much GPU memory is being used.
+
+![usage](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/8-usage.png)
+
+If you have autoscaling based on hardware utilization enabled, these are the metrics that determine your autoscaling behaviour. You can
+read more about autoscaling [here](./autoscaling#scalingbasedonhardwareutilization)
+
+## Create an integration with the Inference Endpoints Metrics API
+
+**This feature is currently in Beta. You will need to be subscribed to Enterprise to take advantage of this feature.**
+
+You have the ability to integrate the metrics of your Inference Endpoint(s) to your internal tool. 
+
+Utilizing OpenMetrics, you can create an integration to allow for a more granular view of your Endpoint's metrics in almost-real-time,
+showing for example:
+- requests grouped by replica
+- latency distribution of requests
+- hardware metrics for all accelerator types
+
+OpenMetrics is a standardized format for representing and transmitting time series data, making it easier for systems to consume and
+process metrics, ensuring that the data is structured optimally for storage and transport.
+
+Further configurations and notifications can be set up for your Endpoints based on these metrics in your internal tool. 
+
+### Connect with your internal tool
+
+There are a variety of tools that work with OpenMetrics. You'll need to set up an agent. Here's some example docs to help get you started:
+
+- [Datadog](https://docs.datadoghq.com/integrations/openmetrics/)
+- [Grafana](https://tinyurl.com/e4fypk5m)
+
+### Subscribe to Enterprise
+
+You can sign up for an Enterprise plan starting at $20/user/mo at anytime at https://huggingface.co/enterprise?subscribe=true. 
+For any questions or feature requests, please email us at api-enterprise@huggingface.co

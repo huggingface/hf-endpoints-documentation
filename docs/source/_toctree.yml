@@ -33,10 +33,10 @@
     title: Manage Inference Endpoints programatically
   title: Guides
 - sections:
-  - local: engines/tgi
-    title: Text Generation Inference (TGI)
   - local: engines/vllm
     title: vLLM 
+  - local: engines/tgi
+    title: Text Generation Inference (TGI)
   - local: engines/tei
     title: Text Embeddings Inference (TEI)
   - local: engines/llama_cpp

@@ -25,8 +25,6 @@
     title: Logs
   - local: guides/metrics
     title: Metrics
-  - local: guides/openmetrics
-    title: Export Inference Endpoints Metrics to your internal tool 
   - local: guides/security
     title: Security & Compliance
   - local: guides/private_link

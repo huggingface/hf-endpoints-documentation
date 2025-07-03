@@ -1,13 +1,35 @@
 # Access and view Metrics
 
-Hugging Face Endpoints provides access to the metrics and analytics of your Endpoints through the UI on the detailed overview in the “Analytics” tab of your Endpoints. 
+Hugging Face Endpoints provides access to the metrics and analytics of your Endpoints through the UI on the detailed overview in the
+"Analytics" tab of your Endpoints. 
 
 <img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/analytics-update.png" alt="analytics view" />
 
-## Access Metrics via API
+## Create an integration with the Inference Endpoints Metrics API
 
-The Hugging Face Inference Endpoints API exposes a [route to access the metrics](/docs/inference-endpoints/api_reference#getendpointmetrics) of your Endpoints. You can use this route to send customized Prometheus queries to your Endpoints.
+**This feature is currently in Beta. You will need to be subscribed to Enterprise to take advantage of this feature.**
 
-### Pending requests - new!
+You have the ability to integrate the metrics of your Inference Endpoint(s) to your internal tool. 
 
-Pending requests are requests that don't have a response status yet. We now display analytics on requests that have been sent to your model, but are still being processed.
+Utilizing OpenMetrics, you can create an integration to allow for a more granular view of your Endpoint's metrics in almost-real-time,
+showing for example:
+- requests grouped by replica
+- latency distribution of requests
+- hardware metrics for all accelerator types
+
+OpenMetrics is a standardized format for representing and transmitting time series data, making it easier for systems to consume and
+process metrics, ensuring that the data is structured optimally for storage and transport.
+
+Further configurations and notifications can be set up for your Endpoints based on these metrics in your internal tool. 
+
+### Connect with your internal tool
+
+There are a variety of tools that work with OpenMetrics. You'll need to set up an agent. Here's some example docs to help get you started:
+
+- [Datadog](https://docs.datadoghq.com/integrations/openmetrics/)
+- [Grafana](https://tinyurl.com/e4fypk5m)
+
+### Subscribe to Enterprise
+
+You can sign up for an Enterprise plan starting at $20/user/mo at anytime at https://huggingface.co/enterprise?subscribe=true. 
+For any questions or feature requests, please email us at api-enterprise@huggingface.co

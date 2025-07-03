@@ -1,20 +1,31 @@
-# Access and read Logs
+# Runtime Logs
 
-Hugging Face Endpoints provides access to the logs of your Endpoints through the UI in the “Logs” tab of your Endpoint. 
+The Logs page in give yous monitoring and debugging capabilities for your deployed models. This view allows you to track the
+operational status and runtime logs of your inference endpoints in real-time.
 
-You will have access to the build logs of your Image artifacts as well as access to the Container Logs during inference.
+## Accessing the Logs Interface
 
-<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/9_selection.png" alt="select logs" />
+The Logs page is accessible through the main navigation tabs within your endpoint dashboard, alongside Overview, Analytics, Usage & Cost,
+and Settings. The interface displays logs for your specific model deployment.
 
-The Container Logs are only available when your Endpoint is in the “Running” state. 
+![banner](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/logs/logs.png)
 
-_Note: If your Endpoint creation is in the “Failed” state, you can check the Build Logs to see what the reason was, e.g. wrong version of a dependency, etc._
+## Deployment Status Overview
 
-**Build Logs:**
+At the top of the logs interface, you'll find deployment information that provides an at-a-glance view of your endpoint's current
+state. The deployment status section shows the deployment identifier (6pajyw3k) and replica information (z7ghx), along with the combined
+deployment-replica identifier (6pajyw3k-z7ghx).
 
-<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/9_build_logs.png" alt="build logs" />
+Next to the filter you'll find a statu indicator. The interface also tracks important timestamps, showing when the endpoint was started and
+when it was stopped, giving you precise timing information for deployment lifecycle management.
 
-**Container Logs:**
+## Log Filtering and Display Options
 
-<img src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/9_logs.png" alt="container logs" />
+The logs view provides flexible filtering capabilities to help you focus on the information most relevant to your needs. The filter
+controls include toggleable options for Timestamp, Log Level, Content, and Replica information. These filters allow you to customize the
+log display based on your specific debugging or monitoring requirements.
 
+The timestamp display defaults to UTC format, ensuring consistent time references across different geographical locations and team members.
+
+The main log display area presents a paginated view of log entries. By default the latest 50 lines are loaded and by clicking the
+"Load More" option you can access additional historical log data.

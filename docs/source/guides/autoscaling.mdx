@@ -7,6 +7,11 @@ You can find the autoscaling setting for you endpoints under the "Settings tab" 
 
 ![settings](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/autoscaling/settings.png)
 
+<Tip>
+The Analytics section in the guide goes you can read more about how to track all the metrics mentioned in this documentation.
+</Tip>
+
+
 ## Scale to Zero
 
 Scaling to zero means that your Inference Endpoint will go idle after a given duration (1 hour by default) of inactivity. This is typically
@@ -46,7 +51,9 @@ type of accelerator being used:
 
 It's important to note that the scaling up process takes place every minute and scaling down takes place every 2 minutes. This
 frequency ensures a balance between responsiveness and stability of the autoscaling system, with a stabilization of 300 seconds
-once scaled down. 
+once scaled down.
+
+You can also track the hardware utilisation metrics in the Analytics tab, or read more about it [here](./metrics#hardwareutilisation).
 
 ### Scaling based on pending requests (beta feature)
 
@@ -60,3 +67,5 @@ You can adjust this threashold value to meet your specific requirements under En
 <Tip warning={true}>
 This is currently an experimental feature and we advise testing prior to using it for production workloads.
 </Tip>
+
+And similarly to the hardware metrics you can track the pending request in the Analytics tab, or read more about it [here](./metrics#pendingrequests).

@@ -29,8 +29,6 @@
     title: Security & Compliance
   - local: guides/private_link
     title: Private Endpoints with AWS PrivateLink
-  - local: guides/custom_container
-    title: Use a custom Container Image
   - local: guides/programatically
     title: Manage Inference Endpoints programatically
   title: Guides
@@ -45,6 +43,8 @@
     title: llama.cpp 
   - local: engines/default
     title: Default
+  - local: engines/custom_container
+    title: Custom Container Images
   title: Inference Engines
 - sections: 
   - local: tutorials/chat_bot

@@ -28,7 +28,7 @@
   - local: guides/update_endpoint
     title: Update your Endpoint
   - local: guides/advanced
-    title: Advanced Topics
+    title: Advanced Guides
     sections:
     - local: guides/private_link
       title: Create a Private Endpoint with AWS PrivateLink

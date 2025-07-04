@@ -19,7 +19,6 @@
     title: FAQ
   title: Overview
 - sections: 
-  title: Guides
   - local: guides/access
     title: Access the solution (UI)
   - local: guides/create_endpoint
@@ -51,6 +50,7 @@
       title: Deploying a llama.cpp Container 
     - local: guides/openmetrics
       title: Connect Endpoints Metrics with your Internal Tool
+  title: Guides
 - sections: 
   - local: others/runtime
     title: Inference Endpoints Version

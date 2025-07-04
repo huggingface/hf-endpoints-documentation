@@ -1,10 +1,10 @@
 # Build and deploy your own chat application
 
-This tutorial will guide you from end to end on how to deploy your own chat application using Hugging Face Inference Endpoints. We will use Gradio to create a chat interface and OpenAI client to connect to the Inference Endpoint.
+This tutorial will guide you from end to end on how to deploy your own chat application using Hugging Face Inference Endpoints. We will use Gradio to create a chat interface and an OpenAI client to connect to the Inference Endpoint.
 
 <Tip>
 
-This Tutorial uses Python, but your client can be any language that can make HTTP requests. Inference Endpoints uses the **OpenAI API format**, so you can use any [OpenAI client](https://platform.openai.com/docs/libraries) to connect to them, in languages like JavaScript, Java, and Go.
+This Tutorial uses Python, but your client can be any language that can make HTTP requests. The model and engine you deploy on Inference Endpoints uses the **OpenAI Chat Completions format**, so you can use any [OpenAI client](https://platform.openai.com/docs/libraries) to connect to them, in languages like JavaScript, Java, and Go.
 
 </Tip>
 
@@ -31,14 +31,14 @@ Next we'll choose which hardware and deployment settings we'll go for. Since thi
 defaults. So in this case we don't need to change anything. In case you want a deeper dive on what the different settings mean you can check out
 the [configuration guide](./guides/configuration).
 
-For this model the Nvidia L4 is the recommended choice. It will be perfect for our testing. Performant but still reasonably priced. Also not that by
+For this model the Nvidia L4 is the recommended choice. It will be perfect for our testing. Performant but still reasonably priced. Also note that by
 default the endpoint will scale down to zero, meaning it will become idle after 1h of inactivity.
 
 Now all you need to do is click click "Create Endpoint" 🚀
 
 ![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/quick_start/4-config.png)
 
-Now our Inference Endpoint is initializing, which usually takes about 3-5 minutes. If you want to can alow browser notifications which will give you a
+Now our Inference Endpoint is initializing, which usually takes about 3-5 minutes. If you want to can allow browser notifications which will give you a
 ping once the endpoint reaches a running state.
 
 ![init](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/quick_start/5-init.png)
@@ -258,7 +258,7 @@ if __name__ == "__main__":
 
 ## Adding Streaming Support
 
-For a better user experience, you can implement streaming responses. This will require us to hand the messages and `yield` them to the client.
+For a better user experience, you can implement streaming responses. This will require us to handle the messages and `yield` them to the client.
 
 Here's how to add streaming to each client:
 

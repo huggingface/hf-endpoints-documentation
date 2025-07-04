@@ -16,21 +16,24 @@
   title: Overview
 - sections:
   - local: guides/foundations
-    title: Foundations
+    title: Set up your first Endpoint
   - local: guides/configuration
-    title: Configuration
+    title: Configure Endpoints
   - local: guides/autoscaling
-    title: Auto Scaling
-  - local: guides/logs
-    title: Logs
-  - local: guides/analytics
-    title: Analytics
-  - local: guides/security
-    title: Security & Compliance
-  - local: guides/private_link
-    title: Private Endpoints with AWS PrivateLink
-  - local: guides/programatically
-    title: Manage Inference Endpoints programatically
+    title: Auto Scale Endpoints
+  - local: guides/advanced
+    title: Advanced Guides
+    sections: 
+    - local: guides/logs
+      title: Logs
+    - local: guides/analytics
+      title: Analytics
+    - local: guides/security
+      title: Security & Compliance
+    - local: guides/private_link
+      title: Private Endpoints with AWS PrivateLink
+    - local: guides/programatically
+      title: Manage Inference Endpoints programatically
   title: Guides
 - sections:
   - local: engines/vllm

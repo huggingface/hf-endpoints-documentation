@@ -25,7 +25,7 @@ deploys. You can filter by name, task, price of the hardware and much more.
 In this example let's deploy the [Qwen/Qwen3-1.7B](https://huggingface.co/Qwen/Qwen3-1.7B) model. You can find
 it by searching for `qwen3 1.7b` in the search field and deploy it by clicking the card.
 
-![qwen](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/chatbot-tutorial/assets/tutorials/chatbot/qwen-search.png)
+![qwen](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/chatbot-tutorial/assets/tutorials/chatbot/qwen-search.png)
 
 Next we'll choose which hardware and deployment settings we'll go for. Since this is a catalog model, all of the pre-selected options are very good
 defaults. So in this case we don't need to change anything. In case you want a deeper dive on what the different settings mean you can check out
@@ -36,18 +36,18 @@ default the endpoint will scale down to zero, meaning it will become idle after 
 
 Now all you need to do is click click "Create Endpoint" 🚀
 
-![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/chatbot-tutorial/assets/tutorials/chatbot/config.png)
+![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/chatbot-tutorial/assets/tutorials/chatbot/config.png)
 
 Now our Inference Endpoint is initializing, which usually takes about 3-5 minutes. If you want to can allow browser notifications which will give you a
 ping once the endpoint reaches a running state.
 
-![init](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/chatbot-tutorial/assets/tutorials/chatbot/init.png)
+![init](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/chatbot-tutorial/assets/tutorials/chatbot/init.png)
 
 ## Test your endpoint in the browser
 
 Now that we've created our endpoint, we can test it in the playground section of the endpoint page.
 
-![playground](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/chatbot-tutorial/assets/tutorials/chatbot/playground.png)
+![playground](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/chatbot-tutorial/assets/tutorials/chatbot/playground.png)
 
 You can use the model through a chat interface or copy code snippets to use it in your own application. 
 
@@ -59,7 +59,7 @@ Now that we've created our endpoint, we need to get the endpoint details which w
 - The name of the endpoint to use (e.g. `Qwen/Qwen3-1.7B`)
 - The token to use for authentication (e.g. `hf_<token>`)
 
-![endpoint-details](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/chatbot-tutorial/assets/tutorials/chatbot/endpoint-page.png)
+![endpoint-details](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/chatbot-tutorial/assets/tutorials/chatbot/endpoint-page.png)
 
 We can find the token on the [settings page](https://huggingface.co/settings/tokens) which is accessible from the top right corner of the endpoint page.
 
@@ -433,7 +433,7 @@ demo.launch()
 
 Our app will run on port 7860 and look like this:
 
-![Gradio app](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/chatbot-tutorial/assets/tutorials/chatbot/app.png)
+![Gradio app](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/chatbot-tutorial/assets/tutorials/chatbot/app.png)
 
 To deploy, we'll need to create a new Space and upload our files.
 

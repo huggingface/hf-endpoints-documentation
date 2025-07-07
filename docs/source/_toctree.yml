@@ -36,7 +36,7 @@
   - local: guides/security
     title: Security & Compliance
   - local: guides/private_link
-    title: Private Endpoints with AWS PrivateLink
+    title: AWS PrivateLink
   - local: guides/programatically
     title: Manage Inference Endpoints programatically
   title: Guides

@@ -16,9 +16,11 @@ Start by navigating to the Inference Endpoints UI, and once you have logged in y
 
 ![new-button](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/quick_start/1-new-button.png)
 
-From there you'll be directed to the catalog. Search for "whisper" to find transcription models, or you can create a custom endpoint with [openai/whisper-large-v3](https://huggingface.co/openai/whisper-large-v3).
+From there you'll be directed to the catalog. The Model Catalog consists of popular models which have tuned configurations to work as one-click deploys. You can filter by name, task, price of the hardware and much more.
 
 ![catalog](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/quick_start/2-catalog.png)
+
+Search for "whisper" to find transcription models, or you can create a custom endpoint with [openai/whisper-large-v3](https://huggingface.co/openai/whisper-large-v3). This model provides excellent transcription quality for multiple languages and handles various audio formats.
 
 For transcription models, we recommend:
 - **GPU**: NVIDIA L4 or A10G for good performance with audio processing
@@ -30,43 +32,20 @@ Click "Create Endpoint" to deploy your transcription service.
 
 ![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/quick_start/4-config.png)
 
-Your endpoint will take about 5 minutes to initialize.
+Your endpoint will take about 5 minutes to initialize. Once it's ready, you'll see it in the "Running" state.
 
 ## Create your text generation endpoint
 
-For generating summaries and action items, we'll create a second endpoint with a text generation model. This time we'll use the [Qwen/Qwen3-1.7B](https://huggingface.co/Qwen/Qwen3-1.7B) model.
+Now let's do the same again but now for a text generation model. For generating summaries and action items, we'll create a second endpoint using the [Qwen/Qwen3-1.7B](https://huggingface.co/Qwen/Qwen3-1.7B) model.
 
-Start by navigating to the Inference Endpoints UI, and once you have logged in you should see a button for creating a new Inference
-Endpoint, and a small greeting prompting you to create your first endpoint. Click the "New" button.
+Follow the same process:
+1. Click "New" button in the Inference Endpoints UI
+2. Search for `qwen3 1.7b` in the catalog
+3. The NVIDIA L4 with x1 instance size is recommended for this model
+4. Keep the default settings (scale-to-zero enabled, 1-hour timeout)
+5. Click "Create Endpoint"
 
-![new-button](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/quick_start/1-new-button.png)
-
-From there you'll be directed to the catalog. The Model Catalog consists of popular models which have tuned configurations to work just as one-click
-deploys. You can filter by name, task, price of the hardware and much more.
-
-![catalog](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/quick_start/2-catalog.png)
-
-In this example let's deploy the [Qwen/Qwen3-1.7B](https://huggingface.co/Qwen/Qwen3-1.7B) model. You can find
-it by searching for `qwen3 1.7b` in the search field and deploy it by clicking the card.
-
-![qwen](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/chatbot-tutorial/assets/tutorials/chatbot/qwen-search.png)
-
-Next we'll choose which hardware and deployment settings we'll go for. Since this is a catalog model, all of the pre-selected options are very good
-defaults. So in this case we don't need to change anything. In case you want a deeper dive on what the different settings mean you can check out
-the [configuration guide](./guides/configuration).
-
-For this model the Nvidia L4 is the recommended choice. It will be perfect for our testing. Performant but still reasonably priced. Also note that by
-default the endpoint will scale down to zero, meaning it will become idle after 1h of inactivity.
-
-Now all you need to do is click click "Create Endpoint" 🚀
-
-![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/chatbot-tutorial/assets/tutorials/chatbot/config.png)
-
-Now our Inference Endpoint is initializing, which usually takes about 3-5 minutes. If you want to can allow browser notifications which will give you a
-ping once the endpoint reaches a running state.
-
-![init](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/chatbot-tutorial/assets/tutorials/chatbot/init.png)
-
+This model is optimized for text generation tasks and will provide excellent summarization capabilities. Both endpoints will take about 3-5 minutes to initialize.
 
 ## Test your endpoints
 

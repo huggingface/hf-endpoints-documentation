@@ -113,7 +113,7 @@ def chat_with_hf_client(message, history):
     
     # Create chat completion
     chat_completion = client.chat.completions.create(
-        model="endpoint-name",  # Use your model name
+        model="endpoint-name",  # Use the name of your endpoint (i.e. llama-3-2-3b-instruct-xxxx)
         messages=messages,
         max_tokens=150,
         temperature=0.7,
@@ -167,7 +167,7 @@ def chat_with_openai(message, history):
     
     # Create chat completion
     chat_completion = client.chat.completions.create(
-        model="endpoint-name",  # Use your model name
+        model="endpoint-name",  # Use the name of your endpoint (i.e. llama-3-2-3b-instruct-xxxx)
         messages=messages,
         max_tokens=150,
         temperature=0.7,
@@ -224,7 +224,7 @@ def chat_with_requests(message, history):
     
     # Prepare the payload using the Messages API format
     payload = {
-        "model": "endpoint-name",  # Use your model name
+        "model": "endpoint-name",  # Use the name of your endpoint (i.e. llama-3-2-3b-instruct-xxxx)
         "messages": messages,
         "max_tokens": 150,
         "temperature": 0.7,

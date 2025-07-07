@@ -27,7 +27,8 @@ For this tutorial, we'll use the Qwen3-Embedding-4B model. If it's not in the ca
 For embedding models, we recommend:
 - **GPU**: NVIDIA L4 or A10G for good performance
 - **Instance Size**: x1 (sufficient for most embedding workloads)
-- **Auto-scaling**: Enable scale-to-zero to save costs
+- **Auto-scaling**: Enable scale-to-zero to save costs by switching the endpoint to a paused state when it's not in use.
+- **Timeout**: Set a timeout of 10 minutes to avoid long-running requests. You should define a timeout based on how you expect your endpoint to be used.
 
 <Tip>
 

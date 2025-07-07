@@ -98,7 +98,7 @@ client = OpenAI(
 )
 ```
 
-Your OpenAI client is now configured to connect to your endpoint. Check out the client documentation on text embeddings [here](https://platform.openai.com/docs/api-reference/embeddings).
+Your OpenAI client is now configured to connect to your endpoint. For further reading you can check out the client documentation on text embeddings <a href="https://platform.openai.com/docs/api-reference/embeddings" target="_blank" rel="noopener noreferrer">here</a>.
 
 ### Step 3: Create the embedding function
 
@@ -144,6 +144,8 @@ dataset_with_embeddings = dataset.map(
 <Tip>
 
 The `datasets` library's `map` function is optimized for performance and will automatically batch the rows for us. Inference Providers can also scale to meet the demand of the batch size, so to get the best performance, you should calibrate the batch size with your endpoint's configuration.
+
+For example, select the highest possible batch size for you model and synchronize the batch size with your endpoint's configuration in `max_concurrent_requests`.
 
 </Tip>
 

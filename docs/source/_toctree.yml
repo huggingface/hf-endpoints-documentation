@@ -43,6 +43,8 @@
     title: vLLM 
   - local: engines/tgi
     title: Text Generation Inference (TGI)
+  - local: engines/sglang
+    title: SGLang 
   - local: engines/tei
     title: Text Embeddings Inference (TEI)
   - local: engines/llama_cpp

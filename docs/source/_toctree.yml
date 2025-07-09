@@ -37,8 +37,6 @@
     title: Security & Compliance
   - local: guides/private_link
     title: AWS PrivateLink
-  - local: guides/programatically
-    title: Manage Inference Endpoints programatically
   title: Guides
 - sections:
   - local: engines/vllm
@@ -49,8 +47,8 @@
     title: Text Embeddings Inference (TEI)
   - local: engines/llama_cpp
     title: llama.cpp 
-  - local: engines/default
-    title: Default
+  - local: engines/toolkit
+    title: Inference Toolkit
   - local: engines/custom_container
     title: Custom Container Images
   title: Inference Engines

@@ -1,0 +1,7 @@
+# SGLang
+
+"The maximum number of tokens in a chunk for the chunked prefill" refers to the --chunked-prefill-size parameter, which sets how many
+tokens are processed at once during the prefill phase. If a prompt is longer than this value, it will be split into smaller chunks and
+processed sequentially to avoid out-of-memory errors during prefill with long prompts. For example, setting --chunked-prefill-size 4096
+means each chunk will have up to 4096 tokens processed at a time.
+

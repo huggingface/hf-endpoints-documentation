@@ -1,0 +1,238 @@
+# Inference Toolkit
+
+In some cases the model you're looking to deploy, isn't supported by any of the high performance inference engines. In this case
+we provide a fallback option that works with most models. The Inference Toolkit supports models that are implemented in the
+Transformers, Sentence-Transformers and Diffusers libraries, and wraps them in a light web server.
+
+The Inference Toolkit is perfect for testing models and building demos, but isn't as production ready as TGI, vLLM, SGLang or llama.cpp.
+
+
+# Create a custom Inference Handler
+
+Hugging Face Endpoints supports all of the Transformers and Sentence-Transformers tasks and can support custom tasks, including
+custom pre- & post-processing. The customization can be done through a
+[handler.py](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) file in your model repository on
+the Hugging Face Hub.
+
+The [handler.py](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) needs to implement
+the [EndpointHandler](https://huggingface.co/philschmid/distilbert-onnx-banking77/blob/main/handler.py) class with a
+`__init__` and a `__call__` method.
+
+If you want to use custom dependencies, e.g. [optimum](https://raw.githubusercontent.com/huggingface/optimum), the dependencies must
+be listed in a `requirements.txt` as described above in “add custom dependencies.”
+
+## Tutorial
+
+Before creating a Custom Handler, you need a Hugging Face Model repository with your model weights and an Access Token with
+_write_ access to the repository. To find, create and manage Access Tokens, click [here](https://huggingface.co/settings/tokens).
+
+If you want to write a Custom Handler for an existing model from the community, you can use the [repo_duplicator](https://huggingface.co/spaces/osanseviero/repo_duplicator)
+to create a repository fork.
+
+The code can also be found in this [Notebook](https://colab.research.google.com/drive/1hANJeRa1PK1gZaUorobnQGu4bFj4_4Rf?usp=sharing).
+
+You can also search for already existing Custom Handlers here: [https://huggingface.co/models?other=endpoints-template](https://huggingface.co/models?other=endpoints-template)
+
+### 1. Set up Development Environment
+
+The easiest way to develop our custom handler is to set up a local development environment, to implement, test, and iterate there, and then
+deploy it as an Inference Endpoint. The first step is to install all required development dependencies. _needed to create the custom
+handler, not needed for inference_
+
+```
+# install git-lfs to interact with the repository
+sudo apt-get update
+sudo apt-get install git-lfs
+# install transformers (not needed since it is installed by default in the container)
+pip install transformers[sklearn,sentencepiece,audio,vision]
+```
+
+After we have installed our libraries we will clone our repository to our development environment.
+
+We will use [philschmid/distilbert-base-uncased-emotion](https://huggingface.co/philschmid/distilbert-base-uncased-emotion) during the
+tutorial.
+
+```
+git lfs install
+git clone https://huggingface.co/philschmid/distilbert-base-uncased-emotion
+```
+
+To be able to push our model repo later you need to login into our HF account. This can be done by using the `huggingface-cli`.
+
+_Note: Make sure to configure git config as well._
+
+```
+# setup cli with token
+huggingface-cli login
+git config --global credential.helper store
+```
+
+### 2. Create EndpointHandler
+
+After we have set up our environment, we can start creating your custom handler. The custom handler is a Python class
+(`EndpointHandler`) inside a `handler.py` file in our repository. The `EndpointHandler` needs to implement an `__init__` and a
+`__call__` method.
+
+- The `__init__` method will be called when starting the Endpoint and will receive 1 argument, a string with the path to your model
+weights. This allows you to load your model correctly.
+- The `__call__` method will be called on every request and receive a dictionary with your request body as a python dictionary.
+It will always contain the `inputs` key.
+
+The first step is to create our `handler.py` in the local clone of our repository.
+
+```
+!cd distilbert-base-uncased-emotion && touch handler.py
+```
+
+In there, you define your `EndpointHandler` class with the `__init__` and `__call__ `method.
+
+```python
+from typing import Dict, List, Any
+
+class EndpointHandler():
+    def __init__(self, path=""):
+        # Preload all the elements you are going to need at inference.
+        # pseudo:
+        # self.model= load_model(path)
+
+    def __call__(self, data: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """
+       data args:
+            inputs (:obj: `str` | `PIL.Image` | `np.array`)
+            kwargs
+      Return:
+            A :obj:`list` | `dict`: will be serialized and returned
+        """
+
+        # pseudo
+        # self.model(input)
+```
+
+### 3. Customize EndpointHandler
+
+Now, you can add all of the custom logic you want to use during initialization or inference to your Custom Endpoint. You can
+already find multiple [Custom Handler on the Hub](https://huggingface.co/models?other=endpoints-template) if you need some
+inspiration. In our example, we will add a custom condition based on additional payload information.
+
+*The model we are using in the tutorial is fine-tuned to detect emotions. We will add an additional payload field for the date, and
+will use an external package to check if it is a holiday, to add a condition so that when the input date is a holiday, the model
+returns “happy” - since everyone is happy when there are holidays *🌴🎉😆 
+
+First, we need to create a new `requirements.txt` and add our [holiday detection package](https://pypi.org/project/holidays/) and make
+sure we have it installed in our development environment as well.
+
+```
+!echo "holidays" >> requirements.txt
+!pip install -r requirements.txt
+```
+
+Next, we have to adjust our `handler.py` and `EndpointHandler` to match our condition.
+
+```python
+from typing import Dict, List, Any
+from transformers import pipeline
+import holidays
+
+class EndpointHandler():
+    def __init__(self, path=""):
+        self.pipeline = pipeline("text-classification",model=path)
+        self.holidays = holidays.US()
+
+    def __call__(self, data: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """
+       data args:
+            inputs (:obj: `str`)
+            date (:obj: `str`)
+      Return:
+            A :obj:`list` | `dict`: will be serialized and returned
+        """
+        # get inputs
+        inputs = data.pop("inputs",data)
+        date = data.pop("date", None)
+
+        # check if date exists and if it is a holiday
+        if date is not None and date in self.holidays:
+          return [{"label": "happy", "score": 1}]
+
+
+        # run normal prediction
+        prediction = self.pipeline(inputs)
+        return prediction
+```
+
+### 4. Test EndpointHandler
+
+To test our EndpointHandler, we can simplify import, initialize and test it. Therefore we only need to prepare a sample payload.
+
+```python
+from handler import EndpointHandler
+
+# init handler
+my_handler = EndpointHandler(path=".")
+
+# prepare sample payload
+non_holiday_payload = {"inputs": "I am quite excited how this will turn out", "date": "2022-08-08"}
+holiday_payload = {"inputs": "Today is a though day", "date": "2022-07-04"}
+
+# test the handler
+non_holiday_pred=my_handler(non_holiday_payload)
+holiday_payload=my_handler(holiday_payload)
+
+# show results
+print("non_holiday_pred", non_holiday_pred)
+print("holiday_payload", holiday_payload)
+
+# non_holiday_pred [{'label': 'joy', 'score': 0.9985942244529724}]
+# holiday_payload [{'label': 'happy', 'score': 1}]
+```
+
+It works!!!! 🎉
+
+_Note: If you are using a notebook you might have to restart your kernel when you make changes to the handler.py since it is not
+automatically re-imported._
+
+### 5. Push the Custom Handler to your repository
+
+After you have successfully tested your handler locally, you can push it to your repository by simply using basic git commands.
+
+```
+# add all our new files
+!git add *
+# commit our files
+!git commit -m "add custom handler"
+# push the files to the hub
+!git push
+```
+
+Now, you should see your `handler.py` and `requirements.txt` in your repository in the
+[“Files and version”](https://huggingface.co/philschmid/distilbert-base-uncased-emotion/tree/main) tab.
+
+### 6. Deploy your Custom Handler as an Inference Endpoint
+
+The last step is to deploy your Custom Handler as an Inference Endpoint. You can deploy your Custom Handler like you would a regular
+Inference Endpoint. Add your repository, select your cloud and region, your instance and security setting, and deploy.
+
+When creating your Endpoint, the Inference Endpoint Service will check for an available and valid `handler.py`, and will use it for
+serving requests no matter which “Task” you select.
+
+_Note: In your [Inference Endpoints dashboard](https://ui.endpoints.huggingface.co/), the Task for this Endpoint should now be set
+to Custom_
+
+## Examples
+
+There are a few examples on the [Hugging Face Hub](https://huggingface.co/models?other=endpoints-template) from where you can take
+insipiration or directly use them. The repositories are tagged with `endpoints-template` and can be found under this
+[link](https://huggingface.co/models?other=endpoints-template).
+
+You'll find examples are for:
+
+* [Optimum and ONNX Runtime](https://huggingface.co/philschmid/distilbert-onnx-banking77)
+* [Image Embeddings with BLIP](https://huggingface.co/florentgbelidji/blip_image_embeddings)
+* [TrOCR for OCR Detection](https://huggingface.co/philschmid/trocr-base-printed)
+* [Optimized Sentence Transformers with Optimum](https://huggingface.co/philschmid/all-MiniLM-L6-v2-optimum-embeddings)
+* [Pyannote Speaker diarization](https://huggingface.co/philschmid/pyannote-speaker-diarization-endpoint)
+* [LayoutLM](https://huggingface.co/philschmid/layoutlm-funsd)
+* [Flair NER](https://huggingface.co/philschmid/flair-ner-english-ontonotes-large)
+* [GPT-J 6B Single GPU](https://huggingface.co/philschmid/gpt-j-6B-fp16-sharded)
+* [Donut Document understanding](https://huggingface.co/philschmid/donut-base-finetuned-cord-v2)
+* [SetFit classifier](https://huggingface.co/philschmid/setfit-ag-news-endpoint)

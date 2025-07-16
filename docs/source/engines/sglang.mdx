@@ -13,15 +13,6 @@ The core features include:
 - **Extensive Model Support**: Supports a wide range of generative models (Llama, Gemma, Mistral, Qwen, DeepSeek, LLaVA, etc.),
 embedding models (e5-mistral, gte, mcdse) and reward models (Skywork), with easy extensibility for integrating new models.
 
-## Model support
-
-SGlang has wide support for large language models, multimodal language models, embedding models and more. We recommend reading the
-[supported models](https://docs.sglang.ai/supported_models/generative_models.html) section in the SGLang documentation for a full list.
-
-In the Inference Endpoints UI, by default, any model on the Hugging Face Hub that has a `transformers` tag, can be deployed with SGLang.
-This is because SGLang [implements a fallback](https://docs.sglang.ai/supported_models/transformers_fallback.html#transformers-fallback-in-sglang) to use transformers
-if SGLang doesn't have their own implementation of a model.
-
 ## Configuration
 
 ![sglang](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/sglang/sglang.png)
@@ -41,3 +32,16 @@ For more advanced configuration you can pass any of the [Server Arguments that S
 as container arguments. For example changing the `schedule-policy` to `lpm` would look like this:
 
 ![sglang-advanced](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/sglang/sglang-advanced.png)
+
+## Supported models
+
+SGlang has wide support for large language models, multimodal language models, embedding models and more. We recommend reading the
+[supported models](https://docs.sglang.ai/supported_models/generative_models.html) section in the SGLang documentation for a full list.
+
+In the Inference Endpoints UI, by default, any model on the Hugging Face Hub that has a `transformers` tag, can be deployed with SGLang.
+This is because SGLang [implements a fallback](https://docs.sglang.ai/supported_models/transformers_fallback.html#transformers-fallback-in-sglang) to use transformers
+if SGLang doesn't have their own implementation of a model.
+
+## References
+
+We also recommend reading the [SGLang documentation](https://docs.sglang.ai/) for more in-depth information.

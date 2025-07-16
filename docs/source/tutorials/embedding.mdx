@@ -145,7 +145,7 @@ dataset_with_embeddings = dataset.map(
 
 The `datasets` library's `map` function is optimized for performance and will automatically batch the rows for us. Inference Providers can also scale to meet the demand of the batch size, so to get the best performance, you should calibrate the batch size with your endpoint's configuration.
 
-For example, select the highest possible batch size for you model and synchronize the batch size with your endpoint's configuration in `max_concurrent_requests`.
+For example, select the highest possible batch size for you model and synchronize the batch size with your Inference Endpoint's configuration in `max_concurrent_requests`.
 
 </Tip>
 

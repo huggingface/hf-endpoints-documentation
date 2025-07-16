@@ -82,7 +82,7 @@ from datasets import load_dataset
 from openai import OpenAI
 ```
 
-### Step 2: Configure your endpoint connection
+### Step 2: Configure the connection
 
 Set up the configuration to connect to your Inference Endpoint based on the details you collected in the previous step.
 
@@ -143,7 +143,7 @@ dataset_with_embeddings = dataset.map(
 
 <Tip>
 
-The `datasets` library's `map` function is optimized for performance and will automatically batch the rows for us. Inference Providers can also scale to meet the demand of the batch size, so to get the best performance, you should calibrate the batch size with your endpoint's configuration.
+The `datasets` library's `map` function is optimized for performance and will automatically batch the rows for us. Inference Endpoints can also scale to meet the demand of the batch size, so to get the best performance, you should calibrate the batch size with your Inference Endpoints's configuration.
 
 For example, select the highest possible batch size for you model and synchronize the batch size with your Inference Endpoint's configuration in `max_concurrent_requests`.
 

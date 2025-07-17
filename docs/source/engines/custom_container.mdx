@@ -7,11 +7,11 @@ it on Inference Endpoints. You can use public images like `tensorflow/serving:2.
 
 ![custom container](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/custom_container/custom-container.png)
 
-The [creation flow](/docs/inference-endpoints/guides/create_endpoint) of your Image artifacts from a custom image is the same as the
-base image. This means Inference Endpoints will create a unique image artifact derived from your provided image, including all Model
-Artifacts. 
+The [creation flow](/docs/inference-endpoints/guides/create_endpoint) of your image artifacts from a custom image is the same as the
+base image. This means Inference Endpoints will create a unique image artifact derived from your provided image, including all model
+artifacts. 
 
-The Model Artifacts (weights) are stored under `/repository`. For example, if you use` tensorflow/serving` as your custom image,
+The model artifacts (weights) are stored under `/repository`. For example, if you use `tensorflow/serving` as your custom image,
 then you have to set `model_base_path="/repository":
 
 ```

@@ -8,7 +8,7 @@ The core features that make TGI a good choice are:
 - **Quantization & weight loading speed**: Supports quantizations methods like bitsandbytes and GPTQ and uses Safetensors to reduce load times
 - **Production readiness**: Fully OpenAI-compatible `/v1/chat` or `/v1/completions` APIs, Prometheus metrics, OpenTelemetry tracing, watermarking, logit controls, JSON schema guidance
 
-By default the TGI version will be the latest available one (with some delay). But you can also specify a differen version by [chaning
+By default, the TGI version will be the latest available one (with some delay). But you can also specify a different version by [changing
 the container URL](https://raw.githubusercontent.com/not-here)
 
 ## Configuration
@@ -23,11 +23,11 @@ the option presented under `Container Configuration` where you can change the fo
 For example a value of `1512` means users can send either a prompt of `1000` tokens and generate `512` new tokens,
 or send a prompt of `1` token and generate `1511` new tokens. The larger this value, the larger amount each request
 will be in your RAM and the less effective batching can be. 
-- **Max Input Tokens (per query)**: The maximum number of input tokens, meaning the amount of tokens in the 
+- **Max Input Tokens (per query)**: The maximum number of input tokens, meaning the amount of tokens in the prompt. 
 - **Max Batch Prefill Tokens**: Limits the number of tokens for the prefill operation. Prefill tokens are the ones sent in with the user prompt. 
-- **Max Batch Total Tokens**: This changes the total amount of potential tokens within a batch.Together with `Max Number of Tokens`
+- **Max Batch Total Tokens**: This changes the total amount of potential tokens within a batch. Together with `Max Number of Tokens`,
 this determines how many concurrent requests you can serve. If you set `Max Number of Tokens` to 100 and `Max Batch Total Tokens` to 100 as well,
-you can only serve one requests at a time.
+you can only serve one request at a time.
 
 In general zero-configuration (see below) is recommended for most cases. TGI supports several other configuration parameters and you'll find a complete list
 in the [TGI documentation](https://huggingface.co/docs/text-generation-inference/reference/launcher#text-generation-launcher-arguments). These can all be
@@ -39,11 +39,11 @@ If you leave the values undefined, TGI will on server startup automatically (bas
 for the max input lenght, max number of tokens, max batch prefill tokens and max batch total tokens. This means that you'll use your hardware to it's full capacity.
 
 <Tip>
-Note that there's caveat: say you're deploying `meta-llama/Llama-3.3-70B-Instruct`, which has context lenght of 128k tokens.
-But you're on a GPU where you can only fit the model's context three times in memory. So if you want to serve the model with full context lenght,
-you can only serve up to 3 concurrent requests. In some cases, it's fine to drop the maximum context lenght to 64k tokens, which would
+Note that there's a caveat: say you're deploying `meta-llama/Llama-3.3-70B-Instruct`, which has a context length of 128k tokens.
+But you're on a GPU where you can only fit the model's context three times in memory. So if you want to serve the model with full context length,
+you can only serve up to 3 concurrent requests. In some cases, it's fine to drop the maximum context length to 64k tokens, which would
 allow the server to process 6 concurrent requests.
-you can configure this by setting max input length to 64k and then let TGI auto configure the rest.
+You can configure this by setting max input length to 64k and then let TGI auto-configure the rest.
 </Tip>
 
 ## Supported models
@@ -53,7 +53,7 @@ You can find the models that are supported by TGI by either:
 - In the TGI documentation under the [supported models](https://huggingface.co/docs/text-generation-inference/supported_models) section
 - A selection of popular models the [Inference Endpoints Catalog](https://endpoints.huggingface.co/huggingface/catalog)
 
-If a model is supported by TGI the Inferernce Endpoints UI will indicate this by disabling/enabling the selection under `Container Type` configuration.
+If a model is supported by TGI, the Inference Endpoints UI will indicate this by disabling/enabling the selection under `Container Type` configuration.
 ![selection](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/tgi/tgi_selection.png)
 
 ## References

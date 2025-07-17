@@ -1,13 +1,13 @@
 # vLLM
 
 vLLM is a high-performance, memory-efficient inference engine for open-source LLMs. It delivers efficient scheduling, KV-cache handling,
-batching, and decoding—all wrapped in a production-ready server. For most use-cases TGI, vLLM and SGlang will be equivalently good options.
+batching, and decoding—all wrapped in a production-ready server. For most use cases, TGI, vLLM, and SGLang will be equivalently good options.
 
 **Core features**:
 - **PagedAttention for memory efficiency**
 - **Continuous batching**
-- **Optimized CUDA/HIP execution**:
-- **Speculative decoding & chunked prefill**:
+- **Optimized CUDA/HIP execution**
+- **Speculative decoding & chunked prefill**
 - **Multi-backend and hardware support**: Runs across NVIDIA, AMD, and AWS Neuron to name a few
 
 ## Configuration
@@ -21,8 +21,8 @@ be handled at once, regardless of their individual lengths, as long as the total
 batch. Limits batch size by token count, balancing throughput and GPU memory allocation.
 - **Tensor Parallel Size**: The number of GPUs across which model weights are split within each layer. Increasing this allows larger
 models to run and frees up GPU memory for KV cache, but may introduce synchronization overhead.
-- **KV Cache DType**: the data type used for storing the key-value cache during generation. Options include "auto", "fp8", "fp8_e5m2"
-and"fp8_e4m3". Using lower precision types can reduce memory usage but may slightly impact generation quality.
+- **KV Cache DType**: the data type used for storing the key-value cache during generation. Options include "auto", "fp8", "fp8_e5m2",
+and "fp8_e4m3". Using lower precision types can reduce memory usage but may slightly impact generation quality.
 
 For more advanced configuration you can pass any of the [Engine Arguments that vLLM supports](https://docs.vllm.ai/en/stable/api/vllm/engine/arg_utils.html#vllm.engine.arg_utils.EngineArgs)
 as container arguments. For example changing the `enable_lora` to `true` would look like this:

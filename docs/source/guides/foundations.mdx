@@ -2,7 +2,7 @@
 
 The Inference Endpoints dashboard is the central interface to manage, monitor, and deploy inference endpoints across
 multiple organizations and accounts. Users can switch between organizations, view endpoint statuses, manage quotas, and
-access deployment configurations. You can access the dasboard by logging in on [endpoints.huggingface.co](https://endpoints.huggingface.co)
+access deployment configurations. You can access the dashboard by logging in on [endpoints.huggingface.co](https://endpoints.huggingface.co)
 
 ## Managing Endpoints
 
@@ -30,18 +30,18 @@ Endpoints can be in one of several states:
 
 ### Managing existing endpoints
 
-The endpoint details page provides gives you information and let's you control the configuration of an individual endpoint.
+The endpoint details page provides information and lets you control the configuration of an individual endpoint.
 Access this view by clicking on any endpoint from the main endpoints list.
 
 The endpoint name displays with its current state. You can pause a running endpoint or wake up an endpoint scaled to zero.
 
 - **Overview**: Current status and configuration summary
-- **Analytics**: Performance metrics and usage statistics, for more in-depth reading please [visit here](./metrics)
+- **Analytics**: Performance metrics and usage statistics, for more in-depth reading please [visit here](./analytics)
 - **Logs**: Runtime logs and debugging information, more in-depth docs can be found [here](./logs)
 - **Usage & Cost**: Billing information and resource consumption
 - **Settings**: Configuration and management options
 
-The page displays the configuration options that are available for each endpoint. You'll find a more in-depth walk through all of the under
+The page displays the configuration options that are available for each endpoint. You'll find a more in-depth walk-through of all options under
 the [configuration section](./configuration)
 
 ![endpoint](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/foundations/8-endpoint.png)
@@ -71,8 +71,8 @@ The Quotas section displays your current resource usage and limits across differ
 Access this view to monitor consumption and request additional capacity when needed.
 
 Note that:
-- *Paused* endpoints will not count against "used" quota.
-- *Scaled to Zero* endpoints will be counted as "used" quota - simply pause the scaled-to-zero endpoint should you like to unlock this quota. 
+- *Paused* endpoints will not count against 'used' quota.
+- *Scaled to Zero* endpoints will be counted as 'used' quota—simply pause the scaled-to-zero endpoint if you would like to unlock this quota. 
 
 ![quotas](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/foundations/6-quotas.png)
 

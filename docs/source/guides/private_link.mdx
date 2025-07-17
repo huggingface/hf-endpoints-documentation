@@ -1,10 +1,10 @@
 # Create a Private Endpoint with AWS PrivateLink
 
-AWS PrivateLink enables you to privately connect your VPC to your Inferece Endpoints, without exposing your traffic to the public
+AWS PrivateLink enables you to privately connect your VPC to your Inference Endpoints, without exposing your traffic to the public
 internet. It uses private IP addresses to route traffic between your VPC and the service, ensuring that data never traverses the
 public internet, providing enhanced security and compliance benefits.
 
-In order to create a Private Endpoint you'll need to connect the AWS Account using the account ID. The following guide will walk you
+To create a Private Endpoint, you'll need to connect the AWS Account using the account ID. The following guide will walk you
 through how to set it up.
 
 ## Configuring the AWS Private Link
@@ -23,7 +23,7 @@ After providing your AWS Account ID and any other required information, click Cr
 
 ![creation process](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_2_endpoint_creation.png)
 
-After a few minutes, the endpoint will be created and you will see the VPC Service Name in the overview. This name is necessary for
+After a few minutes, the endpoint will be created, and you will see the VPC Service Name in the overview. This name is necessary for
 creating the VPC Interface Endpoint in your AWS account.
 
 ![vpc service name](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_3_vpc_ready.png)

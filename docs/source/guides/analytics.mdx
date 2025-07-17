@@ -1,12 +1,12 @@
 # Analytics and Metrics
 
 The Analytics page is like the control center for your deployed models. It tells you in real-time what's going on, how many users are
-calling your models, about hardware usage, latencies and much more. In this documentation we'll dive into what each metric means and
+calling your models, about hardware usage, latencies, and much more. In this documentation we'll dive into what each metric means and
 how to analyze the graphs.
 
 ![intro](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/1-intro.png)
 
-In the top bar you can configure for which time frame you'll inspect the metrics, this setting affects all graphs on the page. You can choose
+In the top bar, you can configure for which time frame you'll inspect the metrics, this setting affects all graphs on the page. You can choose
 between any of the existing settings from the drop down, or click-and-drag over any graph for a custom timeframe. You can also enable/disable
 auto refresh or view the metrics per replica or for all.
 
@@ -14,9 +14,9 @@ auto refresh or view the metrics per replica or for all.
 
 ## Understanding the graphs
 
-### Number of Request
+### Number of Requests
 
-The first graph to the top left shows you how many requests your Inference Endpoint has received. By default they are grouped by HTTP response
+The first graph at the top left shows you how many requests your Inference Endpoint has received. By default they are grouped by HTTP response
 classes, but by switching the toggle you can view them by individual status. As a reminder the HTTP response classes are:
 
 - **Informational responses (100-199)**: The server has received your request and is working on it. For example, `102 Processing` means the server is still handling your request.
@@ -25,15 +25,15 @@ classes, but by switching the toggle you can view them by individual status. As 
 - **Client error responses (400-499)**: There was a problem with the request sent by your client (like a typo in the URL or missing data). For example, `404 Not Found` means the server couldn't find what you asked for.
 - **Server error responses (500-599)**: The server ran into an issue while trying to process your request. For example, `502 Bad Gateway` means the server got an invalid response from another server it tried to contact.
 
-We recommend checking the [Mdn web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status) for more information on individual
+We recommend checking the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status) for more information on individual
 status codes.
 
 ![http](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/3-http-reqs.png)
 
-### Pending Request
+### Pending Requests
 
 Pending requests are requests that have not yet received an HTTP status, meaning they include in-flight requests and requests currently
-being processed. If this metrics increases too much it means that you're requests are queing up, and your users have to wait for requests
+being processed. If this metric increases too much, it means that your requests are queuing up, and your users have to wait for requests
 to finish. In this case you should consider increasing your number of replicas or alternatively use autoscaling, you can read more about
 it in the [autoscaling guide](./autoscaling#scalingbasedonpendingrequests(betafeature))
 
@@ -56,12 +56,12 @@ the worst case latencies can be long.
 
 ### Replica Status
 
-In the replica status graph you'll see in the basic view how many running replicas you during a point in time. And the red line shows
-what currently is your maximum replicas. 
+In the replica status graph, you'll see in the basic view how many running replicas you have during a point in time. The red line shows
+what your current maximum replicas setting is. 
 
 ![status](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/6-status.png)
 
-If you toggle the advanced setting, you'll instead see the different statuses of the individual replicas. Going from *pending* all the way
+If you toggle the advanced setting, you'll instead see the different statuses of the individual replicas, going from *pending* all the way
 to *running*. This is very useful to get a sense of how long it takes for an endpoint to actually become ready to serve requests.
 
 ![advanced](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/analytics/7-status-advanced.png)

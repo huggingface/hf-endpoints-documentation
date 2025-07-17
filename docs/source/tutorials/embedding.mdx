@@ -25,7 +25,7 @@ deploys. You can search for embedding models or create a custom endpoint.
 For this tutorial, we'll use the Qwen3-Embedding-4B model available in the Inference Endpoints Model Catalog. Note if it's ever not in the catalog, you can deploy a model as a custom Endpoint from the Hugging Face Hub by entering the model repository ID `Qwen/Qwen3-Embedding-4B`.
 
 For embedding models, we recommend:
-- **GPU**: NVIDIA L4 or A10G for good performance
+- **GPU**: NVIDIA, T4, L4 or A10G for good performance.
 - **Instance Size**: x1 (sufficient for most embedding workloads)
 - **Auto-scaling**: Enable scale-to-zero to save costs by switching the endpoint to a paused state when it's not in use.
 - **Timeout**: Set a timeout of 10 minutes to avoid long-running requests. You should define a timeout based on how you expect your endpoint to be used.

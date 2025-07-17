@@ -65,6 +65,16 @@ You'll need the endpoint details from your [endpoints page](https://endpoints.hu
 
 ![endpoint-details](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/chatbot-tutorial/assets/tutorials/chatbot/endpoint-page.png)
 
+You can validate your details by testing your endpoint out in the command line with curl.
+
+```sh
+curl "<endpoint-url>" \
+-X POST \
+--data-binary '@<audio-file>' \
+-H "Accept: application/json" \
+-H "Content-Type: audio/flac" \
+```
+
 ## Building the transcription app
 
 Now let's build a transcription application step by step. We'll break it down into logical blocks to create a complete solution that can transcribe audio and generate intelligent summaries.

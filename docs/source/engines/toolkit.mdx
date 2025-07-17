@@ -1,10 +1,10 @@
 # Inference Toolkit
 
-In some cases the model you're looking to deploy, isn't supported by any of the high performance inference engines. In this case
+In some cases, the model you're looking to deploy isn't supported by any of the high-performance inference engines. In this case,
 we provide a fallback option that works with most models. The Inference Toolkit supports models that are implemented in the
 Transformers, Sentence-Transformers and Diffusers libraries, and wraps them in a light web server.
 
-The Inference Toolkit is perfect for testing models and building demos, but isn't as production ready as TGI, vLLM, SGLang or llama.cpp.
+The Inference Toolkit is perfect for testing models and building demos, but isn't as production-ready as TGI, vLLM, SGLang, or llama.cpp.
 
 
 # Create a custom Inference Handler
@@ -111,7 +111,7 @@ class EndpointHandler():
 ### 3. Customize EndpointHandler
 
 Now, you can add all of the custom logic you want to use during initialization or inference to your Custom Endpoint. You can
-already find multiple [Custom Handler on the Hub](https://huggingface.co/models?other=endpoints-template) if you need some
+already find multiple [Custom Handlers on the Hub](https://huggingface.co/models?other=endpoints-template) if you need some
 inspiration. In our example, we will add a custom condition based on additional payload information.
 
 *The model we are using in the tutorial is fine-tuned to detect emotions. We will add an additional payload field for the date, and
@@ -176,14 +176,14 @@ holiday_payload = {"inputs": "Today is a though day", "date": "2022-07-04"}
 
 # test the handler
 non_holiday_pred=my_handler(non_holiday_payload)
-holiday_payload=my_handler(holiday_payload)
+holiday_pred=my_handler(holiday_payload)
 
 # show results
 print("non_holiday_pred", non_holiday_pred)
-print("holiday_payload", holiday_payload)
+print("holiday_pred", holiday_pred)
 
 # non_holiday_pred [{'label': 'joy', 'score': 0.9985942244529724}]
-# holiday_payload [{'label': 'happy', 'score': 1}]
+# holiday_pred [{'label': 'happy', 'score': 1}]
 ```
 
 It works!!!! 🎉
@@ -221,7 +221,7 @@ to Custom_
 ## Examples
 
 There are a few examples on the [Hugging Face Hub](https://huggingface.co/models?other=endpoints-template) from where you can take
-insipiration or directly use them. The repositories are tagged with `endpoints-template` and can be found under this
+inspiration or directly use them. The repositories are tagged with `endpoints-template` and can be found under this
 [link](https://huggingface.co/models?other=endpoints-template).
 
 You'll find examples are for:

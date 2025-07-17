@@ -19,8 +19,6 @@
 - sections: 
   - local: support/pricing
     title: Pricing
-  - local: support/support
-    title: Help & Support
   - local: support/faq
     title: FAQ
   title: Support

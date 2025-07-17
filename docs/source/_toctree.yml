@@ -4,13 +4,9 @@
   - local: index
     title: Inference Endpoints
   - local: quick_start
-    title: Quick Start 
-  - local: pricing
-    title: Pricing
-  - local: support
-    title: Help & Support
-  - local: faq
-    title: FAQ
+    title: Quick Start
+  - local: about
+    title: About Inference Endpoints 
   - local: api_reference
     title: API Reference
   title: Overview
@@ -19,9 +15,13 @@
     title: Deploy your own chat application
   - local: tutorials/embedding
     title: Build an embedding pipeline
-  - local: tutorials/transcription
-    title: Create your own transcription app 
   title: Tutorials
+- sections: 
+  - local: support/pricing
+    title: Pricing
+  - local: support/faq
+    title: FAQ
+  title: Support
 - sections:
   - local: guides/foundations
     title: Foundations

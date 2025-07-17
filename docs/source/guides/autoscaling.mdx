@@ -8,14 +8,14 @@ You can find the autoscaling setting for you endpoints under the "Settings tab" 
 ![settings](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/autoscaling/settings.png)
 
 <Tip>
-The Analytics section in the guide goes you can read more about how to track all the metrics mentioned in this documentation.
+In the Analytics section of the guide, you can read more about how to track all the metrics mentioned in this documentation.
 </Tip>
 
 
 ## Scale to Zero
 
 Scaling to zero means that your Inference Endpoint will go idle after a given duration (1 hour by default) of inactivity. This is typically
-very useful when you want to optimize for low costs, or your workloads are 
+very useful when you want to optimize for low costs or when your workloads are intermittent. 
 
 Scaling to zero replicas helps optimize cost savings by minimizing resource usage during periods of inactivity. However, it's important to
 be aware that scaling to 0 implies a cold start period when the endpoint receives a new request. Additionally, the HTTP server will
@@ -23,15 +23,15 @@ respond with a status code `502 Bad Gateway` while the new replica is initializi
 incoming requests.
 
 <Tip>
-Note that scaling up always takes 2-5 minutes, depending on the model. Which means that scaling from 0 to 1 based on a request is typically not recommended if your
+Note that scaling up always takes 2-5 minutes, depending on the model, which means that scaling from 0 to 1 based on a request is typically not recommended if your
 application needs to be responsive. 
 </Tip>
 
 ## Number of replicas
 
-With this setting you can change the maximum and minimum amount of replicas. This means that you control the ceiling and the floor of your costs.
-Typically, you'd set the minumin to a value such that at the lowest amount of traffic, you're still serving your users at a acceptable rate.
-And the maximum so that you stay within buget, but that you can serve your users even at the highest points of traffic.
+With this setting, you can change the maximum and minimum amount of replicas. This means that you control the ceiling and the floor of your costs.
+Typically, you'd set the minimum to a value such that at the lowest amount of traffic, you're still serving your users at an acceptable rate.
+And the maximum so that you stay within budget, but so that you can serve your users even at the highest points of traffic.
 
 <Tip>
 Note that if scale to zero is enabled, the minimum number of replicas needs to be 0.
@@ -43,29 +43,29 @@ For the autoscaling system to work well there needs to be a signal that tells wh
 
 ### Scaling based on hardware utilization
 
-The autoscaling process is triggered based on the hardware's utilization metrics. The criteria for scaling differ depending on the
+The autoscaling process is triggered based on the hardware utilization metrics. The criteria for scaling differ depending on the
 type of accelerator being used:
 
-- **CPU**: A new replica is added when the average CPU utilization of all replicas reaches the threashold value (default 80%).
-- **GPU**: A new replica is added when the average GPU utilization of all replicas over a 1-minute window reaches the threashold value (default 80%).
+- **CPU**: A new replica is added when the average CPU utilization of all replicas reaches the threshold value (default 80%).
+- **GPU**: A new replica is added when the average GPU utilization of all replicas over a 1-minute window reaches the threshold value (default 80%).
 
 It's important to note that the scaling up process takes place every minute and scaling down takes place every 2 minutes. This
 frequency ensures a balance between responsiveness and stability of the autoscaling system, with a stabilization of 300 seconds
 once scaled down.
 
-You can also track the hardware utilisation metrics in the Analytics tab, or read more about it [here](./metrics#hardwareutilisation).
+You can also track the hardware utilization metrics in the Analytics tab, or read more about it [here](./analytics#hardwareutilisation).
 
 ### Scaling based on pending requests (beta feature)
 
-In some cases the hardware utilisation is not a "fast" enough metric. The reason is that hardware metrics are always slightly lagging from
-the actual requests. A metric which is more of a leading indicator is pending requests.
+In some cases, the hardware utilization is not a 'fast' enough metric. The reason is that hardware metrics are always slightly lagging from
+the actual requests. A metric that is more of a leading indicator is pending requests.
 
 - **Pending requests** are requests that have not yet received an HTTP status, meaning they include in-flight requests and requests currently being processed.
 - **By default**, if there are more than 1.5 pending requests per replica in the past 20 seconds, it triggers an autoscaling event and adds a replica to your deployment.
-You can adjust this threashold value to meet your specific requirements under Endpoint settings.
+You can adjust this threshold value to meet your specific requirements under Endpoint settings.
 
 <Tip warning={true}>
 This is currently an experimental feature and we advise testing prior to using it for production workloads.
 </Tip>
 
-And similarly to the hardware metrics you can track the pending request in the Analytics tab, or read more about it [here](./metrics#pendingrequests).
+Similarly to the hardware metrics, you can track the pending requests in the Analytics tab, or read more about it [here](./analytics#pendingrequests).

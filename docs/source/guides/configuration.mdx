@@ -35,7 +35,7 @@ provider, accelerator, and region are chosen, a list of available instance types
 - vCPUs and RAM
 - Hourly Pricing (e.g., $1.80 / h)
 
-You can select a tile to choose that instance for your deployment. Instances that are incompatible or unavailable in the
+You can select a tile to choose that instance type for your deployment. Instances that are incompatible or unavailable in the
 selected region are grayed out and unclickable.
 
 ## Security Level
@@ -50,7 +50,7 @@ This section determines who can access your deployed endpoint. Available options
 
 ## Autoscaling
 
-The Autoscaling section configures how many replicas of your model run and whether the system scales down to zero during inactivity. For more
+The Autoscaling section configures how many replicas of your model run and whether the system scales down to zero during periods of inactivity. For more
 information we recommend reading the [in-depth guide on autoscaling](./autoscaling).
 
 ![autoscaling](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/configuration/4-autoscaling.png)
@@ -58,15 +58,15 @@ information we recommend reading the [in-depth guide on autoscaling](./autoscali
 - **Automatic Scale-to-Zero**: A dropdown lets you choose how long the system should wait after the last request before
 scaling down to zero. Default is after 1 hour with no activity.
 - **Number of Replicas**:
-    - Min: Minimum number of replicas to keep running. Note that enabling automatic scale-to-zero requires settning this to 0.
+    - Min: Minimum number of replicas to keep running. Note that enabling automatic scale-to-zero requires setting this to 0.
     - Max: Maximum number of replicas allowed (e.g., 1)
 - **Autoscaling strategy**:
-    - Based on hardware usage: For exmaple a scale up will be triggered if the average hardware utilisation (%) exceeds this threshold for more than 20 seconds.
-    - Pengin requests: A scale up event will be triggered if the average number of pending requests exceeds this threshold for more than 20 seconds.
+    - Based on hardware usage: For example, a scale up will be triggered if the average hardware utilisation (%) exceeds this threshold for more than 20 seconds.
+    - Pending requests: A scale up event will be triggered if the average number of pending requests exceeds this threshold for more than 20 seconds.
 
 ## Container Configuration
 This section allows you to specify how the container hosting your model behaves. This setting depends on the selected inference engine.
-For configuration details please read the [Inferernce Engine](https://not-here) section.
+For configuration details, please read the [Inference Engine](https://not-here) section.
 
 ## Environment Variables
 Environment variables can be provided to customize container behavior or pass secrets.

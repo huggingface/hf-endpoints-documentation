@@ -15,7 +15,7 @@ embedding models (e5-mistral, gte, mcdse) and reward models (Skywork), with easy
 
 ## Configuration
 
-![sglang](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/sglang/sglang.png)
+![sglang](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/sglang/sglang.png)
 
 - **Max Running Request**: the max number of concurrent requests
 - **Max Prefill Tokens** (per batch): the maximum number of tokens that can be processed in a single prefill operation. This controls the batch size for the prefill phase and helps manage memory usage during prompt processing.
@@ -31,7 +31,7 @@ and "fp8_e4m3". Using lower precision types can reduce memory usage but may slig
 For more advanced configuration you can pass any of the [Server Arguments that SGlang supports](https://docs.sglang.ai/backend/server_arguments.html)
 as container arguments. For example changing the `schedule-policy` to `lpm` would look like this:
 
-![sglang-advanced](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/sglang/sglang-advanced.png)
+![sglang-advanced](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/sglang/sglang-advanced.png)
 
 ## Supported models
 

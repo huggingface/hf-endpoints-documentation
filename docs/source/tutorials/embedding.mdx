@@ -15,12 +15,12 @@ First, we need to create an Inference Endpoint optimized for embeddings.
 Start by navigating to the Inference Endpoints UI, and once you have logged in you should see a button for creating a new Inference
 Endpoint. Click the "New" button.
 
-![new-button](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/quick_start/1-new-button.png)
+![new-button](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/1-new-button.png)
 
 From there you'll be directed to the catalog. The Model Catalog consists of popular models which have tuned configurations to work as one-click
 deploys. You can search for embedding models or create a custom endpoint.
 
-![catalog](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/quick_start/2-catalog.png)
+![catalog](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/2-catalog.png)
 
 For this tutorial, we'll use the Qwen3-Embedding-4B model available in the Inference Endpoints Model Catalog. Note if it's ever not in the catalog, you can deploy a model as a custom Endpoint from the Hugging Face Hub by entering the model repository ID `Qwen/Qwen3-Embedding-4B`.
 
@@ -40,7 +40,7 @@ The Qwen3-Embedding-4B model will automatically use the **Text Embeddings Infere
 
 Click "Create Endpoint" to deploy your embedding service.
 
-![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/quick_start/4-config.png)
+![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/4-config.png)
 
 This may take about 5 minutes to initialize.
 
@@ -60,7 +60,7 @@ To use your endpoint programmatically, you'll need these details from the Endpoi
 - **Model name**: The name of your endpoint
 - **Token**: Your HF token from [settings](https://huggingface.co/settings/tokens)
 
-![endpoint-details](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/embedding-tutorial/assets/tutorials/chatbot/endpoint-page.png)
+![endpoint-details](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/embedding-tutorial/assets/tutorials/embedding/endpoint-page.png)
 
 ## Building the embedding script
 

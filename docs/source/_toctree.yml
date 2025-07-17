@@ -2,59 +2,55 @@
 
 - sections: 
   - local: index
-    title: 🤗 Inference Endpoints
-  - local: security
-    title: Security & Compliance
-  - local: supported_tasks
-    title: Supported Tasks
+    title: Inference Endpoints
+  - local: quick_start
+    title: Quick Start
+  - local: about
+    title: About Inference Endpoints 
   - local: api_reference
-    title: API Reference (Swagger)
-  - local: autoscaling
-    title: Autoscaling
-  - local: pricing
-    title: Pricing
-  - local: support
-    title: Help & Support
-  - local: faq
-    title: FAQ
+    title: API Reference
   title: Overview
 - sections: 
-  - local: guides/access
-    title: Access the solution (UI)
-  - local: guides/create_endpoint
-    title: Create your first Endpoint
-  - local: guides/test_endpoint
-    title: Send Requests to Endpoints
-  - local: guides/update_endpoint
-    title: Update your Endpoint
-  - local: guides/advanced
-    title: Advanced Setup (Instance Types, Auto Scaling, Versioning)
-  - local: guides/private_link
-    title: Create a Private Endpoint with AWS PrivateLink
-  - local: guides/custom_dependencies
-    title: Add custom Dependencies
-  - local: guides/custom_handler
-    title: Create custom Inference Handler
-  - local: guides/custom_container
-    title: Use a custom Container Image
-  - local: guides/logs
-    title: Access and read Logs
-  - local: guides/metrics
-    title: Access and view Metrics
-  - local: guides/change_organization
-    title: Change Organization or Account 
-  - local: guides/pause_endpoint
-    title: Pause and Resume your Endpoint
-  - local: guides/llamacpp_container
-    title: Deploying a llama.cpp Container 
-  - local: guides/openmetrics
-    title: Connect Endpoints Metrics with your Internal Tool
-  title: Guides
+  - local: tutorials/chat_bot
+    title: Deploy your own chat application
+  - local: tutorials/embedding
+    title: Build an embedding pipeline
+  title: Tutorials
 - sections: 
-  - local: others/runtime
-    title: Inference Endpoints Version
-  - local: others/serialization
-    title: Serialization & Deserialization for Requests
-  - local: others/container_types
-    title: Inference Endpoints Container Types
-  title: Others
+  - local: support/pricing
+    title: Pricing
+  - local: support/faq
+    title: FAQ
+  title: Support
+- sections:
+  - local: guides/foundations
+    title: Foundations
+  - local: guides/configuration
+    title: Configuration
+  - local: guides/autoscaling
+    title: Auto Scaling
+  - local: guides/logs
+    title: Logs
+  - local: guides/analytics
+    title: Analytics
+  - local: guides/security
+    title: Security & Compliance
+  - local: guides/private_link
+    title: AWS PrivateLink
+  title: Guides
+- sections:
+  - local: engines/vllm
+    title: vLLM 
+  - local: engines/tgi
+    title: Text Generation Inference (TGI)
+  - local: engines/sglang
+    title: SGLang 
+  - local: engines/tei
+    title: Text Embeddings Inference (TEI)
+  - local: engines/llama_cpp
+    title: llama.cpp 
+  - local: engines/toolkit
+    title: Inference Toolkit
+  - local: engines/custom_container
+    title: Custom Container Images
+  title: Inference Engines

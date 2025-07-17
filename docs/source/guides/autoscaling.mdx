@@ -1,0 +1,72 @@
+# Autoscaling
+
+Autoscaling allows you to dynamically adjust the number of endpoint replicas running your models based on traffic and hardware
+utilization. By leveraging autoscaling, you can seamlessly handle varying workloads while optimizing costs and ensuring high availability.
+
+You can find the autoscaling setting for you endpoints under the "Settings tab" on the Inference Endpoint card.
+
+![settings](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/autoscaling/settings.png)
+
+<Tip>
+In the Analytics section of the guide, you can read more about how to track all the metrics mentioned in this documentation.
+</Tip>
+
+
+## Scale to Zero
+
+Scaling to zero means that your Inference Endpoint will go idle after a given duration (1 hour by default) of inactivity. This is typically
+very useful when you want to optimize for low costs or when your workloads are intermittent. 
+
+Scaling to zero replicas helps optimize cost savings by minimizing resource usage during periods of inactivity. However, it's important to
+be aware that scaling to zero implies a cold start period when the endpoint receives a new request. Additionally, the proxy will
+respond with the status code `503` while the new replica is initializing. To potentially avoid this, you can also add the
+'X-Scale-Up-Timeout' header to your requests. This means that when the endpoint is scaling the proxy will hold the request until a replica
+is ready, or timeout after the specified amount of seconds. For example 'X-Scale-Up-Timeout: 600' would wait for 600 seconds.
+
+<Tip>
+Note that scaling up can take a few minutes depending on the model, which means that scaling from 0 to 1 based on a request is typically not recommended if your
+application needs to be responsive. 
+</Tip>
+
+## Number of replicas
+
+With this setting, you can change the maximum and minimum amount of replicas. This means that you control the ceiling and the floor of your costs.
+Typically, you'd set the minimum to a value such that at the lowest amount of traffic, you're still serving your users at an acceptable rate.
+And the maximum so that you stay within budget, but so that you can serve your users even at the highest points of traffic.
+
+<Tip>
+Note that if scale to zero is enabled, the minimum number of replicas needs to be 0.
+</Tip>
+
+## Autoscaling Strategy
+
+For the autoscaling system to work well there needs to be a signal that tells when to scale up and down. For this we have two strategies.
+
+### Scaling based on hardware utilization
+
+The autoscaling process is triggered based on the hardware utilization metrics. The criteria for scaling differ depending on the
+type of accelerator being used:
+
+- **CPU**: A new replica is added when the average CPU utilization of all replicas reaches the threshold value (default 80%).
+- **GPU**: A new replica is added when the average GPU utilization of all replicas over a 1-minute window reaches the threshold value (default 80%).
+
+It's important to note that the scaling up process takes place every minute and scaling down takes place every 2 minutes. This
+frequency ensures a balance between responsiveness and stability of the autoscaling system, with a stabilization of 300 seconds
+once scaled down.
+
+You can also track the hardware utilization metrics in the Analytics tab, or read more about it [here](./analytics#hardwareutilisation).
+
+### Scaling based on pending requests (beta feature)
+
+In some cases, the hardware utilization is not a 'fast' enough metric. The reason is that hardware metrics are always slightly lagging from
+the actual requests. A metric that is more of a leading indicator is pending requests.
+
+- **Pending requests** are requests that have not yet received an HTTP status, meaning they include in-flight requests and requests currently being processed.
+- **By default**, if there are more than 1.5 pending requests per replica in the past 20 seconds, it triggers an autoscaling event and adds a replica to your deployment.
+You can adjust this threshold value to meet your specific requirements under Endpoint settings.
+
+<Tip warning={true}>
+This is currently an experimental feature and we advise testing prior to using it for production workloads.
+</Tip>
+
+Similarly to the hardware metrics, you can track the pending requests in the Analytics tab, or read more about it [here](./analytics#pendingrequests).

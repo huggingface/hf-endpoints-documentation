@@ -1,66 +1,57 @@
 # Create a Private Endpoint with AWS PrivateLink
 
-Security and secure inference are key principles of Inference Endpoints. We currently offer three different levels of security: [Public, Protected and Private](/docs/inference-endpoints/security).
+AWS PrivateLink enables you to privately connect your VPC to your Inference Endpoints, without exposing your traffic to the public
+internet. It uses private IP addresses to route traffic between your VPC and the service, ensuring that data never traverses the
+public internet, providing enhanced security and compliance benefits.
 
-Public and Protected Endpoints do not require any additional configuration. But in order to create a Private Endpoint for a secure intra-region connection, you need to provide the AWS Account ID of the account which should also have access to Inference Endpoints.
+To create a Private Endpoint, you'll need to connect the AWS Account using the account ID. The following guide will walk you
+through how to set it up.
 
-## 1. Select Private Endpoint Security Level
+## Configuring the AWS Private Link
 
-Choose the "Private" option to ensure the endpoint is only available through an intra-region secured AWS PrivateLink connection. Enter your AWS Account ID and enable PrivateLink sharing if you want the PrivateLink to be shared between several endpoints. This connects 1 or more endpoints to the same VPC Endpoint.
+### 1. Select Private Endpoint Security Level
 
-<img
-  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_private_type.png"
-  alt="select private link"
-/>
+Choose the "Private" option to ensure the endpoint is only available through an intra-region secured AWS PrivateLink connection.
+Enable PrivateLink sharing if you want the PrivateLink to be shared between several endpoints.
+This connects one or more endpoints to the same VPC Endpoint.
 
-## 2. Create the Endpoint
+![select private link](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_private_type.png)
+
+### 2. Create the Endpoint
 
 After providing your AWS Account ID and any other required information, click Create Endpoint. The endpoint creation process will begin.
 
-<img
-  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_2_endpoint_creation.png"
-  alt="creation process"
-/>
+![creation process](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_2_endpoint_creation.png)
 
-After a few minutes, the endpoint will be created and you will see the VPC Service Name in the overview. This name is necessary for creating the VPC Interface Endpoint in your AWS account.
+After a few minutes, the endpoint will be created, and you will see the VPC Service Name in the overview. This name is necessary for
+creating the VPC Interface Endpoint in your AWS account.
 
-<img
-  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_3_vpc_ready.png"
-  alt="vpc service name"
-/>
+![vpc service name](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_3_vpc_ready.png)
 
-## 3. Configure VPC Interface Endpoint
+### 3. Connect your VPC to your Interface Endpoint
 
-Go to your AWS [console](https://console.aws.amazon.com/vpc/home?#Endpoints) and navigate to the VPC section to create the VPC Interface Endpoint. Select "Other endpoint services" and enter the VPC Service Name provided earlier.
+Go to your AWS [console](https://console.aws.amazon.com/vpc/home?#Endpoints) and navigate to the VPC section to create the VPC Interface
+Endpoint. Select "Other endpoint services" and enter the VPC Service Name provided earlier.
 
+![add private link](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_4_add_private_link.png)
 
-<img
-  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_4_add_private_link.png"
-  alt="add private link"
-/>
+Verify the service name to ensure the connection is correct. Choose the VPC and subnets you wish to use for this endpoint. Make sure
+they align with your security requirements.
 
-Verify the service name to ensure the connection is correct. Choose the VPC and subnets you wish to use for this endpoint. Make sure they align with your security requirements.
+![vpc endpoint](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_5_add_vpc.png)
 
-<img
-  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_5_add_vpc.png"
-  alt="vpc endpoint"
-/>
+### 4. Ready to Connect
 
-## 4. Endpoint Running
+After the VPC Endpoint status changes from pending to available, you should see an Endpoint URL in the overview. This URL can now
+be used inside your VPC to access your endpoint in a secure and protected way, ensuring traffic is only occurring between the two
+endpoints and will never leave AWS.
 
-After the VPC Endpoint status changes from pending to available, you should see an Endpoint URL in the overview. This URL can now be used inside your VPC to access your endpoint in a secure and protected way, ensuring traffic is only occurring between the two endpoints and will never leave AWS.
-
-<img
-  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_6_running_endpoint.png"
-  alt="endpoint running"
-/>
+![endpoint running](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_6_running_endpoint.png)
 
 ## Shared Private Services 
 
-If you have enabled the PrivateLink sharing option, you can now create additional endpoints that share the same VPC Endpoint. This allows you to connect multiple endpoints to the same VPC Endpoint.
+If you have enabled the PrivateLink sharing option, you can now create additional endpoints that share the same VPC Endpoint. This
+allows you to connect multiple endpoints to the same VPC Endpoint.
 
-<img
-  src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_7_private_service_tooltip.png"
-  alt="shared private link"
-/>
+![shared private link](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_7_private_service_tooltip.png)
 

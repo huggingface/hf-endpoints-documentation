@@ -1,0 +1,98 @@
+# llama.cpp 
+
+llama.cpp is a high-performance inference engine written in C/C++, tailored for running Llama and compatible models in the GGUF format.
+
+Core features:
+- **GGUF Model Support**: Native compatibility with the GGUF format and all quantization types that comes with it.
+- **Multi-Platform**: Optimized for both CPU and GPU execution, with support for AVX, AVX2, AVX512, and CUDA acceleration.
+- **OpenAI-Compatible API**: Provides endpoints for chat, completion, embedding, and more, enabling seamless integration with existing tools and workflows.
+- **Active Community and Ecosystem**: Rapid development and a rich ecosystem of tools, extensions, and integrations
+
+
+When you create an endpoint with a [GGUF](https://huggingface.co/docs/hub/en/gguf) model,
+a [llama.cpp](https://github.com/ggerganov/llama.cpp) container is automatically selected
+using the latest image built from the `master` branch of the llama.cpp repository.
+Upon successful deployment, a server with an OpenAI-compatible endpoint becomes available.
+
+llama.cpp supports multiple endpoints like `/tokenize`, `/health`, `/embedding`, and many more. For a comprehensive list of available endpoints, please refer to the [API documentation](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md#api-endpoints).
+
+## Deployment Steps
+
+To deploy an endpoint with a llama.cpp container, follow these steps:
+
+1. [Create a new endpoint](./create_endpoint) and select a repository containing a GGUF model. The llama.cpp container will be automatically selected.
+
+<img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/endpoints/llamacpp_1.png" alt="Select model" />
+
+2. Choose the desired GGUF file, noting that memory requirements will vary depending on the selected file. For example, an F16 model requires more memory than a Q4_K_M model.
+
+<img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/endpoints/llamacpp_2.png" alt="Select GGUF file" />
+
+3. Select your desired hardware configuration.
+
+<img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/endpoints/llamacpp_3.png" alt="Select hardware" />
+
+4. Optionally, you can customize the container's configuration settings like `Max Tokens`, `Number of Concurrent Requests`. For more information on those, please refer to the **Configurations** section below.
+
+5. Click the **Create Endpoint** button to complete the deployment.
+
+Alternatively, you can follow the video tutorial below for a step-by-step guide on deploying an endpoint with a llama.cpp container:
+
+<video width="1280" height="720" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/endpoints/llamacpp_guide_video.mp4" controls="true" />
+
+## Configurations
+
+The llama.cpp container offers several configuration options that can be adjusted. After deployment, you can modify these settings by accessing the **Settings** tab on the endpoint details page.
+
+### Basic Configurations
+
+- **Max Tokens (per Request)**: The maximum number of tokens that can be sent in a single request.
+- **Max Concurrent Requests**: The maximum number of concurrent requests allowed for this deployment. Increasing this limit requires additional memory allocation. 
+For instance, setting this value to 4 requests with 1024 tokens maximum per request requires memory capacity for 4096 tokens in total.
+
+### Advanced Configurations
+
+In addition to the basic configurations, you can also modify specific settings by setting environment variables.
+A list of available environment variables can be found in the [API documentation](https://github.com/ggerganov/llama.cpp/blob/master/examples/server/README.md#usage).
+
+Please note that the following environment variables are reserved by the system and cannot be modified:
+
+- `LLAMA_ARG_MODEL`
+- `LLAMA_ARG_HTTP_THREADS`
+- `LLAMA_ARG_N_GPU_LAYERS`
+- `LLAMA_ARG_EMBEDDINGS`
+- `LLAMA_ARG_HOST`
+- `LLAMA_ARG_PORT`
+- `LLAMA_ARG_NO_MMAP`
+- `LLAMA_ARG_CTX_SIZE`
+- `LLAMA_ARG_N_PARALLEL`
+- `LLAMA_ARG_ENDPOINT_METRICS`
+
+## Troubleshooting
+
+In case the deployment fails, please watch the log output for any error messages.
+
+You can access the logs by clicking on the **Logs** tab on the endpoint details page. To learn more, refer to the [Logs](./logs) documentation.
+
+- **Malloc failed: out of memory**  
+  If you see this error message in the log:
+
+  ```
+  ggml_backend_cuda_buffer_type_alloc_buffer: allocating 67200.00 MiB on device 0: cuda
+  Malloc failed: out of memory
+  llama_kv_cache_init: failed to allocate buffer for kv cache
+  llama_new_context_with_model: llama_kv_cache_init() failed for self-attention cache
+  ...
+  ```
+
+  That means the selected hardware configuration does not have enough memory to accommodate the selected GGUF model. You can try to:
+  - Lower the number of maximum tokens per request
+  - Lower the number of concurrent requests
+  - Select a smaller GGUF model
+  - Select a larger hardware configuration
+
+- **Workload evicted, storage limit exceeded**  
+  This error message indicates that the hardware has too little memory to accommodate the selected GGUF model. Try selecting a smaller model or select a larger hardware configuration.
+
+- **Other problems**  
+  For other problems, please refer to the [llama.cpp issues page](https://github.com/ggerganov/llama.cpp/issues). In case you want to create a new issue, please also include the full log output in your bug report.

@@ -18,9 +18,10 @@ Scaling to zero means that your Inference Endpoint will go idle after a given du
 very useful when you want to optimize for low costs or when your workloads are intermittent. 
 
 Scaling to zero replicas helps optimize cost savings by minimizing resource usage during periods of inactivity. However, it's important to
-be aware that scaling to 0 implies a cold start period when the endpoint receives a new request. Additionally, the HTTP server will
-respond with a status code `502 Bad Gateway` while the new replica is initializing. Currently there is no queueing system in place for
-incoming requests.
+be aware that scaling to zero implies a cold start period when the endpoint receives a new request. Additionally, the proxy will
+respond with the status code `503` while the new replica is initializing. To potentially avoid this, you can also add the
+'X-Scale-Up-Timeout' header to your requests. This means that when the endpoint is scaling the proxy will hold the request until a replica
+is ready, or timeout after the specified amount of seconds. For example 'X-Scale-Up-Timeout: 600' would wait for 600 seconds.
 
 <Tip>
 Note that scaling up can take a few minutes depending on the model, which means that scaling from 0 to 1 based on a request is typically not recommended if your

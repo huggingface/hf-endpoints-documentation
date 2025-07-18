@@ -29,7 +29,7 @@ For transcription models, we recommend:
 
 Click "Create Endpoint" to deploy your transcription service.
 
-![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/large-rewrite/assets/quick_start/4-config.png)
+![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/update/improve-transcription/assets/tutorials/transcriptions/config.png)
 
 Your endpoint will take about 5 minutes to initialize. Once it's ready, you'll see it in the "Running" state.
 
@@ -368,34 +368,6 @@ Now, let's deploy it to Hugging Face Spaces so everyone can use it!
 6. **Launch**: Your app will be live at `https://huggingface.co/spaces/your-username/your-space-name`
 
 Your transcription app is now ready to handle meeting notes, interviews, podcasts, and any other audio content that needs to be transcribed and summarized!
-
-## Bonus: Secure your app with AWS PrivateLink
-
-For production transcription applications, especially those handling sensitive audio data like confidential meetings, legal proceedings, or medical consultations, security is paramount. AWS PrivateLink allows you to access your Inference Endpoints from within your AWS VPC without exposing traffic to the public internet.
-
-### Step 1: Create Private Endpoints
-
-When creating your Whisper and Qwen endpoints, select **"Private"** as the security level:
-
-![private-type](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_private_type.png)
-
-### Step 2: Configure VPC Interface Endpoint
-
-After your endpoints are created, you'll receive VPC Service Names. Use these to create VPC Interface Endpoints in your [AWS VPC Console](https://console.aws.amazon.com/vpc/home?#Endpoints).
-
-![add-private-link](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_4_add_private_link.png)
-
-#### Step 3: Update your application
-
-Modify your endpoint URLs to use the private VPC endpoints:
-
-```python
-# Use your private VPC endpoint URLs
-TRANSCRIPTION_ENDPOINT = "https://your-private-vpc-endpoint.vpc-endpoint.region.vpce.amazonaws.com/api/v1/audio/transcriptions"
-SUMMARIZATION_ENDPOINT = "https://your-private-vpc-endpoint.vpc-endpoint.region.vpce.amazonaws.com/v1/chat/completions"
-```
-
-For complete setup instructions, see our [Private Link guide](/docs/inference-endpoints/guides/private_link).
 
 ## Next steps
 

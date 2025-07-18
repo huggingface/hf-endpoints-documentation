@@ -7,9 +7,6 @@
     title: Quick Start
   - local: about
     title: About Inference Endpoints 
-    title: Quick Start
-  - local: about
-    title: About Inference Endpoints 
   - local: api_reference
     title: API Reference
   title: Overview
@@ -24,8 +21,6 @@
 - sections: 
   - local: support/pricing
     title: Pricing
-  - local: support/support
-    title: Help & Support
   - local: support/faq
     title: FAQ
   title: Support

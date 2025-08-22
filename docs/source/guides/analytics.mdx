@@ -6,15 +6,18 @@ how to analyze the graphs.
 
 ![intro](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/analytics/1-intro.png)
 
-In the top bar, you can configure for which time frame you'll inspect the metrics, this setting affects all graphs on the page. You can choose
-between any of the existing settings from the drop down, or click-and-drag over any graph for a custom timeframe. You can also enable/disable
+In the top bar, you can configure the high level view:
+
+- Which replica to view metrics from. Either from an individual replica or from all of them.
+- If you want to view metrics related to the requests, the hardware or look at the timeline of replicas.
+- Which time frame you'll inspect the metrics, this setting affects all graphs on the page. You can choose between any of the existing settings from the drop down, or click-and-drag over any graph for a custom timeframe. You can also enable/disable
 auto refresh or view the metrics per replica or for all.
 
 ![config](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/analytics/2-config.png)
 
 ## Understanding the graphs
 
-### Number of Requests
+### Number of Requests (HTTP Requests)
 
 The first graph at the top left shows you how many requests your Inference Endpoint has received. By default they are grouped by HTTP response
 classes, but by switching the toggle you can view them by individual status. As a reminder the HTTP response classes are:
@@ -27,6 +30,8 @@ classes, but by switching the toggle you can view them by individual status. As 
 
 We recommend checking the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status) for more information on individual
 status codes.
+
+The boxes above the graph also show the % of requests in the respective response class.
 
 ![http](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/analytics/3-http-reqs.png)
 
@@ -54,21 +59,21 @@ the worst case latencies can be long.
 
 ![latency](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/analytics/5-latency.png)
 
-### Replica Status
+### Running Replicas
 
-In the replica status graph, you'll see in the basic view how many running replicas you have during a point in time. The red line shows
+In the running replica graph, you'll see in the view how many running replicas you have during a point in time. The red line shows
 what your current maximum replicas setting is. 
 
-![status](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/analytics/6-status.png)
+![status](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/analytics/6-running.png)
 
-If you toggle the advanced setting, you'll instead see the different statuses of the individual replicas, going from *pending* all the way
-to *running*. This is very useful to get a sense of how long it takes for an endpoint to actually become ready to serve requests.
+For a more advanced view to see the different statuses of the individual replicas, going from *pending* all the way
+to *running* you can toggle to the Timeline section. This is very useful to get a sense of how long it takes for an endpoint to actually become ready to serve requests.
 
-![advanced](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/analytics/7-status-advanced.png)
+![advanced](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/analytics/7-timeline.png)
 
-### Hardware Usage
+### Compute 
 
-The last four graphs are dedicated for the hardware usage. You'll find:
+These four graphs are dedicated for the hardware usage. You'll find:
 
 - CPU usage: How much processing power is being used.
 - Memory usage: How much RAM is being used.
@@ -76,6 +81,8 @@ The last four graphs are dedicated for the hardware usage. You'll find:
 - GPU Memory (VRAM) usage: How much GPU memory is being used.
 
 ![usage](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/analytics/8-usage.png)
+
+By toggling "details" you can either view the average or per replica value for the metric in question.
 
 If you have autoscaling based on hardware utilization enabled, these are the metrics that determine your autoscaling behaviour. You can
 read more about autoscaling [here](./autoscaling#scalingbasedonhardwareutilization)

@@ -26,7 +26,7 @@ To achieve that we've made Inference Endpoints the central place to deploy high 
 
 Currently we have native support for:
 - vLLM
-- Text-generations-inference (TGI)
+- Text-generation-inference (TGI)
 - SGLang
 - llama.cpp
 - and Text-embeddings-inference (TEI)

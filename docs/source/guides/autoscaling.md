@@ -56,7 +56,7 @@ once scaled down.
 
 You can also track the hardware utilization metrics in the Analytics tab, or read more about it [here](./analytics#hardwareutilisation).
 
-### Scaling based on pending requests (beta feature)
+### Scaling based on pending requests
 
 In some cases, the hardware utilization is not a 'fast' enough metric. The reason is that hardware metrics are always slightly lagging from
 the actual requests. A metric that is more of a leading indicator is pending requests.
@@ -64,9 +64,5 @@ the actual requests. A metric that is more of a leading indicator is pending req
 - **Pending requests** are requests that have not yet received an HTTP status, meaning they include in-flight requests and requests currently being processed.
 - **By default**, if there are more than 1.5 pending requests per replica in the past 20 seconds, it triggers an autoscaling event and adds a replica to your deployment.
 You can adjust this threshold value to meet your specific requirements under Endpoint settings.
-
-<Tip warning={true}>
-This is currently an experimental feature and we advise testing prior to using it for production workloads.
-</Tip>
 
 Similarly to the hardware metrics, you can track the pending requests in the Analytics tab, or read more about it [here](./analytics#pendingrequests).

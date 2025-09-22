@@ -10,7 +10,7 @@ While the prices are shown by the hour, the actual cost is billed per minute.
 
 ## CPU Instances
 
-The table below shows currently available CPU instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request a quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20[INSTANCE%20TYPE]%20for%20the%20following%20account%20[HF%20ACCOUNT].) to use it.
+The table below shows currently available CPU instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request quota](https://endpoints.huggingface.co/contact) to use it.
 
 | Provider | Instance Type | Instance Size | Hourly rate | vCPUs | Memory | Architecture                                |
 | -------- | ------------- | ------------- | ----------- | ----- | ------ | ------------------------------------------- |
@@ -35,7 +35,7 @@ The table below shows currently available CPU instances and their hourly pricing
 
 ## GPU Instances
 
-The table below shows currently available GPU instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request a quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20[INSTANCE%20TYPE]%20for%20the%20following%20account%20[HF%20ACCOUNT].) to use it.
+The table below shows currently available GPU instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request quota](https://endpoints.huggingface.co/contact) to use it.
 
 | Provider | Instance Type | Instance Size | Hourly rate | GPUs | Memory | Architecture |
 | -------- | ------------- | ------------- |------------ | ---- | ------ | ------------ |
@@ -52,10 +52,18 @@ The table below shows currently available GPU instances and their hourly pricing
 | aws      | nvidia-a100   | x2            | $5          | 2    | 160 GB | NVIDIA A100  |
 | aws      | nvidia-a100   | x4            | $10         | 4    | 320 GB | NVIDIA A100  |
 | aws      | nvidia-a100   | x8            | $20         | 8    | 640 GB | NVIDIA A100  |
+| aws      | nvidia-h100   | x1            | $4.5        | 1    | 80 GB  | NVIDIA H100  |
+| aws      | nvidia-h100   | x2            | $9          | 2    | 160 GB | NVIDIA H100  |
+| aws      | nvidia-h100   | x4            | $18         | 4    | 320 GB | NVIDIA H100  |
+| aws      | nvidia-h100   | x8            | $36         | 8    | 640 GB | NVIDIA H100  |
 | aws      | nvidia-h200   | x1            | $5          | 1    | 141 GB | NVIDIA H200  |
 | aws      | nvidia-h200   | x2            | $10         | 2    | 282 GB | NVIDIA H200  |
 | aws      | nvidia-h200   | x4            | $20         | 4    | 564 GB | NVIDIA H200  |
 | aws      | nvidia-h200   | x8            | $40         | 8    | 1128 GB| NVIDIA H200  |
+| aws      | nvidia-b200   | x1            | $9.25       | 1    | 256 GB | NVIDIA B200  |
+| aws      | nvidia-b200   | x2            | $18.5       | 2    | 512 GB | NVIDIA B200  |
+| aws      | nvidia-b200   | x4            | $37         | 4    | 1024 GB| NVIDIA B200  |
+| aws      | nvidia-b200   | x8            | $74         | 8    | 2048 GB| NVIDIA B200  |
 | gcp      | nvidia-t4     | x1            | $0.5        | 1    | 16 GB  | NVIDIA T4    |
 | gcp      | nvidia-l4     | x1            | $0.7        | 1    | 24 GB  | NVIDIA L4    |
 | gcp      | nvidia-l4     | x4            | $3.8        | 4    | 96 GB  | NVIDIA L4    |
@@ -70,7 +78,7 @@ The table below shows currently available GPU instances and their hourly pricing
 
 ## INF2 Instances
 
-The table below shows currently available INF2 instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request a quota](mailto:api-enterprise@huggingface.co?subject=Quota%20increase%20HF%20Endpoints&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20access/quota%20increase%20for%20[INSTANCE%20TYPE]%20for%20the%20following%20account%20[HF%20ACCOUNT].) to use it.
+The table below shows currently available INF2 instances and their hourly pricing. If the instance type cannot be selected in the application, you need to [request quota](https://endpoints.huggingface.co/contact) to use it.
 
 | Provider | Instance Type | Instance Size | Hourly rate | Accelerators | Accelerator Memory | RAM     | Architecture     |
 | -------- | ------------- | ------------- |------------ | ------------ | ------------------ | ------- | ---------------- |

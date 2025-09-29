@@ -20,7 +20,7 @@ accessible via a simple API. This lets you focus on building your application, w
 
 ![about](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/about.png)
 
-## Inference Enginges
+## Inference Engines
 
 To achieve that we've made Inference Endpoints the central place to deploy high performance and open-source Inference Engines.
 
@@ -32,7 +32,7 @@ Currently we have native support for:
 - and Text-embeddings-inference (TEI)
 
 For the natively supported engines we try to set sensible defaults, expose the most relevant configuration settings and collaborate closely
-with the teams maintaing the Inference Enginges to make sure they are optimized for production performance.
+with the teams maintaining the Inference Engines to make sure they are optimized for production performance.
 
 If you don't find your favourite engine here, please reach out to us at [api-enterprise@huggingface.co](api-enterprise@huggingface.co).
 

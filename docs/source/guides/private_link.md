@@ -9,26 +9,20 @@ through how to set it up.
 
 ## Configuring the AWS Private Link
 
-### 1. Select Private Endpoint Security Level
+### 1. Configure the Private Link
 
-Choose the "Private" option to ensure the endpoint is only available through an intra-region secured AWS PrivateLink connection.
-Enable PrivateLink sharing if you want the PrivateLink to be shared between several endpoints.
-This connects one or more endpoints to the same VPC Endpoint.
-
-![select private link](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_private_type.png)
-
-### 2. Create the Endpoint
+Under the "Security Level" setting you can toggle open the "AWS Private Link" section. The Private Link ensures the endpoint is only available through an intra-region secured AWS PrivateLink connection.
 
 After providing your AWS Account ID and any other required information, click Create Endpoint. The endpoint creation process will begin.
 
-![creation process](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_2_endpoint_creation.png)
+![select private link](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_private_type.png)
 
 After a few minutes, the endpoint will be created, and you will see the VPC Service Name in the overview. This name is necessary for
 creating the VPC Interface Endpoint in your AWS account.
 
 ![vpc service name](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_3_vpc_ready.png)
 
-### 3. Connect your VPC to your Interface Endpoint
+### 2. Connect your VPC to your Interface Endpoint
 
 Go to your AWS [console](https://console.aws.amazon.com/vpc/home?#Endpoints) and navigate to the VPC section to create the VPC Interface
 Endpoint. Select "Other endpoint services" and enter the VPC Service Name provided earlier.
@@ -40,7 +34,7 @@ they align with your security requirements.
 
 ![vpc endpoint](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_5_add_vpc.png)
 
-### 4. Ready to Connect
+### 3. Ready to Connect
 
 After the VPC Endpoint status changes from pending to available, you should see an Endpoint URL in the overview. This URL can now
 be used inside your VPC to access your endpoint in a secure and protected way, ensuring traffic is only occurring between the two

@@ -87,29 +87,51 @@ By toggling "details" you can either view the average or per replica value for t
 If you have autoscaling based on hardware utilization enabled, these are the metrics that determine your autoscaling behaviour. You can
 read more about autoscaling [here](./autoscaling#scalingbasedonhardwareutilization)
 
-## Create an integration with the Inference Endpoints Metrics API
+## Create an integration with the Inference Endpoints OpenMetrics API
 
 **This feature is currently in Beta. You will need to be subscribed to [Team or Enterprise](https://huggingface.co/pricing) to take advantage of this feature.**
 
-You have the ability to integrate the metrics of your Inference Endpoint(s) to your internal tool. 
+You can export real-time metrics from your Inference Endpoints into your own monitoring stack. The Metrics API exposes metrics in the OpenMetrics format, which is widely supported by observability tools such as Prometheus, Grafana, and Datadog.
 
-Utilizing OpenMetrics, you can create an integration to allow for a more granular view of your Endpoint's metrics in almost-real-time,
-showing for example:
-- requests grouped by replica
-- latency distribution of requests
-- hardware metrics for all accelerator types
+This allows you to monitor in near real-time:
+- Requests grouped by replica
+- Latency distributions (p50, p95, etc.)
+- Hardware metrics (CPU, GPU, memory, accelerator utilization)
 
-OpenMetrics is a standardized format for representing and transmitting time series data, making it easier for systems to consume and
-process metrics, ensuring that the data is structured optimally for storage and transport.
+### Query metrics manually
 
-Further configurations and notifications can be set up for your Endpoints based on these metrics in your internal tool. 
+You can use `curl` to query the metrics endpoint directly and inspect the raw data:
+```bash
+curl -X GET "https://api.endpoints.huggingface.cloud/v2/endpoint/{namespace}/{endpoint-name}/open-metrics" \
+  -H "Authorization: Bearer YOUR_AUTH_TOKEN"
+```
 
-### Connect with your internal tool
+This will return metrics in OpenMetrics text format:
+```bash
+# HELP latency_distribution Latency distribution
+# TYPE latency_distribution summary
+latency_distribution{quantile="0.5"} 0.006339203
+latency_distribution{quantile="0.9"} 0.007574241
+latency_distribution{quantile="0.95"} 0.007994495
+latency_distribution{quantile="0.99"} 0.020140918
+latency_distribution_count 4
+latency_distribution_sum 0.042048857
+# HELP http_requests HTTP requests by code and replicas
+# TYPE http_requests counter
+http_requests{replica_id="fqwg7eri-hskoj",status_code="200"} 1152
+http_requests{replica_id="q9cv26ut-3vo4s",status_code="200"} 1
+# HELP cpu_usage_percent CPU percent
+# TYPE cpu_usage_percent gauge
+# UNIT cpu_usage_percent percent
+```
 
-There are a variety of tools that work with OpenMetrics. You'll need to set up an agent. Here's some example docs to help get you started:
+### Connect with your observability tools
 
-- [Datadog](https://docs.datadoghq.com/integrations/openmetrics/)
-- [Grafana](https://tinyurl.com/e4fypk5m)
+OpenMetrics is widely supported across monitoring ecosystems. A few common options:
+- [Datadog OpenMetrics integration](https://docs.datadoghq.com/integrations/openmetrics/)
+- [Grafana Prometheus datasource](https://tinyurl.com/e4fypk5m)
+
+From there, you can set up dashboards, alerts, and reports to monitor endpoint performance.
 
 ### Subscribe to Team or Enterprise
 

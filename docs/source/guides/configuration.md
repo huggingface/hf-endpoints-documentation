@@ -65,9 +65,14 @@ scaling down to zero. Default is after 1 hour with no activity.
     - Based on hardware usage: For example, a scale up will be triggered if the average hardware utilisation (%) exceeds this threshold for more than 20 seconds.
     - Pending requests: A scale up event will be triggered if the average number of pending requests exceeds this threshold for more than 20 seconds.
 
-## Container Configuration
+## Inference Engine Configuration
 This section allows you to specify how the container hosting your model behaves. This setting depends on the selected inference engine.
 For configuration details, please read the Inference Engine section.
+![inference-engine](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/9-inference-engine.png)
+
+## Container Configuration
+Here you can edit the container arguments and container command.
+![container-configs](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/8-container-config.png)
 
 ## Environment Variables
 Environment variables can be provided to customize container behavior or pass secrets.

@@ -93,7 +93,7 @@ Tags are plain text labels added via the Add button.
 ## Network
 This section determines where your deployed endpoint can be accessed from. 
 
-By default, your endpoint is accessible from the Internet, and secured with TLS/SSL. Endpoint deployed on an AWS instance can use AWS Privale Link to restrict access to a specific VPC.
+By default, your endpoint is accessible from the Internet, and secured with TLS/SSL. Endpoints deployed on an AWS instance can use AWS PrivateLink to restrict access to a specific VPC.
 
 The available options are:
 - Use AWS PrivateLink: check to activate AWS PrivateLink for your endpoint.

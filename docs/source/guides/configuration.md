@@ -91,7 +91,7 @@ Tags are plain text labels added via the Add button.
 ![tags](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/6-tags.png)
 
 ## Network
-This section determines where your deployed endpoint can be accessed from. 
+This section determines from where your deployed endpoint can be accessed. 
 
 By default, your endpoint is accessible from the Internet, and secured with TLS/SSL. Endpoints deployed on an AWS instance can use AWS PrivateLink to restrict access to a specific VPC.
 

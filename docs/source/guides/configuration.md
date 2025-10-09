@@ -41,7 +41,7 @@ selected region are grayed out and unclickable.
 ## Authentication
 
 This section determines who can access your deployed endpoint. Available options are:
-- **Private (default)**: Accessible only to you, or members of your Hugging Face organization, using a personal HF access tokens.
+- **Private (default)**: Accessible only to you, or members of your Hugging Face organization, using a personal HF access token.
 - **Public**: Anyone can access your endpoint, without authentication.
 - **HF Restricted**: Anyone with a Hugging Face account can access it, using their personal HF access tokens.
 

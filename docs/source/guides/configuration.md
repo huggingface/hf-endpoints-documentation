@@ -95,10 +95,11 @@ This section determines from where your deployed endpoint can be accessed.
 
 By default, your endpoint is accessible from the Internet, and secured with TLS/SSL. Endpoints deployed on an AWS instance can use AWS PrivateLink to restrict access to a specific VPC.
 
-The available options are:
-- Use AWS PrivateLink: check to activate AWS PrivateLink for your endpoint.
-- AWS Account ID: You need to provide the AWS ID of the account that owns the VPC you want to restrict access to.
-- PrivateLink Sharing: check to enable sharing of the same PrivateLink between different endpoints.
+To configure it you need to:
+1. check the box to activate AWS PrivateLink for your endpoint.
+2. Add your AWS Account ID: You need to provide the AWS ID of the account that owns the VPC you want to restrict access to.
+
+Optionally you can enable PrivateLink Sharing. This will enable sharing of the same PrivateLink between different endpoints.
 
 ![network](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/10-network.png)
 

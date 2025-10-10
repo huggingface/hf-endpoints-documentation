@@ -38,16 +38,16 @@ provider, accelerator, and region are chosen, a list of available instance types
 You can select a tile to choose that instance type for your deployment. Instances that are incompatible or unavailable in the
 selected region are grayed out and unclickable.
 
-## Security Level
+## Authentication
 
 This section determines who can access your deployed endpoint. Available options are:
-- **Protected (default)**: Accessible only to members of your Hugging Face organization using personal access tokens. The endpoint is secured with TLS/SSL.
+- **Private (default)**: Accessible only to you, or members of your Hugging Face organization, using a personal HF access token.
 - **Public**: Anyone can access your endpoint, without authentication.
-- **HF Restricted**: Anyone with a Hugging Face account can access it, using a personal Hugging Face Token generated from their account.
+- **HF Restricted**: Anyone with a Hugging Face account can access it, using their personal HF access tokens.
 
-Additionally, if you deploy your Inference Endpoint in AWS, you can use **AWS Private Link** for an intra-region secured connection to your AWS VPN.
+Additionally, if you deploy your Inference Endpoint in AWS, you can use **AWS PrivateLink** for an intra-region secured connection to your AWS VPN.
 
-![security](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/3-security.png)
+![auth](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/11-auth.png)
 
 ## Autoscaling
 
@@ -89,6 +89,18 @@ you will be able to filter and sort endpoints based on these tags.
 Tags are plain text labels added via the Add button.
 
 ![tags](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/6-tags.png)
+
+## Network
+This section determines from where your deployed endpoint can be accessed. 
+
+By default, your endpoint is accessible from the Internet, and secured with TLS/SSL. Endpoints deployed on an AWS instance can use AWS PrivateLink to restrict access to a specific VPC.
+
+The available options are:
+- Use AWS PrivateLink: check to activate AWS PrivateLink for your endpoint.
+- AWS Account ID: You need to provide the AWS ID of the account that owns the VPC you want to restrict access to.
+- PrivateLink Sharing: check to enable sharing of the same PrivateLink between different endpoints.
+
+![network](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/10-network.png)
 
 ## Advanced Settings
 Advanced Settings offer more fine-grained control over deployment.

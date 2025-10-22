@@ -43,7 +43,7 @@ selected region are grayed out and unclickable.
 This section determines who can access your deployed endpoint. Available options are:
 - **Private (default)**: Accessible only to you, or members of your Hugging Face organization, using a personal HF access token.
 - **Public**: Anyone can access your endpoint, without authentication.
-- **HF Restricted**: Anyone with a Hugging Face account can access it, using their personal HF access tokens.
+- **Authenticated**: Anyone with a Hugging Face account can access it, using their personal HF access tokens.
 
 Additionally, if you deploy your Inference Endpoint in AWS, you can use **AWS PrivateLink** for an intra-region secured connection to your AWS VPN.
 

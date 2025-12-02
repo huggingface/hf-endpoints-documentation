@@ -504,8 +504,8 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 <details>
 <summary>
 It's also a good idea to include a `.dockerignore` file to make sure we're not copy pasting irrelevant file. Since it's quite verbose we won't go in detail through all the parts there. But please copy it into your working directory.
-<summary/>
-<details/>
+</summary>
+</details>
 
 ## 3. Build and Push the Image
 

@@ -226,26 +226,26 @@ docker push your-username/smollm-endpoint:v0.1.0
 Now switch to the Inference Endpoints UI and deploy your custom container.
 
 1. Open the [Inference Endpoints dashboard](https://endpoints.huggingface.co/) and click **"+ New"**.
-  ![endpoint-new.png](../../../assets/custom_container/endpoint-new.png)
+  ![endpoint-new.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/endpoint-new.png)
 
 2. Select **`HuggingFaceTB/SmolLM3-3B`** as the model repository (this will be
   mounted at `/repository` inside the container).
-  ![choose-smollm.png](../../../assets/custom_container/choose-smollm.png)
+  ![choose-smollm.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/choose-smollm.png)
 
 3. Click **“Configure”** to proceed with the deployment setup.
-  ![configure.png](../../../assets/custom_container/configure.png)
+  ![configure.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/configure.png)
 
 4. This is the configuration page where you’ll define compute, networking, and container settings.
-  ![home.png](../../../assets/custom_container/home.png)
+  ![home.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/home.png)
 
 5. Choose the hardware.
   For this example, a **T4 GPU** is sufficient.
-  ![authenticated.png](../../../assets/custom_container/authenticated.png)
+  ![authenticated.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/authenticated.png)
 
 6. Under **Custom Container**, enter:
   * your image URL (e.g., `your-username/smollm-endpoint:v0.1.0`)
   * the port exposed by your container (e.g., `8000` or whatever you used in `CMD`)
-    ![custom.png](../../../assets/custom_container/custom.png)
+    ![custom.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/custom.png)
 
 7. Click **“Create Endpoint”**.
   The platform will:
@@ -253,11 +253,11 @@ Now switch to the Inference Endpoints UI and deploy your custom container.
   * pull your container image
   * mount the model at `/repository`
   * start your FastAPI server
-    ![initializing.png](../../../assets/custom_container/initializing.png)
+    ![initializing.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/initializing.png)
 
 8. After a short initialization period, the status will change to **Running**.
   Your custom container is now serving requests.
-  ![running.png](../../../assets/custom_container/running.png)
+  ![running.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/running.png)
 
 Once deployed, your endpoint will be available at a URL like:
 
@@ -292,7 +292,7 @@ print(f"Input:\n{prompt}\n\nOutput:\n{response['response']}")
 
 If you open the **Logs** tab of your endpoint, you should see the incoming POST request and the model’s response.
 
-![post.png](../../../assets/custom_container/post.png)
+![post.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/post.png)
 
 ```
 Input:

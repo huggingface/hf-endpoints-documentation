@@ -84,68 +84,68 @@ We will follow a few best practices:
 
     For convenience, we also create a small `ModelNotLoadedError` class, to be able to communicate more clearly when the model & tokenizer aren't loaded. 
 
-    ```python
-    # ------------------------------------------------------
-    # Model Manager
-    # ------------------------------------------------------
-    class ModelNotLoadedError(RuntimeError):
-        """Raised when attempting to use the model before it is loaded."""
+```python
+# ------------------------------------------------------
+# Model Manager
+# ------------------------------------------------------
+class ModelNotLoadedError(RuntimeError):
+    """Raised when attempting to use the model before it is loaded."""
 
 
-    class ModelManager:
-        def __init__(self, model_id: str, device: str, dtype: torch.dtype):
-            self.model_id = model_id
-            self.device = device
-            self.dtype = dtype
+class ModelManager:
+    def __init__(self, model_id: str, device: str, dtype: torch.dtype):
+        self.model_id = model_id
+        self.device = device
+        self.dtype = dtype
 
-            self.model: Optional[AutoModelForCausalLM] = None
-            self.tokenizer: Optional[AutoTokenizer] = None
+        self.model: Optional[AutoModelForCausalLM] = None
+        self.tokenizer: Optional[AutoTokenizer] = None
 
-        async def load(self):
-            """Load model + tokenizer if not already loaded."""
-            if self.model is not None and self.tokenizer is not None:
-                return
+    async def load(self):
+        """Load model + tokenizer if not already loaded."""
+        if self.model is not None and self.tokenizer is not None:
+            return
 
-            start = time.perf_counter()
-            logger.info(f"Loading tokenizer and model for {self.model_id}")
+        start = time.perf_counter()
+        logger.info(f"Loading tokenizer and model for {self.model_id}")
 
-            self.tokenizer = AutoTokenizer.from_pretrained(
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            self.model_id,
+        )
+        self.model = (
+            AutoModelForCausalLM.from_pretrained(
                 self.model_id,
+                dtype=self.dtype,
             )
-            self.model = (
-                AutoModelForCausalLM.from_pretrained(
-                    self.model_id,
-                    dtype=self.dtype,
-                )
-                .to(self.device)
-                .eval()
-            )
-            duration_ms = (time.perf_counter() - start) * 1000
-            logger.info(f"Finished loading {self.model_id} in {duration_ms:.2f} ms")
+            .to(self.device)
+            .eval()
+        )
+        duration_ms = (time.perf_counter() - start) * 1000
+        logger.info(f"Finished loading {self.model_id} in {duration_ms:.2f} ms")
 
-        async def unload(self):
-            """Free model + tokenizer and clear CUDA cache."""
-            if self.model is not None:
-                self.model.to("cpu")
-                del self.model
-                self.model = None
+    async def unload(self):
+        """Free model + tokenizer and clear CUDA cache."""
+        if self.model is not None:
+            self.model.to("cpu")
+            del self.model
+            self.model = None
 
-            if self.tokenizer is not None:
-                del self.tokenizer
-                self.tokenizer = None
+        if self.tokenizer is not None:
+            del self.tokenizer
+            self.tokenizer = None
 
-            if torch.cuda.is_available():
-                torch.cuda.empty_cache()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
-        def get(self):
-            """Return the loaded model + tokenizer or raise if not ready."""
-            if self.model is None or self.tokenizer is None:
-                raise ModelNotLoadedError("Model not loaded")
-            return self.model, self.tokenizer
+    def get(self):
+        """Return the loaded model + tokenizer or raise if not ready."""
+        if self.model is None or self.tokenizer is None:
+            raise ModelNotLoadedError("Model not loaded")
+        return self.model, self.tokenizer
 
 
-    model_manager = ModelManager(MODEL_ID, DEVICE, DTYPE)
-    ```
+model_manager = ModelManager(MODEL_ID, DEVICE, DTYPE)
+```
 
 ### 1.5 Use FastAPI lifespan for startup and shutdown
 
@@ -156,21 +156,21 @@ We will follow a few best practices:
     This keeps your server’s memory usage clean and predictable.
 
 
-    ```python
-    # ------------------------------------------------------
-    # Lifespan (startup + shutdown)
-    # ------------------------------------------------------
-    @asynccontextmanager
-    async def lifespan(app: FastAPI):
-        await model_manager.load()
-        try:
-            yield
-        finally:
-            await model_manager.unload()
+```python
+# ------------------------------------------------------
+# Lifespan (startup + shutdown)
+# ------------------------------------------------------
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await model_manager.load()
+    try:
+        yield
+    finally:
+        await model_manager.unload()
 
 
-    app = FastAPI(lifespan=lifespan)
-    ```
+app = FastAPI(lifespan=lifespan)
+```
 
 ### 1.6 Define the request and response schemas
 

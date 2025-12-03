@@ -42,7 +42,7 @@ Before getting to the code, let's install the necessary dependencies:
 uv add transformers torch "fastapi[standard]"
 ```
 
-Now let's build the code step by step. We'll start by adding all imports and declare a few global variables. The `DEVICE` and `DTYPE` global variables are dynamically set according to the underlying GPU/CPU server runtime.
+Now let's build the code step by step. We'll start by adding all imports and declare a few global variables. The `DEVICE` and `DTYPE` global variables are dynamically set according to the underlying GPU/CPU harware availability.
 
 ### 1.3 Add configurations
 
@@ -80,7 +80,7 @@ We will follow a few best practices:
         * safely **unload** it and free memory when the server shuts down.
 
     The benefit we get here is that we can control the server's behaviour based on the state of the model and tokenizer.
-    We want the server to start --> load the model & tokenizer --> then signal that the server is ready for requests.
+    We want the server to start → load the model & tokenizer → then signal that the server is ready for requests.
 
     For convenience, we also create a small `ModelNotLoadedError` class, to be able to communicate more clearly when the model & tokenizer aren't loaded. 
 
@@ -150,9 +150,9 @@ model_manager = ModelManager(MODEL_ID, DEVICE, DTYPE)
 ### 1.5 Use FastAPI lifespan for startup and shutdown
 
 2. **FastAPI lifespan**
-    Use FastAPI’s `lifespan` to:
-        * load the model on app startup using `model_manager.load()`
-        * unload the model on app shutdown using `model_manager.unload()`
+    Using FastAPI's `lifespan` we can tie the model manager's functionality to the server by:
+        * loading the model on app startup using `model_manager.load()`
+        * unloading the model on app shutdown using `model_manager.unload()`
     This keeps your server’s memory usage clean and predictable.
 
 
@@ -283,6 +283,7 @@ If you want to run the server locally you would need to replace:
 - MODEL_ID = "/repository"
 + MODEL_ID = "HuggingFaceTB/SmolLM3-3B"
 ```
+Since locally we acutally do want to download the model from the Hugging Face Hub. But don't forget to change this back!
 
 and then run the following:
 
@@ -528,8 +529,8 @@ COPY pyproject.toml uv.lock ./
 RUN uv venv ${VIRTUAL_ENV} \
     && uv sync --frozen --no-dev --no-install-project
 
-# Copy the rest of the application code
-COPY . .
+# Copy the main application code
+COPY main.py .
 
 # Re-sync to capture the project itself inside the venv
 RUN uv sync --frozen --no-dev
@@ -542,10 +543,6 @@ EXPOSE 8000
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
-
-> [!TIP]
-> It's also a good idea to include a `.dockerignore` file to make sure we're not copy pasting irrelevant files. Since it's quite verbose we won't go in detail through all the parts there. But please copy it into your working directory.
-
 
 ## 3. Build and Push the Image
 
@@ -575,12 +572,12 @@ Now switch to the Inference Endpoints UI and deploy your custom container.
 4. This is the configuration page where you’ll define compute, networking, and container settings.
     ![home.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/home.png)
 
-5. Choose the hardware. For this example, a **T4 GPU** is sufficient.
+5. Choose the hardware. Let's go with the suggested L4.
     ![authenticated.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/authenticated.png)
 
 6. Under **Custom Container**, enter:
     * your image URL (e.g., `your-username/smollm-endpoint:v0.1.0`)
-    * the port exposed by your container (e.g., `8000` or whatever you used in `CMD`)
+    * the port exposed by your container (in our case `8000`)
     ![custom.png](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/custom_container/custom.png)
 
 7. Click **“Create Endpoint”**. The platform will:
@@ -640,6 +637,6 @@ Okay, so I need to ...
 
 Congratulations for making it until the end. 🎉
 
-A Good idea to extend this demo would be to test out with a completely different model, say an audio model or image generaion one.
+A good idea to extend this demo would be to test out with a completely different model, say an audio model or image generaion one.
 
 Happy hacking 🙌

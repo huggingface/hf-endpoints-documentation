@@ -42,7 +42,7 @@ Before getting to the code, let's install the necessary dependencies:
 uv add transformers torch "fastapi[standard]"
 ```
 
-Now let's build the code step by step. We'll start by adding all imports and declare a few global variables. The `DEVICE` and `DTYPE` global variables are dynamically set according to the underlying GPU/CPU harware availability.
+Now let's build the code step by step. We'll start by adding all imports and declare a few global variables. The `DEVICE` and `DTYPE` global variables are dynamically set according to the underlying GPU/CPU hardware availability.
 
 ### 1.3 Add configurations
 
@@ -176,7 +176,7 @@ app = FastAPI(lifespan=lifespan)
 
 Now that we have the lifecycle in place, we can start building the core logic of the server itself. We'll start by defining the request and response types, so that we know exactly what type of data we can pass in to the server and what to expect in response.
 
-The default value of the `max_new_tokens` will be set to `128` and can be increased to a maximum of `512`. This is a practical way of capping the max memory a request can take. 
+The default value for `max_new_tokens` is `128` and can be increased to a maximum of `512`. This is a practical way of capping the maximum memory a request can take. 
 
 ```python
 # ------------------------------------------------------
@@ -202,7 +202,7 @@ Feel free to extend the parameters to include `temperature`, `top_p` and other [
 
 ### 1.7 Implement the server routes
 
-Moving on to creating the routes for the server - let's start with the `/health` route. Here, we're finally using the model manager to know if the model and tokenizer are ready to go. If the model manager returns a `ModelNotLoadedError` we also return an error with the statuscode of `503`.
+Moving on to creating the routes for the server - let's start with the `/health` route. Here, we're finally using the model manager to know if the model and tokenizer are ready to go. If the model manager returns a `ModelNotLoadedError`, we also return an error with the status code of `503`.
 
 On Inference Endpoints (and most other platforms), a *readiness probe* will ping an endpoint every second on its `/health` route, to check that everything is okay. Using this pattern we can clearly signal that the server isn't ready before the models and tokenizer are fully initialized.
 
@@ -221,10 +221,10 @@ def health():
 
 And finally the most interesting section: the `/generate` route. This is the route that we want to call to actually use the model for text generation.
 
-- It's starts with a similar guard as the `/health` route, we check that the model and tokenizer are loaded, and if not, return a `503` error.
-- We assume that the model supports `apply_chat_template`, but fallback to passing the prompt directly without chat templating
-- We encode the text to tokens and call `model.generate()` 
-- Lastly, we gather the outputs, decode the tokens to text and return the response
+- It starts with a similar guard as the `/health` route: we check that the model and tokenizer are loaded, and if not, return a `503` error.
+- We assume that the model supports `apply_chat_template`, but fall back to passing the prompt directly without chat templating.
+- We encode the text to tokens and call `model.generate()`.
+- Lastly, we gather the outputs, decode the tokens to text, and return the response.
 
 ```python
 @app.post("/generate", response_model=GenerateResponse)
@@ -283,7 +283,7 @@ If you want to run the server locally you would need to replace:
 - MODEL_ID = "/repository"
 + MODEL_ID = "HuggingFaceTB/SmolLM3-3B"
 ```
-Since locally we acutally do want to download the model from the Hugging Face Hub. But don't forget to change this back!
+Since locally we actually do want to download the model from the Hugging Face Hub. But don't forget to change this back!
 
 and then run the following:
 
@@ -499,10 +499,10 @@ uv lock
 
 Our Dockerfile will be very standard:
 
-1. We us the base pytorch image with CUDA and cuDNN
+1. We use the base PyTorch image with CUDA and cuDNN
 2. We copy the uv binary
-3. Make sure that we're not running things as a priviledged user
-4. Install the depencencies with uv
+3. Make sure that we're not running things as a privileged user
+4. Install the dependencies with uv
 5. Make sure that we expose the correct port
 6. Run the server
 
@@ -554,7 +554,7 @@ docker push your-username/smollm-endpoint:v0.1.0
 ```
 
 > [!NOTE]
-> Why `--platform linux/amd64`? If you're building this image on a Mac, it will automatically be built for an `arm64` machine, which is not a supported architecture for Inference Endpoints. That is why we need this flag to tell that we're targeting the `x86` architecture. If you're on a `x86` machine already, you can ignore this flag.
+> Why `--platform linux/amd64`? If you're building this image on a Mac, it will automatically be built for an `arm64` machine, which is not a supported architecture for Inference Endpoints. That is why we need this flag to specify that we're targeting the `x86` architecture. If you're on an `x86` machine already, you can ignore this flag.
 
 ## 4. Create the Endpoint
 
@@ -637,6 +637,6 @@ Okay, so I need to ...
 
 Congratulations for making it until the end. 🎉
 
-A good idea to extend this demo would be to test out with a completely different model, say an audio model or image generaion one.
+A good idea to extend this demo would be to test it out with a completely different model, say an audio model or image generation one.
 
 Happy hacking 🙌

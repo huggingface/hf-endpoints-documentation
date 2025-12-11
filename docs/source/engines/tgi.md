@@ -1,5 +1,26 @@
 # Text Generation Inference (TGI)
 
+<Warning>
+
+Text Generation Inference is in [maintenance mode](https://huggingface.co/docs/text-generation-inference/index). This means that only pull requests for minor bug fixes, documentation improvements, and lightweight maintenance tasks will be accepted.
+
+For Inference Endpoints, we recommend using either [vLLM](https://huggingface.co/docs/inference-endpoints/engines/vllm) or [SGLang](https://huggingface.co/docs/inference-endpoints/engines/sglang) as alternatives.
+
+Below is a quick migration guide if you already have an Inference Endpoint deployed with TGI.
+
+</Warning>
+
+## Migration Guide
+
+Here are the steps to migrate an Inference Endpoint from TGI to vLLM.
+Since the Inference Engine cannot be changed on an existing Inference Endpoint, you must create a new one to complete the transition.
+
+1. Create a new Inference Endpoint with the same model, selecting vLLM as the Inference Engine. You can typically use the same hardware and configuration.
+2. Once the new Inference Endpoint is running, make a few test calls to ensure it functions correctly.
+3. Switch traffic from the old Inference Endpoint to the new one.
+4. Finally, pause or delete the old Inference Endpoint.
+
+
 TGI is a production-grade inference engine built in Rust and Python, designed for high-performance
 serving of open-source LLMs (e.g. LLaMA, Falcon, StarCoder, BLOOM and many more).
 The core features that make TGI a good choice are:

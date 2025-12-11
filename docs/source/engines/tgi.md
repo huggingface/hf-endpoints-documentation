@@ -1,7 +1,7 @@
 # Text Generation Inference (TGI)
 
 > [!CAUTION]
-> Text Generation Inference is in [maintenance mode](https://huggingface.co/docs/text-generation-inference/index). This means that only pull requests for minor bug fixes, documentation improvements, and lightweight maintenance tasks will be accepted.
+> Text Generation Inference is in [maintenance mode](https://huggingface.co/docs/text-generation-inference/index) as of 12/11/2025. This means that only pull requests for minor bug fixes, documentation improvements, and lightweight maintenance tasks will be accepted.
 >
 > For Inference Endpoints, we recommend using either [vLLM](https://huggingface.co/docs/inference-endpoints/engines/vllm) or [SGLang](https://huggingface.co/docs/inference-endpoints/engines/sglang) as alternatives.
 >

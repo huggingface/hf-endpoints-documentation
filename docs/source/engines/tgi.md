@@ -18,6 +18,7 @@ Since the Inference Engine cannot be changed on an existing Inference Endpoint, 
 3. Switch traffic from the old Inference Endpoint to the new one.
 4. Finally, pause or delete the old Inference Endpoint.
 
+## Introduction 
 
 TGI is a production-grade inference engine built in Rust and Python, designed for high-performance
 serving of open-source LLMs (e.g. LLaMA, Falcon, StarCoder, BLOOM and many more).

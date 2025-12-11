@@ -1,14 +1,12 @@
 # Text Generation Inference (TGI)
 
-<Warning>
+> [!CAUTION]
+> Text Generation Inference is in [maintenance mode](https://huggingface.co/docs/text-generation-inference/index). This means that only pull requests for minor bug fixes, documentation improvements, and lightweight maintenance tasks will be accepted.
+>
+> For Inference Endpoints, we recommend using either [vLLM](https://huggingface.co/docs/inference-endpoints/engines/vllm) or [SGLang](https://huggingface.co/docs/inference-endpoints/engines/sglang) as alternatives.
+>
+> Below is a quick migration guide if you already have an Inference Endpoint deployed with TGI.
 
-Text Generation Inference is in [maintenance mode](https://huggingface.co/docs/text-generation-inference/index). This means that only pull requests for minor bug fixes, documentation improvements, and lightweight maintenance tasks will be accepted.
-
-For Inference Endpoints, we recommend using either [vLLM](https://huggingface.co/docs/inference-endpoints/engines/vllm) or [SGLang](https://huggingface.co/docs/inference-endpoints/engines/sglang) as alternatives.
-
-Below is a quick migration guide if you already have an Inference Endpoint deployed with TGI.
-
-</Warning>
 
 ## Migration Guide
 

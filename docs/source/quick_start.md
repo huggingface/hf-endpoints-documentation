@@ -1,8 +1,8 @@
 # Quick Start
 
 In this guide you'll deploy a production ready AI model using Inference Endpoints in only a few minutes.
-Make sure you've been able to log into the [Inference Endpoints UI](https://endpoints.huggingface.co) with your Hugging Face account, and that you have a payment
-method setup. If not, it's a quick add of valid payment method in your [billing settings](https://huggingface.co/settings/billing).
+Make sure you've been able to log in the [Inference Endpoints UI](https://endpoints.huggingface.co) with your Hugging Face account, and that you have a payment
+method set up. If not, it's a quick add of valid payment method and credits in your [billing settings](https://huggingface.co/settings/billing) - preferably with the automatic recharge enabled to ensure uninterrupted usage and the best possible experience.
 
 ## Create your endpoint
 

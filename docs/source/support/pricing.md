@@ -1,7 +1,7 @@
 # Pricing
 
 When you create an Endpoint, you can select the instance type to deploy and scale your model according to an hourly rate.
-Inference Endpoints is accessible to Hugging Face accounts with an active subscription and credits on file. A user or organization account will be charged for the compute resources used while successfully deployed Endpoints (ready to serve) are *initializing* and in a *running* state.
+Inference Endpoints is accessible to Hugging Face accounts with an active subscription and credits added. We recommend enabling automatic recharge to avoid service disruptions after credits are exhausted. A user or organization account will be charged for the compute resources used while successfully deployed Endpoints (ready to serve) are *initializing* and in a *running* state.
 
 Below, you can find the hourly pricing for all available instances and accelerators, and examples of how costs are calculated:
 While the prices are shown by the hour, the actual cost is billed per minute.

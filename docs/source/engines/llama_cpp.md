@@ -53,7 +53,7 @@ For instance, setting this value to 4 requests with 1024 tokens maximum per requ
 ### Advanced Configurations
 
 In addition to the basic configurations, you can also modify specific settings by setting environment variables.
-A list of available environment variables can be found in the [API documentation](https://github.com/ggerganov/llama.cpp/blob/master/examples/server/README.md#usage).
+A list of available environment variables can be found in the [API documentation](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md).
 
 Please note that the following environment variables are reserved by the system and cannot be modified:
 

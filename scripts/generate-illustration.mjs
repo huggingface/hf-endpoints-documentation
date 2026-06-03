@@ -3,13 +3,28 @@
  * Run: node scripts/generate-illustration.mjs
  */
 
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-/** Relative to illustration SVGs in assets/ (vendored copies in assets/logos/). */
-const logoHref = (icon) => `logos/${icon}`;
+/**
+ * Inline each logo as a self-contained data: URI.
+ * The illustration is displayed through an <img> tag (and as an <object>
+ * fallback), and browsers render SVGs loaded that way in "secure static mode",
+ * which refuses to fetch external resources. A relative href like
+ * "logos/foo.svg" therefore never loads. Embedding the logo as a data URI keeps
+ * the illustration fully self-contained so it renders everywhere.
+ */
+const logoCache = new Map();
+const logoHref = (icon) => {
+	if (!logoCache.has(icon)) {
+		const svg = readFileSync(join(__dirname, '..', 'assets', 'logos', icon), 'utf8');
+		const b64 = Buffer.from(svg, 'utf8').toString('base64');
+		logoCache.set(icon, `data:image/svg+xml;base64,${b64}`);
+	}
+	return logoCache.get(icon);
+};
 
 const R = 54;
 const VB_W = 800;
@@ -402,7 +417,7 @@ parts.push('</g>');
 
 for (const l of logos) {
 	parts.push(
-		`<image href="${logoHref(l.icon)}" xlink:href="${logoHref(l.icon)}" x="${l.iconLeft}" y="${l.iconY}" width="${l.iconSize}" height="${l.iconSize}" preserveAspectRatio="xMidYMid meet" />`,
+		`<image href="${logoHref(l.icon)}" x="${l.iconLeft}" y="${l.iconY}" width="${l.iconSize}" height="${l.iconSize}" preserveAspectRatio="xMidYMid meet" />`,
 	);
 	if (l.text) {
 		parts.push(

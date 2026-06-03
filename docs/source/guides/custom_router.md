@@ -101,6 +101,8 @@ When an endpoint scales up under load, new replicas take time to start and load 
 
 The [endpoints-custom-routers repository](https://github.com/huggingface/endpoints-custom-routers) provides a ready-to-use router, `queued-least-latency`, that fixes this: it queues incoming requests and sends each to the least-loaded replica, so new capacity is used as soon as it's ready.
 
+The docker image for the `queued-least-latency` is: `ghcr.io/huggingface/endpoints-custom-routers/queued-least-latency:1.0.0`
+
 ### Routing strategy
 
 - Incoming requests are pushed onto an in-memory FIFO queue.

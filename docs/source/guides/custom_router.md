@@ -39,7 +39,7 @@ Any HTTP server that implements the following two endpoints can be used as a cus
 
 | Method | Path | Purpose |
 |--------|------|---------|
-| `POST` | `/_custom_router/set-backends` | The current list of replica addresses the router may forward to: `{"backends": ["scheme://host:port", ...]}` |
+| `POST` | `/_custom_router/set-backends` | The current list of replica addresses the router may forward to: `{"backends": ["http://<host>:<port>", ...]}` |
 | `GET`  | `/_custom_router/health` | Health check: return 200 when the router itself is ready to serve traffic |
 
 The router listens on the port set by the `customRouter.port` field (default `3000`). Every other request path is treated as a user request to be proxied.
@@ -79,7 +79,7 @@ curl -X POST "https://api.endpoints.huggingface.cloud/v2/endpoint/$NAMESPACE" \
         "image": { "huggingface": {} }
       },
       "customRouter": {
-        "tag": "your-org/your-router-image:1.0.0",
+        "tag": "ghcr.io/huggingface/endpoints-custom-routers/queued-least-latency:1.0.0",
         "env": {
           "MY_VAR": "value"
         }

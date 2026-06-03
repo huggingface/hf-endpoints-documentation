@@ -12,7 +12,7 @@ This is useful for example when you need:
 
 The custom router feature lets you deploy your own **router** that runs next to each replica. When a request comes in, it always goes to the router on the oldest replica, the **leader**. That router decides which replica should handle the request: it can forward it to another replica over the internal network, or hand it to the replica running right next to it.
 
-```
+```text
                          (oldest replica is the leader)
                          ┌────────────────────────────────────────┐ 
                          │ ┌──────────┐    either  ┌────────────┐ │
@@ -29,7 +29,9 @@ The custom router feature lets you deploy your own **router** that runs next to 
 
 Whenever the set of replicas changes, for example on scale-up, scale-down, or rolling update, the platform sends the router an updated list of replica addresses by calling `POST /_custom_router/set-backends`. The router uses this to keep its view of the available replicas up to date and route accordingly.
 
-> When `customRouter` is enabled, the replicas of your endpoint are automatically allowed to reach each other over a private internal network, so the router can forward a request to any other replica. This network is scoped to your endpoint's replicas only; it **does not** expose them to anything else.
+<Tip>
+When `customRouter` is enabled, the replicas of your endpoint are automatically allowed to reach each other over a private internal network, so the router can forward a request to any other replica. This network is scoped to your endpoint's replicas only; it **does not** expose them to anything else.
+</Tip>
 
 ## Router contract
 

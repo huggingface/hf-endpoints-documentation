@@ -39,6 +39,8 @@
     title: Security & Compliance
   - local: guides/private_link
     title: AWS PrivateLink
+  - local: guides/custom_router
+    title: Custom Router
   title: Guides
 - sections:
   - local: engines/vllm

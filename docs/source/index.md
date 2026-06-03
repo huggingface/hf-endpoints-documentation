@@ -1,70 +1,15 @@
 # Inference Endpoints
 
-<div class="ep-illustration flex justify-center w-full max-w-4xl mx-auto my-2" id="ep-illustration">
-    <div class="relative w-full aspect-[800/440] block dark:hidden">
-        <img
-            class="ep-illustration-static absolute inset-0 h-full w-full pointer-events-none"
-            src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/illustration-static.svg"
-            alt="Illustration of Inference Endpoints routing traffic from inference engines to a central endpoint"
-        />
-        <object
-            class="ep-illustration-animated absolute inset-0 h-full w-full pointer-events-none"
-            type="image/svg+xml"
-            data="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/illustration.svg"
-            aria-hidden="true"
-        >
-            <img
-                src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/illustration-static.svg"
-                alt="Illustration of Inference Endpoints routing traffic from inference engines to a central endpoint"
-            />
-        </object>
-    </div>
-    <div class="relative w-full aspect-[800/440] hidden dark:block">
-        <img
-            class="ep-illustration-static absolute inset-0 h-full w-full pointer-events-none"
-            src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/illustration-dark-static.svg"
-            alt="Illustration of Inference Endpoints routing traffic from inference engines to a central endpoint"
-        />
-        <object
-            class="ep-illustration-animated absolute inset-0 h-full w-full pointer-events-none"
-            type="image/svg+xml"
-            data="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/illustration-dark.svg"
-            aria-hidden="true"
-        >
-            <img
-                src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/illustration-dark-static.svg"
-                alt="Illustration of Inference Endpoints routing traffic from inference engines to a central endpoint"
-            />
-        </object>
-    </div>
-</div>
-
-<script>
-(function () {
-    function supportsSvgSmil() {
-        try {
-            return (
-                typeof document.createElementNS(
-                    'http://www.w3.org/2000/svg',
-                    'animate'
-                ).beginElement === 'function'
-            );
-        } catch {
-            return false;
-        }
-    }
-
-    if (supportsSvgSmil()) return;
-
-    document.getElementById('ep-illustration')?.classList.add('ep-illustration--static');
-})();
-</script>
-
-<style>
-.ep-illustration--static .ep-illustration-animated {
-    display: none;
-}
-</style>
+<img
+    class="block dark:hidden w-full max-w-3xl h-auto mx-auto my-4"
+    src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/illustration-static.svg"
+    alt="Illustration of Inference Endpoints routing traffic from inference engines to a central endpoint"
+/>
+<img
+    class="hidden dark:block w-full max-w-3xl h-auto mx-auto my-4"
+    src="https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/illustration-dark-static.svg"
+    alt="Illustration of Inference Endpoints routing traffic from inference engines to a central endpoint"
+/>
 
 Inference Endpoints is a managed service to deploy your AI model to production.
 Here you'll find quickstarts, guides, tutorials, use cases and a lot more.

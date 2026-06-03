@@ -135,7 +135,7 @@ For a **diffusion / image generation** model (e.g. ~40 s per request, no batchin
 
 ```json
 "customRouter": {
-  "tag": "huggingface/queued-least-latency:latest",
+  "tag": "ghcr.io/huggingface/endpoints-custom-routers/queued-least-latency:1.0.0`",
   "env": {
     "CUSTOM_ROUTER_QUEUE_MAX_SIZE": "200",
     "CUSTOM_ROUTER_QUEUE_TIMEOUT": "300"
@@ -147,7 +147,7 @@ For an **LLM** (batching increases throughput), replicas can process several con
 
 ```json
 "customRouter": {
-  "tag": "huggingface/queued-least-latency:latest",
+  "tag": "ghcr.io/huggingface/endpoints-custom-routers/queued-least-latency:1.0.0`",
   "env": {
     "CUSTOM_ROUTER_LATENCY_THRESHOLD": "65.0",
     "CUSTOM_ROUTER_QUEUE_MAX_SIZE": "2000"

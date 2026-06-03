@@ -1,48 +1,58 @@
 # Custom Router
 
-The custom router feature lets you inject a sidecar container into every replica pod of your endpoint to take full control of routing decisions. Instead of relying on the default proxy behavior, your sidecar receives every request and decides which backend replica to forward it to.
+The custom router feature lets you fully customize your load balancing strategy. It's an advanced feature, but gives you very precise control over each routing decision.
 
-This is useful when you need:
+This is useful for example when you need:
 
 - **Queue-based routing** to avoid wasting newly scaled-up replicas on burst traffic.
-- **Latency-aware routing** that avoids sending requests to slow or overloaded replicas.
-- **Custom strategies** such as sticky sessions, weighted routing, or federation across providers.
+- **Latency-aware routing** which avoids sending requests to overloaded replicas.
+- **Other custom strategies** such as sticky sessions or weighted routing.
 
 ## How it works
 
-When enabled, a sidecar container is injected into every replica pod. The Endpoints proxy always forwards to the leader pod (the oldest ready replica), and the sidecar running there decides which backend handles the request — potentially forwarding it to another pod over the inter-pod network:
+The custom router feature lets you deploy your own **router** that runs next to each replica. When a request comes in, it always goes to the router on the oldest replica, the **leader**. That router decides which replica should handle the request: it can forward it to another replica over the internal network, or hand it to the replica running right next to it.
 
 ```
-External request
-      ↓
-  Endpoints proxy  (always forwards to the leader pod)
-      ↓
-  Custom router sidecar  (port 3000, makes the routing decision)
-      ↓
-  Target replica  (same pod or a peer, via inter-pod network)
+                         (oldest replica is the leader)
+                         ┌────────────────────────────────────────┐ 
+                         │ ┌──────────┐    either  ┌────────────┐ │
+                     ┌───│►│  Router  │──────┬────►│ Replica 1  │ │
+    ┌─────────────┐  │   │ └──────────┘      │     └────────────┘ │
+    │   Request   │──┘   └───────────────────│────────────────────┘
+    └─────────────┘                          or
+                         ┌───────────────────│────────────────────┐ 
+                         │ ┌──────────┐      │     ┌────────────┐ │
+                         │ │  Router  │      └────►│ Replica 2  │ │
+                         │ └──────────┘            └────────────┘ │
+                         └────────────────────────────────────────┘
 ```
 
-Whenever the replica set changes — on scale-up, scale-down, or rolling update — the platform calls `POST /_custom_router/set-backends` on the sidecar with the updated list of backend addresses. The sidecar uses this to maintain its internal backend view and route accordingly.
+Whenever the set of replicas changes, for example on scale-up, scale-down, or rolling update, the platform sends the router an updated list of replica addresses by calling `POST /_custom_router/set-backends`. The router uses this to keep its view of the available replicas up to date and route accordingly.
 
-When `customRouter` is enabled, inter-pod networking is automatically opened between the replica pods of your endpoint, allowing the sidecar to forward requests to any peer replica. This network is scoped to your endpoint's replica pods only — it does not expose them beyond the pod boundary.
+> When `customRouter` is enabled, the replicas of your endpoint are automatically allowed to reach each other over a private internal network, so the router can forward a request to any other replica. This network is scoped to your endpoint's replicas only; it **does not** expose them to anything else.
 
-## Sidecar contract
+## Router contract
 
 Any HTTP server that implements the following two endpoints can be used as a custom router image:
 
 | Method | Path | Purpose |
 |--------|------|---------|
-| `POST` | `/_custom_router/set-backends` | Receive the current backend list: `{"backends": ["scheme://host:port", ...]}` |
-| `GET`  | `/_custom_router/health` | Readiness probe — return 200 when ready to serve traffic |
+| `POST` | `/_custom_router/set-backends` | The current list of replica addresses the router may forward to: `{"backends": ["scheme://host:port", ...]}` |
+| `GET`  | `/_custom_router/health` | Health check: return 200 when the router itself is ready to serve traffic |
 
-Every other request path is treated as a user request to be proxied.
+The router listens on the port set by the `customRouter.port` field (default `3000`). Every other request path is treated as a user request to be proxied.
 
 ## Enabling the custom router
 
-Add a top-level `customRouter` field to your endpoint creation payload with a Docker image reference:
+Currently, you can only enable the custom router through the API. On endpoint creation or update, add a top-level `customRouter` object with these fields:
 
+- `tag` (required): the Docker image reference for your router, e.g. `your-org/your-router-image:1.0.0`.
+- `env` (optional): a map of environment variables passed to the router.
+- `port` (optional): the port your router listens on. Defaults to `3000`.
+
+For example:
 ```bash
-curl -X POST "https://api.endpoints.huggingface.cloud/v2/endpoint/YOUR_NAMESPACE" \
+curl -X POST "https://api.endpoints.huggingface.cloud/v2/endpoint/$NAMESPACE" \
     -H "Authorization: Bearer $HF_TOKEN" \
     -H "Content-Type: application/json" \
     -d '{
@@ -87,9 +97,11 @@ When `customRouter` is set, the `loadBalancer` field in `experimentalFeatures` i
 
 ## Reference implementation: `queued-least-latency`
 
-The [endpoints-custom-routers repository](https://github.com/huggingface/endpoints-custom-routers) provides a ready-to-use router that addresses the most common burst traffic problem: requests queued on the original replica while freshly scaled-up replicas sit idle.
+When an endpoint scales up under load, new replicas take time to start and load the model. Meanwhile requests pile up, and with naive routing they keep queuing on the busy replicas instead of moving to the new ones once they're ready. This hurts most for slow, non-batching workloads like image generation, where each replica handles one request at a time.
 
-### How it routes
+The [endpoints-custom-routers repository](https://github.com/huggingface/endpoints-custom-routers) provides a ready-to-use router, `queued-least-latency`, that fixes this: it queues incoming requests and sends each to the least-loaded replica, so new capacity is used as soon as it's ready.
+
+### Routing strategy
 
 - Incoming requests are pushed onto an in-memory FIFO queue.
 - A dispatcher picks the replica with the lowest [EWMA](https://en.wikipedia.org/wiki/Exponential_smoothing) latency that is still under a configurable threshold.
@@ -99,25 +111,23 @@ The [endpoints-custom-routers repository](https://github.com/huggingface/endpoin
 
 ### Configuration
 
-All tunables are environment variables, passed via the `env` field in the `customRouter` config:
+All settings are environment variables, passed via the `env` field in the `customRouter` config.
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `CUSTOM_ROUTER_LATENCY_THRESHOLD` | `3.0` | Max EWMA latency (seconds) before a replica is skipped |
-| `CUSTOM_ROUTER_QUEUE_MAX_SIZE` | `1000` | Maximum requests held in the queue |
-| `CUSTOM_ROUTER_QUEUE_TIMEOUT` | `1200` | Seconds a request may wait before being dropped with 503 |
-| `CUSTOM_ROUTER_EWMA_ALPHA` | `0.3` | EWMA smoothing factor — higher means more reactive to recent latency |
-| `CUSTOM_ROUTER_STATE_LOG_INTERVAL` | `30` | Seconds between periodic backend-state log lines |
-| `CUSTOM_ROUTER_PORT` | `3000` | Listening port (must be 3000 to satisfy the platform contract) |
+#### Routing
 
-**Setting the threshold.** The threshold determines when a backend is considered loaded and new requests should queue at the router instead. The right value depends on whether your model benefits from batching:
+Routing decides which replica each request goes to. The knob you'll usually tune is `CUSTOM_ROUTER_LATENCY_THRESHOLD`.
 
-- **If batching does not increase your throughput** (or if you prioritize latency over throughput), set a low threshold. Once a backend's EWMA exceeds it, the router stops sending more requests there and queues them at the edge instead. Each backend handles one request at a time, which is exactly what you want when batching brings no benefit.
-- **If batching does increase your throughput** (e.g. LLMs), you may want a higher threshold so that multiple requests can accumulate on a backend and be processed together. This trades some per-request latency for better overall throughput.
+| Variable | Default | What it does |
+|---|---|---|
+| `CUSTOM_ROUTER_LATENCY_THRESHOLD` | `3.0` | A replica is treated as "loaded" once its average latency exceeds this many seconds; new requests stop going to it until it recovers. |
+| `CUSTOM_ROUTER_EWMA_ALPHA` | `0.3` | How quickly that latency average reacts to recent requests (0 to 1). Higher is more reactive, lower is smoother. Rarely needs changing. |
 
-**Diffusion / image generation** (e.g. ~40 s per request, no batching benefit):
+The latency threshold determines when a replica is considered loaded and new requests should queue at the router instead. The right value depends on whether your model benefits from batching:
 
-The default threshold (3.0 s) works well. After the first completed request the EWMA is ~40 s, which immediately exceeds 3 s and causes new arrivals to queue at the router. Each backend handles one request at a time, which is fine since batching would not help throughput. Only tune queue depth and timeout:
+- **If batching does not increase your throughput** (or if you prioritize latency over throughput), set a low threshold. Once a replica's EWMA exceeds it, the router stops sending more requests there and queues them instead. Each replica handles one request at a time, which is exactly what you want when batching brings no benefit.
+- **If batching does increase your throughput** (e.g. LLMs), you may want a higher threshold so that multiple requests can accumulate on a replica and be processed together. This trades some per-request latency for better overall throughput.
+
+For a **diffusion / image generation** model (e.g. ~40 s per request, no batching benefit), the default threshold (3.0 s) works well. After the first completed request the EWMA is ~40 s, which immediately exceeds 3 s and causes new arrivals to queue at the router. Each replica handles one request at a time, which is fine since batching would not help throughput. Only tune queue depth and timeout:
 
 ```json
 "customRouter": {
@@ -129,9 +139,7 @@ The default threshold (3.0 s) works well. After the first completed request the 
 }
 ```
 
-**LLM** (batching increases throughput):
-
-LLM backends can process several concurrent requests and batching improves throughput — but at a latency cost. With the default 3.0 s threshold, the backend would be flagged as loaded after its very first request and forced to handle requests one at a time. Raise the threshold to allow backends to accumulate concurrent requests; how high depends on how much latency you are willing to trade for throughput gains:
+For an **LLM** (batching increases throughput), replicas can process several concurrent requests, but at a latency cost. With the default 3.0 s threshold, a replica would be flagged as loaded after its very first request and forced to handle requests one at a time. Raise the threshold to let replicas accumulate concurrent requests; how high depends on how much latency you are willing to trade for throughput gains:
 
 ```json
 "customRouter": {
@@ -143,16 +151,38 @@ LLM backends can process several concurrent requests and batching improves throu
 }
 ```
 
-### Backpressure
+#### Queue
 
-When the system is overloaded the router applies backpressure in two ways:
+The queue configuration decides what happens when every replica is loaded. These are the router's backpressure controls: when the queue is full, the oldest waiting request is dropped with `503 Service Unavailable`, and any request that waits longer than the timeout is also dropped with `503`.
 
-- **Queue full**: when the queue reaches `CUSTOM_ROUTER_QUEUE_MAX_SIZE`, the oldest waiting request is dropped with `503 Service Unavailable`.
-- **Request timeout**: when a request has been waiting longer than `CUSTOM_ROUTER_QUEUE_TIMEOUT` seconds, it is dropped with `503`.
+| Variable | Default | What it does |
+|---|---|---|
+| `CUSTOM_ROUTER_QUEUE_MAX_SIZE` | `1000` | Maximum requests held in the queue; beyond this the oldest waiting request is dropped with `503`. |
+| `CUSTOM_ROUTER_QUEUE_TIMEOUT` | `1200` | How long (seconds) a request may wait in the queue before being dropped with `503`. |
+
+#### Operational
+
+Settings that don't affect routing.
+
+| Variable | Default | What it does |
+|---|---|---|
+| `CUSTOM_ROUTER_PORT` | `3000` | Port the router listens on. Must match the `customRouter.port` you set in the API. |
+| `CUSTOM_ROUTER_STATE_LOG_INTERVAL` | `30` | Seconds between log lines reporting per-replica state. |
+
+### Recommended values
+
+Use this table as a quick reference for tuning `queued-least-latency` to your needs:
+
+| Scenario | Recommended approach |
+|----------|----------------------|
+| Burst traffic + autoscaling | Use `queued-least-latency`: queued requests drain to new replicas on scale-up |
+| Heterogeneous replica performance | Use `queued-least-latency`: EWMA routing avoids slow replicas |
+| Diffusion / no batching benefit | Keep `CUSTOM_ROUTER_LATENCY_THRESHOLD` at default (3.0 s): one request at a time per replica |
+| LLM / batching increases throughput | Raise `CUSTOM_ROUTER_LATENCY_THRESHOLD` to allow concurrent requests per replica |
 
 ### Metrics
 
-The sidecar exposes Prometheus metrics at `GET /_custom_router/metrics`:
+The reference implementation exposes Prometheus metrics at `GET /_custom_router/metrics`:
 
 | Metric | Type | Description |
 |--------|------|-------------|
@@ -167,11 +197,11 @@ The sidecar exposes Prometheus metrics at `GET /_custom_router/metrics`:
 
 ## Building your own router
 
-Any HTTP server that implements the two-endpoint contract works. A minimal skeleton in Go:
+`queued-least-latency` is a starting point, not a requirement. If its routing strategy doesn't fit your use case (say you need KV-cache-aware routing, proactive scale-up signals, or sticky sessions), you can build your own. Any image that satisfies the [Router contract](#router-contract) can be dropped in as the `customRouter` image. A minimal skeleton in Go:
 
 ```go
 // POST /_custom_router/set-backends
-// Called by the platform on every replica set change.
+// Called by the platform every time the set of replicas changes.
 func handleSetBackends(w http.ResponseWriter, r *http.Request) {
     var payload struct {
         Backends []string `json:"backends"` // e.g. ["http://10.0.0.1:8080", ...]
@@ -195,17 +225,3 @@ func handleProxy(w http.ResponseWriter, r *http.Request) {
 ```
 
 The full `queued-least-latency` source in the [endpoints-custom-routers repository](https://github.com/huggingface/endpoints-custom-routers) is a good template to fork.
-
-<Tip>
-The `queued-least-latency` router is a starting point, not a requirement. If its routing strategy does not fit your use case — for example you need KV-cache-aware routing, proactive scale-up signals, sticky sessions, or federation across providers — implementing your own router only requires satisfying the two-endpoint contract (`/_custom_router/set-backends` and `/_custom_router/health`). Any HTTP server that does so can be dropped in as the `customRouter` image.
-</Tip>
-
-## Summary
-
-| Scenario | Recommended approach |
-|----------|----------------------|
-| Burst traffic + autoscaling | Use `queued-least-latency` — queued requests drain to new replicas on scale-up |
-| Heterogeneous replica performance | Use `queued-least-latency` — EWMA routing avoids slow replicas |
-| Diffusion / no batching benefit | Keep `CUSTOM_ROUTER_LATENCY_THRESHOLD` at default (3.0 s) — one request at a time per backend |
-| LLM / batching increases throughput | Raise `CUSTOM_ROUTER_LATENCY_THRESHOLD` to allow concurrent requests per backend |
-| Sticky sessions, proactive scaling, federation | Fork the router and implement your own strategy |

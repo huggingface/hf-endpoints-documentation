@@ -38,13 +38,11 @@ ping once the endpoint reaches a running state.
 
 ## Test your Inference Endpoint
 
-And then once everything is up and running you'll be able to see the:
-- **Endpoint URL**: this is what you use to call your endpoint and send requests to it
-- **Playground**: a small visual way of quickly testing that the model works
+And then once everything is up and running you'll be able to see the **Endpoint URL** on the Overview tab — this is what you use to call your endpoint and send requests to it.
 
 ![done](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/6-done.png)
 
-From the "API" section of the playground you can also copy + paste a code snippet for calling the model. By clicking **API Token** you can paste in an access token to be able to call the model. By default, all Inference Endpoints are created as private which require authentication and
+Head over to the **Playground** tab for a quick visual way of testing that the model works. From the "API" section of the playground you can also copy + paste a code snippet for calling the model. By clicking **API Token** you can paste in an access token to be able to call the model. By default, all Inference Endpoints are created as private which require authentication and
 all data is encryped in transit using TLS/SSL.
 
 Congratulations, you just deployed a production ready AI model in Inference Endpoints 🔥

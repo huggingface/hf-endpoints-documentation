@@ -91,6 +91,5 @@ Only a second call with `confirm: true` actually deletes the endpoint:
 
 ## Learn more
 
-- [Configuration](./configuration) &mdash; the fields available when creating or updating an endpoint.
-- [Auto Scaling](./autoscaling) &mdash; how `scale_endpoint_to_zero` and replica scaling interact.
 - [API Reference](../api_reference) &mdash; the full REST API these tools wrap.
+- [Hugging Face CLI](https://huggingface.co/docs/hub/en/agents-cli) &mdash; for full integration with the Hugging Face Hub.

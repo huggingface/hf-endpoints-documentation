@@ -22,7 +22,7 @@ The Inference Endpoints MCP (Model Context Protocol) Server connects your MCP-co
 4. The first time it connects, your client opens a browser tab for you to log in to Hugging Face and approve access.
 
 <Tip>
-    For full integration with the Hugging Face Hub, we recommend also giving your agent access to the [Hugging Face CLI](https://huggingface.co/docs/hub/en/agents-cli).
+    For full integration with the Hugging Face Hub, we recommend also giving your agent access to the [Hugging Face MCP server](https://huggingface.co/docs/hub/agents-mcp) and the [Hugging Face CLI](https://huggingface.co/docs/hub/agents-cli).
 </Tip>
 
 ## Using the server

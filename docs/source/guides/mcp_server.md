@@ -11,6 +11,7 @@ The Inference Endpoints MCP (Model Context Protocol) Server connects your MCP-co
 - Test your endpoints by making inference calls.
 - Check your quotas and available cloud providers before deploying.
 - Browse the model catalog and review the audit log of actions taken on your endpoints.
+- Get information about the authenticated caller and their organizations.
 
 ## Get started
 
@@ -64,6 +65,7 @@ Most tools take a `namespace` (your username or an org you belong to, and only t
 | `get_endpoint_replicas` | List an endpoint's current replicas and their status. |
 | `get_endpoint_metric` | Fetch a metrics time series (CPU/GPU usage, latency, request counts, etc.) for an endpoint. |
 | `get_audit_logs` | Fetch the audit log of actions taken on endpoints in a namespace. Requires a Pro or Enterprise plan. |
+| `whoami` | Get information about the authenticated caller and their organizations. |
 
 <Tip>
 Creating and updating endpoints requires a full or partial endpoint configuration object, which can be deeply nested depending on the engine and provider. Rather than writing one by hand, call <code>get_recommended_config</code> first for the model you want to deploy, then pass its output straight into <code>create_endpoint</code>.

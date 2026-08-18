@@ -8,6 +8,7 @@ The Inference Endpoints MCP (Model Context Protocol) Server connects your MCP-co
 - Get a recommended configuration for any Hub model, then create an endpoint from it.
 - Update, pause, resume, scale to zero, or delete an existing endpoint.
 - Fetch logs, replicas, and metrics for troubleshooting or monitoring.
+- Test your endpoints by making inference calls.
 - Check your quotas and available cloud providers before deploying.
 - Browse the model catalog and review the audit log of actions taken on your endpoints.
 
@@ -53,6 +54,7 @@ Most tools take a `namespace` (your username or an org you belong to, and only t
 | `resume_endpoint` | Resume a previously paused endpoint. |
 | `scale_endpoint_to_zero` | Force an endpoint to zero replicas immediately; can scale back up on the next request. |
 | `delete_endpoint` | Permanently delete an endpoint. See [Deleting endpoints](#deleting-endpoints). |
+| `call_endpoint` | Make an inference call to an endpoint. |
 | `get_recommended_config` | Derive a suggested configuration (compute, engine, image, task) for any Hub model repo. |
 | `has_catalog_item` | Cheaply check whether a Hub model repo is in the curated catalog. |
 | `list_catalog_items` | List all publicly available catalog items. |

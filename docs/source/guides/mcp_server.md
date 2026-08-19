@@ -32,14 +32,14 @@ The Inference Endpoints MCP (Model Context Protocol) Server connects your MCP-co
 After connecting, ask your assistant to use the Inference Endpoints tools. Example prompts:
 
 - "Deploy `meta-llama/Llama-3.2-1B-Instruct` on GPU under my `research` org, with autoscaling between 0 and 3 replicas, and let me know once it's running."
-- "My `chatbot-prod` endpoint feels slow &mdash; check its metrics and recent logs over the last 30 minutes and tell me whether it's a scaling issue or an error spike."
+- "My `chatbot-prod` endpoint feels slow. Check its metrics and recent logs over the last 30 minutes and tell me whether it's a scaling issue or an error spike."
 - "Compare GPU quotas across my orgs and suggest the cheapest provider and region I still have quota for."
 - "Check if `Qwen/Qwen2.5-7B-Instruct` is in the catalog; if not, get a recommended config for it and show me the diff against my existing `qwen-endpoint`."
 - "Why did my `my-endpoint` endpoint fail last night? Check its status, replicas, and logs around the time it went down."
 - "Who paused the `summarizer-prod` endpoint, and when? Resume it if it's currently paused."
-- "List every endpoint across my namespaces that's been scaled to zero for more than a day, and delete the ones I no longer need &mdash; ask me to confirm each one first."
+- "List every endpoint across my namespaces that's been scaled to zero for more than a day, and delete the ones I no longer need. Ask me to confirm each one first."
 
-Your assistant will use the tools exposed by the MCP server to look up your endpoints, configurations, and logs or metrics, then return the results (status, compute, links, and so on) directly in the conversation. You can keep iterating from there &mdash; for example asking it to update the configuration or pause the endpoint next.
+Your assistant will use the tools exposed by the MCP server to look up your endpoints, configurations, and logs or metrics, then return the results (status, compute, links, and so on) directly in the conversation. You can keep iterating from there - for example asking it to update the configuration or pause the endpoint next.
 
 ## Available tools
 
@@ -95,5 +95,5 @@ Only a second call with `confirm: true` actually deletes the endpoint:
 
 ## Learn more
 
-- [API Reference](../api_reference) &mdash; the full REST API these tools wrap.
-- [Hugging Face CLI](https://huggingface.co/docs/hub/en/agents-cli) &mdash; for full integration with the Hugging Face Hub.
+- [API Reference](../api_reference) - the full REST API these tools wrap.
+- [Hugging Face CLI](https://huggingface.co/docs/hub/en/agents-cli) - for full integration with the Hugging Face Hub.

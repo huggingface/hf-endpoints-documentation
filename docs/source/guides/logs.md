@@ -5,7 +5,7 @@ operational status and runtime logs of your inference endpoints in real-time.
 
 ## Accessing the Logs Interface
 
-The Logs page is accessible through the main navigation tabs within your endpoint dashboard, alongside Overview, Analytics, Usage & Cost,
+The Logs page is accessible through the main navigation tabs within your endpoint dashboard, alongside Overview, Playground, Analytics,
 and Settings. The interface displays logs for your specific model deployment.
 
 ![banner](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/logs/logs.png)

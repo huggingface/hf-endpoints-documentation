@@ -12,8 +12,7 @@ This Tutorial uses Python, but your client can be any language that can make HTT
 
 First, we need to create an Inference Endpoint for a model that can chat. 
 
-Start by navigating to the Inference Endpoints UI, and once you have logged in you should see a button for creating a new Inference
-Endpoint. Click the "New" button.
+Start by navigating to the Inference Endpoints UI, and once you have logged in, click the **Catalog** button.
 
 ![new-button](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/1-new-button.png)
 

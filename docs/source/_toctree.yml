@@ -41,6 +41,8 @@
     title: AWS PrivateLink
   - local: guides/custom_router
     title: Custom Router
+  - local: guides/mcp_server
+    title: MCP Server
   title: Guides
 - sections:
   - local: engines/vllm

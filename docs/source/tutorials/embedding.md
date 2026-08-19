@@ -12,8 +12,7 @@ This tutorial focuses on creating a production-ready script that can process any
 
 First, we need to create an Inference Endpoint optimized for embeddings.
 
-Start by navigating to the Inference Endpoints UI, and once you have logged in you should see a button for creating a new Inference
-Endpoint. Click the "New" button.
+Start by navigating to the Inference Endpoints UI, and once you have logged in, click the **Catalog** button.
 
 ![new-button](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/1-new-button.png)
 

@@ -12,7 +12,7 @@ This tutorial uses Python and Gradio, but you can adapt the approach to any lang
 
 First, we need to create an Inference Endpoint for audio transcription. We'll use OpenAI's Whisper model for high-quality speech recognition.
 
-Start by navigating to the Inference Endpoints UI, and once you have logged in you should see a button for creating a new Inference Endpoint. Click the "New" button.
+Start by navigating to the Inference Endpoints UI, and once you have logged in, click the **Catalog** button.
 
 ![new-button](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/1-new-button.png)
 
@@ -38,7 +38,7 @@ Your endpoint will take about 5 minutes to initialize. Once it's ready, you'll s
 Now let's do the same again but now for a text generation model. For generating summaries and action items, we'll create a second endpoint using the [Qwen/Qwen3-1.7B](https://huggingface.co/Qwen/Qwen3-1.7B) model.
 
 Follow the same process:
-1. Click "New" button in the Inference Endpoints UI
+1. Click the **Deploy** button in the Inference Endpoints UI
 2. Search for `qwen3 1.7b` in the catalog
 3. The NVIDIA L4 with x1 instance size is recommended for this model
 4. Keep the default settings (scale-to-zero enabled, 1-hour timeout)
@@ -379,4 +379,3 @@ Here are some ways to extend your transcription app:
 - **Speaker identification**: Use a model from the hub with speaker diarization capabilities.
 - **Custom prompts**: Allow users to customize the summary format and style
 - **Implement Text-to-Speech**: Use a model from the hub to convert your summary to another audio file!
-

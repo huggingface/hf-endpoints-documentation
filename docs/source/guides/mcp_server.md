@@ -15,7 +15,7 @@ The Inference Endpoints MCP (Model Context Protocol) Server connects your MCP-co
 
 ## Get started
 
-1. Open the **Connect to our MCP Server** modal from your endpoints dashboard.
+1. Click  **Setup MCP** in your Endpoints account menu, or <a href="https://endpoints.huggingface.co/?show-mcp-modal=true" target="_blank" rel="noopener noreferrer">click here</a>.
 
 2. Pick your client: select your MCP-compatible client (Claude Code, Codex, Cursor, Gemini CLI, or Open Code). The modal shows a ready-to-copy configuration snippet for that client.
 
@@ -23,9 +23,7 @@ The Inference Endpoints MCP (Model Context Protocol) Server connects your MCP-co
 
 4. The first time it connects, your client opens a browser tab for you to log in to Hugging Face and approve access.
 
-<Tip>
-    For full integration with the Hugging Face Hub, we recommend also giving your agent access to the [Hugging Face MCP server](https://huggingface.co/docs/hub/agents-mcp) and the [Hugging Face CLI](https://huggingface.co/docs/hub/agents-cli).
-</Tip>
+For full integration with the Hugging Face Hub, we recommend also giving your agent access to the [Hugging Face MCP server](https://huggingface.co/docs/hub/agents-mcp) and the [Hugging Face CLI](https://huggingface.co/docs/hub/agents-cli).
 
 ## Using the server
 

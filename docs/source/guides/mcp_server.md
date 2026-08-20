@@ -17,7 +17,7 @@ The Inference Endpoints MCP (Model Context Protocol) Server connects your MCP-co
 
 1. Click  **Setup MCP** in your Endpoints account menu, or <a href="https://endpoints.huggingface.co/?show-mcp-modal=true" target="_blank" rel="noopener noreferrer">click here</a>.
 
-2. Pick your client: select your MCP-compatible client (Claude Code, Codex, Cursor, Gemini CLI, or Open Code). The modal shows a ready-to-copy configuration snippet for that client.
+2. Pick your client: select your MCP-compatible client. The modal shows a ready-to-copy configuration snippet for that client.
 
 3. Paste and restart: copy the snippet into your client's MCP configuration, save, and restart/reload the client. You should see `hf-endpoints` listed as a connected MCP server.
 

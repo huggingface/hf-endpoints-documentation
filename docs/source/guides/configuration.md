@@ -70,10 +70,6 @@ This section allows you to specify how the container hosting your model behaves.
 For configuration details, please read the Inference Engine section.
 ![inference-engine](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/9-inference-engine.png)
 
-## Container Configuration
-Here you can edit the container arguments and container command.
-![container-configs](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/8-container-config.png)
-
 ## Environment Variables
 Environment variables can be provided to customize container behavior or pass secrets.
 - **Default Env**: Key-value pairs passed as plain environment variables.
@@ -111,6 +107,4 @@ Advanced Settings offer more fine-grained control over deployment.
 - **Commit Revision**: Optionally specify a commit hash to which revision of the model repository on the Hugging Face Hub
 you want to download the model artifacts from
 - **Task**: Defines the type of model task. This is usually inferred from the model repository.
-- **Container Arguments**: Pass CLI-style arguments to the container entrypoint.
-- **Container Command**: Override the container entrypoint entirely.
 - **Download Pattern**: Defines which model files are downloaded.

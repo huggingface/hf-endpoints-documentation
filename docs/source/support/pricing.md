@@ -58,6 +58,10 @@ The table below shows currently available GPU instances and their hourly pricing
 | aws      | nvidia-h200   | x2            | $10         | 2    | 282 GB | NVIDIA H200  |
 | aws      | nvidia-h200   | x4            | $20         | 4    | 564 GB | NVIDIA H200  |
 | aws      | nvidia-h200   | x8            | $40         | 8    | 1128 GB| NVIDIA H200  |
+| aws      | rtx-pro-6000   | x1            | $2.75         | 1    | 96 GB| NVIDIA RTX PRO 6000  |
+| aws      | rtx-pro-6000   | x2            | $5.50        | 2    | 192 GB| NVIDIA RTX PRO 6000  |
+| aws      | rtx-pro-6000   | x4            | $11         | 4    | 384 GB| NVIDIA RTX PRO 6000  |
+| aws      | rtx-pro-6000   | x8            | $22         | 8    | 768 GB| NVIDIA RTX PRO 6000  |
 | aws      | nvidia-b200   | x1            | $9.25       | 1    | 256 GB | *NVIDIA B200 - Deprecated from December 2025* |
 | aws      | nvidia-b200   | x2            | $18.5       | 2    | 512 GB | *NVIDIA B200 - Deprecated from December 2025* |
 | aws      | nvidia-b200   | x4            | $37         | 4    | 1024 GB| *NVIDIA B200 - Deprecated from December 2025* |

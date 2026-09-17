@@ -93,5 +93,7 @@ Only a second call with `confirm: true` actually deletes the endpoint:
 
 ## Learn more
 
-- [API Reference](../api_reference) - the full REST API these tools wrap.
+- [API Reference](../api_reference) - the full REST API these tools wrap. Catalog-related tools
+  (`has_catalog_item`, `list_catalog_items`, `get_recommended_config`) correspond to the
+  [Catalog API](../api_reference#catalog-api); the rest wrap the general management API.
 - [Hugging Face CLI](https://huggingface.co/docs/hub/en/agents-cli) - for full integration with the Hugging Face Hub.

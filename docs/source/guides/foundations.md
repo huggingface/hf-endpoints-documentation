@@ -9,7 +9,8 @@ access deployment configurations. You can access the dashboard by logging in on 
 ### Creating New Endpoints
 Click the **Catalog** button to access the Model Catalog. This will take you to the Model Catalog which
 provides access to 100+ pre-configured models available for deployment as inference endpoints. Use this to browse,
-filter, and deploy models directly.
+filter, and deploy models directly. Some catalog models offer multiple deploy recipes to choose from — for example
+different accelerators or quantizations — in addition to a "Custom" option for manual configuration.
 
 ![new](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/foundations/1-new.png)
 

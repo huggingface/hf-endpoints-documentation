@@ -21,8 +21,9 @@ it by searching for `llama-3.2-3b` in the search field and deploy it by clicking
 ![llama](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/3-llama.png)
 
 Next we'll choose which hardware and deployment settings we'll go for. Since this is a catalog model, all of the pre-selected options are very good
-defaults. So in this case we don't need to change anything. In case you want a deeper dive on what the different settings mean you can check out
-the [configuration guide](./guides/configuration).
+defaults. Some catalog models offer several of these ready-made recipes to pick from (for example different accelerators or quantizations), alongside
+a "Custom" option if you'd rather configure everything by hand. In this case we don't need to change anything. In case you want a deeper dive on what
+the different settings mean you can check out the [configuration guide](./guides/configuration).
 
 For this model the Nvidia L4 is the recommended choice. It will be perfect for our testing. Performant but still reasonably priced. Also note that by
 default the endpoint will scale down to zero, meaning it will become idle after 1h of inactivity.

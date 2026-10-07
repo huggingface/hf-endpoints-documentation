@@ -73,6 +73,10 @@ The table below shows currently available GPU instances and their hourly pricing
 | gcp      | nvidia-h100   | x2            | $20         | 2    | 160 GB | NVIDIA H100  |
 | gcp      | nvidia-h100   | x4            | $40         | 4    | 320 GB | NVIDIA H100  |
 | gcp      | nvidia-h100   | x8            | $80         | 8    | 640 GB | NVIDIA H100  |
+| gcp      | nvidia-h200   | x1            | $5          | 1    | 141 GB | NVIDIA H200  |
+| gcp      | nvidia-h200   | x2            | $10         | 2    | 282 GB | NVIDIA H200  |
+| gcp      | nvidia-h200   | x4            | $20         | 4    | 564 GB | NVIDIA H200  |
+| gcp      | nvidia-h200   | x8            | $40         | 8    | 1128 GB| NVIDIA H200  |
 
 ## INF2 Instances
 

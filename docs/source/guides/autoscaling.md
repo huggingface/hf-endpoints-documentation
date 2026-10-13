@@ -40,7 +40,7 @@ Note that if scale to zero is enabled, the minimum number of replicas needs to b
 
 ## Autoscaling Strategy
 
-For the autoscaling system to work well there needs to be a signal that tells when to scale up and down. For this we have two strategies.
+For the autoscaling system to work well there needs to be a signal that tells when to scale up and down. For this we have three strategies.
 
 ### Scaling based on hardware utilization
 
@@ -66,3 +66,46 @@ the actual requests. A metric that is more of a leading indicator is pending req
 You can adjust this threshold value to meet your specific requirements under Endpoint settings.
 
 Similarly to the hardware metrics, you can track the pending requests in the Analytics tab, or read more about it [here](./analytics#pendingrequests).
+
+### Scaling based on inference load
+
+<Tip>
+This strategy is in beta.
+</Tip>
+
+For LLMs served with vLLM or SGLang, GPU utilization is a poor scaling signal: it stays close to 100% under load and stops telling
+replicas apart, while pending requests only grow once the engine is already backed up. The inference load strategy scales on the
+inference engine's own saturation signals instead, which react before latency degrades:
+
+- **KV cache utilization**: a replica is added when the average KV cache utilization of the replicas exceeds the threshold (default 80%).
+This signal tracks load smoothly and sizes the deployment for steady traffic.
+- **Requests waiting**: a replica is added when the average number of requests waiting in the engine queue per replica exceeds the
+threshold (default 5, decimals allowed). This signal absorbs bursts before the KV cache fills up.
+
+Both thresholds are evaluated together, and the endpoint scales to whichever of the two requires more replicas. Scaling up happens
+without stabilization, adding up to 2 replicas per minute. Scaling down waits for a stabilization window of 300 seconds, then removes
+one replica every 2 minutes.
+
+This strategy is available for endpoints whose engine exposes inference metrics:
+- [vLLM](../engines/vllm) (including vLLM on AWS Inferentia2).
+- [SGLang](../engines/sglang), version 0.4.4 or later. If you override the container command, it must include `--enable-metrics`.
+- [Custom containers](../engines/custom_container) launching vLLM or SGLang with `vllm serve` or `sglang serve`.
+
+For any other engine, creating or updating the endpoint with this strategy is rejected with an error, and nothing is changed.
+
+Using the API, set the `inferenceLoad` measure in the scaling configuration. Both fields are optional:
+
+```json
+"scaling": {
+  "minReplica": 1,
+  "maxReplica": 4,
+  "measure": {
+    "inferenceLoad": {
+      "kvCacheUsage": 80,
+      "requestsWaiting": 5
+    }
+  }
+}
+```
+
+`kvCacheUsage` is a percentage between 0 (excluded) and 100, and `requestsWaiting` is an average per replica that must be greater than 0.

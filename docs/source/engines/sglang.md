@@ -33,6 +33,12 @@ as container arguments. For example changing the `schedule-policy` to `lpm` woul
 
 ![sglang-advanced](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/sglang/sglang-advanced.png)
 
+## Autoscaling
+
+SGLang endpoints can scale on the engine's KV cache utilization and waiting queue with the
+[inference load autoscaling strategy](../guides/autoscaling#scalingbasedoninferenceload). It requires SGLang 0.4.4 or later; if you
+override the container command, it must include `--enable-metrics`.
+
 ## Supported models
 
 SGlang has wide support for large language models, multimodal language models, embedding models and more. We recommend reading the

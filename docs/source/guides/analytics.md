@@ -40,7 +40,7 @@ The boxes above the graph also show the % of requests in the respective response
 Pending requests are requests that have not yet received an HTTP status, meaning they include in-flight requests and requests currently
 being processed. If this metric increases too much, it means that your requests are queuing up, and your users have to wait for requests
 to finish. In this case you should consider increasing your number of replicas or alternatively use autoscaling, you can read more about
-it in the [autoscaling guide](./autoscaling#scalingbasedonpendingrequests(betafeature))
+it in the [autoscaling guide](./autoscaling#scalingbasedonpendingrequests)
 
 ![pending](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/analytics/4-pending-reqs.png)
 

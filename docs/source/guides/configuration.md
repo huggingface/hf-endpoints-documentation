@@ -64,6 +64,8 @@ scaling down to zero. Default is after 1 hour with no activity.
 - **Autoscaling strategy**:
     - Based on hardware usage: For example, a scale up will be triggered if the average hardware utilisation (%) exceeds this threshold for more than 20 seconds.
     - Pending requests: A scale up event will be triggered if the average number of pending requests exceeds this threshold for more than 20 seconds.
+    - Inference load (beta, vLLM and SGLang only): A scale up event will be triggered if the inference engine's average KV cache utilization (%)
+    or the average number of requests waiting in the engine queue per replica exceeds its threshold. Read more in the [autoscaling guide](./autoscaling#scalingbasedoninferenceload).
 
 ## Inference Engine Configuration
 This section allows you to specify how the container hosting your model behaves. This setting depends on the selected inference engine.

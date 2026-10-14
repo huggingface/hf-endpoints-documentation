@@ -29,6 +29,11 @@ as container arguments. For example changing the `enable_lora` to `true` would l
 
 ![vllm-advanced](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/vllm/vllm-advanced.png)
 
+## Autoscaling
+
+vLLM endpoints can scale on the engine's KV cache utilization and waiting queue with the
+[inference load autoscaling strategy](../guides/autoscaling#scalingbasedoninferenceload).
+
 ## Supported models
 
 vLLM has wide support for large language models and embedding models. We recommend reading the

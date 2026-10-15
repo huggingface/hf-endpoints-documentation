@@ -44,7 +44,7 @@ On top of the static Minimum/Maximum replicas and Scale to Zero settings above, 
 automatically overrides them at specific times of day. This is useful when your traffic follows a predictable daily pattern,
 for example keeping extra replicas warm during business hours and scaling down (or to zero) overnight.
 
-You can manage the schedule from the "Daily Autoscaling Schedule" section of the Autoscaling settings (when creating an endpoint, it's under "More options").
+You can manage the schedule from the "Daily Autoscaling Schedule" section of the Autoscaling settings (when creating an endpoint, it's located under "More options").
 
 Each entry has:
 
@@ -54,16 +54,17 @@ Each entry has:
 
 An entry applies from its start time until the next entry's start time, wrapping around midnight: if your last entry of the
 day starts at 20:00 and your first entry starts at 07:00, the 20:00 entry stays in effect overnight until 07:00 the next day.
+
 <Tip>
-An entry with a minimum above 0 starts the endpoint if it has scaled to zero, and its replicas are billed for as long as the entry is in effect.
+An entry with a minimum number of replica above 0 starts the endpoint if it has scaled to zero, and its replicas are billed for as long as the entry is in effect.
 </Tip>
+
 <Tip>
 While a schedule is configured, the base Minimum replicas and Scale to Zero settings are disabled, since a schedule entry is
 always in effect. The Maximum replicas setting stays editable, and caps every entry of the schedule.
 </Tip>
 
-When a schedule is configured, the Instance card shows the replicas and scale-to-zero setting of the entry currently in effect, with a clock icon next to the Autoscaling summary.
-Hovering over the icon shows the time range during which that entry applies.
+When a schedule is configured, the Instance card shows the replicas and scale-to-zero setting of the entry currently in effect, with a clock icon next to the Autoscaling summary. Hovering over the icon shows the time range during which that entry applies.
 
 Using the API, set the `schedule` field in the scaling configuration:
 

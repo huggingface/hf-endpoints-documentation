@@ -44,7 +44,7 @@ On top of the static Minimum/Maximum replicas and Scale to Zero settings above, 
 automatically overrides them at specific times of day. This is useful when your traffic follows a predictable daily pattern,
 for example keeping extra replicas warm during business hours and scaling down (or to zero) overnight.
 
-You can manage the schedule from the "Daily Autoscaling Schedule" section of the Autoscaling settings.
+You can manage the schedule from the "Daily Autoscaling Schedule" section of the Autoscaling settings (when creating an endpoint, it's under "More options").
 
 Each entry has:
 

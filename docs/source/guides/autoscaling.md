@@ -38,6 +38,50 @@ And the maximum so that you stay within budget, but so that you can serve your u
 Note that if scale to zero is enabled, the minimum number of replicas needs to be 0.
 </Tip>
 
+## Daily Autoscaling Schedule
+
+On top of the static Minimum/Maximum replicas and Scale to Zero settings above, you can configure a **daily schedule** that
+automatically overrides them at specific times of day. This is useful when your traffic follows a predictable daily pattern,
+for example keeping extra replicas warm during business hours and scaling down (or to zero) overnight.
+
+You can manage the schedule from the "Daily Autoscaling Schedule" section of the Autoscaling settings (when creating an endpoint, it's located under "More options").
+
+Each entry has:
+
+- A **start time**, always stored in UTC (the editor lets you enter and display it in your local timezone or in UTC).
+- A **minimum** and **maximum** number of replicas.
+- A **scale-to-zero** setting: "Never", or a timeout after which the endpoint scales to zero (15 minutes to 12 hours). Choosing a timeout sets the entry's minimum to 0.
+
+An entry applies from its start time until the next entry's start time, wrapping around midnight: if your last entry of the
+day starts at 20:00 and your first entry starts at 07:00, the 20:00 entry stays in effect overnight until 07:00 the next day.
+
+<Tip>
+An entry with a minimum number of replica above 0 starts the endpoint if it has scaled to zero, and its replicas are billed for as long as the entry is in effect.
+</Tip>
+
+<Tip>
+While a schedule is configured, the base Minimum replicas and Scale to Zero settings are disabled, since a schedule entry is
+always in effect. The Maximum replicas setting stays editable, and caps every entry of the schedule.
+</Tip>
+
+When a schedule is configured, the Instance card shows the replicas and scale-to-zero setting of the entry currently in effect, with a clock icon next to the Autoscaling summary. Hovering over the icon shows the time range during which that entry applies.
+
+Using the API, set the `schedule` field in the scaling configuration:
+
+```json
+"scaling": {
+  "minReplica": 0,
+  "maxReplica": 4,
+  "schedule": [
+    { "at": "07:00", "minReplica": 1, "maxReplica": 4 },
+    { "at": "20:00", "minReplica": 0, "maxReplica": 2, "scaleToZeroTimeout": 15 }
+  ]
+}
+```
+
+Each entry requires a unique `at` time (`HH:MM`, UTC), and `maxReplica` must not exceed the endpoint's maximum; `minReplica`
+must not exceed `maxReplica`, and `scaleToZeroTimeout` only takes effect when `minReplica` is 0.
+
 ## Autoscaling Strategy
 
 For the autoscaling system to work well there needs to be a signal that tells when to scale up and down. For this we have three strategies.

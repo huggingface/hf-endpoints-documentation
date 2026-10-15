@@ -62,7 +62,7 @@ While a schedule is configured, the base Minimum replicas and Scale to Zero sett
 always in effect. The Maximum replicas setting stays editable, and caps every entry of the schedule.
 </Tip>
 
-When an entry is currently in effect, the Instance card shows a clock icon next to the Autoscaling summary; hovering over it
+When a schedule is configured, the Instance card shows the replicas and scale-to-zero setting of the entry currently in effect, with a clock icon next to the Autoscaling summary.
 Hovering over the icon shows the time range during which that entry applies.
 
 Using the API, set the `schedule` field in the scaling configuration:

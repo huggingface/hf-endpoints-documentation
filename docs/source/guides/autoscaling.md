@@ -50,7 +50,7 @@ Each entry has:
 
 - A **start time**, always stored in UTC (the editor lets you enter and display it in your local timezone or in UTC).
 - A **minimum** and **maximum** number of replicas.
-- An optional **scale-to-zero timeout**, available when the minimum is set to 0.
+- A **scale-to-zero** setting: "Never", or a timeout after which the endpoint scales to zero (15 minutes to 12 hours). Choosing a timeout sets the entry's minimum to 0.
 
 An entry applies from its start time until the next entry's start time, wrapping around midnight: if your last entry of the
 day starts at 20:00 and your first entry starts at 07:00, the 20:00 entry stays in effect overnight until 07:00 the next day.

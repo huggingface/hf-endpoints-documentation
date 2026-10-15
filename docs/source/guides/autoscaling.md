@@ -54,7 +54,9 @@ Each entry has:
 
 An entry applies from its start time until the next entry's start time, wrapping around midnight: if your last entry of the
 day starts at 20:00 and your first entry starts at 07:00, the 20:00 entry stays in effect overnight until 07:00 the next day.
-
+<Tip>
+An entry with a minimum above 0 starts the endpoint if it has scaled to zero, and its replicas are billed for as long as the entry is in effect.
+</Tip>
 <Tip>
 While a schedule is configured, the base Minimum replicas and Scale to Zero settings are disabled, since a schedule entry is
 always in effect. The Maximum replicas setting stays editable, and caps every entry of the schedule.

@@ -38,6 +38,47 @@ And the maximum so that you stay within budget, but so that you can serve your u
 Note that if scale to zero is enabled, the minimum number of replicas needs to be 0.
 </Tip>
 
+## Daily Autoscaling Schedule
+
+On top of the static Minimum/Maximum replicas and Scale to Zero settings above, you can configure a **daily schedule** that
+automatically overrides them at specific times of day. This is useful when your traffic follows a predictable daily pattern,
+for example keeping extra replicas warm during business hours and scaling down (or to zero) overnight.
+
+You can manage the schedule from the "Daily Schedule" section of the Autoscaling settings, under "More options".
+
+Each entry has:
+
+- A **start time**, always stored in UTC (the editor lets you enter and display it in your local timezone or in UTC).
+- A **minimum** and **maximum** number of replicas.
+- An optional **scale-to-zero timeout**, available when the minimum is set to 0.
+
+An entry applies from its start time until the next entry's start time, wrapping around midnight: if your last entry of the
+day starts at 20:00 and your first entry starts at 07:00, the 20:00 entry stays in effect overnight until 07:00 the next day.
+
+<Tip>
+While a schedule is configured, the base Minimum replicas and Scale to Zero settings are disabled, since a schedule entry is
+always in effect. The Maximum replicas setting stays editable, and caps every entry of the schedule.
+</Tip>
+
+When an entry is currently in effect, the Instance card shows a clock icon next to the Autoscaling summary; hovering over it
+shows the time range during which this configuration applies.
+
+Using the API, set the `schedule` field in the scaling configuration:
+
+```json
+"scaling": {
+  "minReplica": 0,
+  "maxReplica": 4,
+  "schedule": [
+    { "at": "07:00", "minReplica": 1, "maxReplica": 4 },
+    { "at": "20:00", "minReplica": 0, "maxReplica": 2, "scaleToZeroTimeout": 15 }
+  ]
+}
+```
+
+Each entry requires a unique `at` time (`HH:MM`, UTC), and `maxReplica` must not exceed the endpoint's maximum; `minReplica`
+must not exceed `maxReplica`, and `scaleToZeroTimeout` only takes effect when `minReplica` is 0.
+
 ## Autoscaling Strategy
 
 For the autoscaling system to work well there needs to be a signal that tells when to scale up and down. For this we have three strategies.

@@ -63,7 +63,7 @@ always in effect. The Maximum replicas setting stays editable, and caps every en
 </Tip>
 
 When an entry is currently in effect, the Instance card shows a clock icon next to the Autoscaling summary; hovering over it
-shows the time range during which this configuration applies.
+Hovering over the icon shows the time range during which that entry applies.
 
 Using the API, set the `schedule` field in the scaling configuration:
 

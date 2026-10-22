@@ -201,7 +201,7 @@ The reference implementation exposes Prometheus metrics at `GET /_custom_router/
 
 ## Building your own router
 
-`queued-least-latency` is a starting point, not a requirement. If its routing strategy doesn't fit your use case (say you need KV-cache-aware routing, proactive scale-up signals, or sticky sessions), you can build your own. Any image that satisfies the [Router contract](#router-contract) can be dropped in as the `customRouter` image. A minimal skeleton in Go:
+`queued-least-latency` is a starting point, not a requirement. If its routing strategy doesn't fit your use case (say you need KV-cache-aware routing, weighted routing, or sticky sessions), you can build your own. Any image that satisfies the [Router contract](#router-contract) can be dropped in as the `customRouter` image. Keep in mind that a router only decides which replica handles each request: it cannot add or remove replicas, so the replica count is still driven by your endpoint's [autoscaling](./autoscaling) settings. A minimal skeleton in Go:
 
 ```go
 // POST /_custom_router/set-backends

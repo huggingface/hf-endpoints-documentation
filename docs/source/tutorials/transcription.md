@@ -16,11 +16,11 @@ Start by navigating to the Inference Endpoints UI, and once you have logged in, 
 
 ![new-button](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/1-new-button.png)
 
-From there you'll be directed to the catalog. The Model Catalog consists of popular models which have tuned configurations to work as one-click deploys. You can filter by name, task, price of the hardware and much more.
+From there you'll be directed to the catalog. The Model Catalog consists of popular models which have tuned configurations to work as one-click deploys. Browse models by task or collection, or click **Search and filter all models** to filter by name, task, price of the hardware and much more.
 
 ![catalog](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/2-catalog.png)
 
-Search for "whisper" to find transcription models, or you can create a custom endpoint with [openai/whisper-large-v3](https://huggingface.co/openai/whisper-large-v3). This model provides excellent transcription quality for multiple languages and handles various audio formats.
+Click **Search and filter all models** and search for "whisper" to find transcription models, or you can create a custom endpoint with [openai/whisper-large-v3](https://huggingface.co/openai/whisper-large-v3). This model provides excellent transcription quality for multiple languages and handles various audio formats.
 
 For transcription models, we recommend:
 - **GPU**: NVIDIA L4 or A10G for good performance with audio processing

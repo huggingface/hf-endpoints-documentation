@@ -11,7 +11,7 @@ Start by navigating to the Inference Endpoints UI, and once you have logged in, 
 ![new-button](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/1-new-button.png)
 
 From there you'll be directed to the catalog. The Model Catalog consists of popular models which have tuned configurations to work in one-click
-deploys. You can filter by name, task, hardware price, and much more.
+deploys. Browse models by task or collection, or click **Search and filter all models** to filter by name, task, hardware price, and much more.
 
 ![catalog](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/2-catalog.png)
 

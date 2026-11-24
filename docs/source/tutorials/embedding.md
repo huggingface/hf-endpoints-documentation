@@ -17,7 +17,7 @@ Start by navigating to the Inference Endpoints UI, and once you have logged in, 
 ![new-button](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/1-new-button.png)
 
 From there you'll be directed to the catalog. The Model Catalog consists of popular models which have tuned configurations to work as one-click
-deploys. You can search for embedding models or create a custom endpoint.
+deploys. Click **Search and filter all models** to search for embedding models, or create a custom endpoint.
 
 ![catalog](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/quick_start/2-catalog.png)
 

@@ -3,8 +3,8 @@
 ## General questions
 
 ### In which regions can I deploy an Inference Endpoints?
-Inference Endpoints are currently available on AWS in us-east-1 (N. Virginia) & eu-west-1 (Ireland), on Azure in eastus (Virginia), and on
-GCP in us-east4 (Virginia). If you need to deploy in a different region, please let us know.
+Inference Endpoints are currently available on AWS in us-east-1 (N. Virginia), us-east-2 (Ohio), us-west-2 (Oregon) & eu-west-1 (Ireland),
+and on GCP in us-east4 (Virginia) & us-south1 (Dallas). If you need to deploy in a different region, please let us know.
 
 ### Can I access the instance my Endpoint is running on?
 No, you cannot access the instance hosting your Endpoint. But if you are missing information or need more insights on the machine where
